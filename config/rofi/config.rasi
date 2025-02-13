@@ -1,0 +1,4 @@
+configuration {
+    dpi: 96;
+}
+@theme "fancy2"

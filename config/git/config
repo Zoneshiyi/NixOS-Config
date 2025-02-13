@@ -1,0 +1,5 @@
+[user]
+	email = "zoneshiyi@163.com"
+	name = "Zoneshiyi"
+[init]
+	defaultBranch = main

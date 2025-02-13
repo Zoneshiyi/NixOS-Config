@@ -1,0 +1,29 @@
+[general]
+import = [
+  "~/.config/templates/alacritty/theme.toml"
+]
+
+[window]
+padding = { x = 11, y = 11 }
+# opacity = 0.7
+# option_as_alt = true
+
+[font]
+normal = { family = "FiraCode Nerd Font Propo", style = "Regular" }
+size = 13.0
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+unfocused_hollow = false
+
+[mouse]
+hide_when_typing = true
+
+[keyboard]
+
+
+[scrolling]
+history = 1024
+multiplier = 3
+
+[env]
