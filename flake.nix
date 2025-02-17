@@ -9,10 +9,11 @@
     };
     hyprland.url = "github:hyprwm/Hyprland";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    swww.url = "github:LGFae/swww";
 
     agenix.url = "github:ryantm/agenix";
     secrets = {
-      url = "git+ssh://git@github.com/Zoneshiyi/secrets.git";
+      url = "git+ssh://git@gitee.com/Zoneshiyi/secrets.git";
       flake = false;
     };
   };

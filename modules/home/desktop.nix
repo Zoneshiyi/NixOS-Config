@@ -1,13 +1,15 @@
 {
   pkgs,
   pkgs-24_11,
+  inputs,
   ...
 }:
 {
   home.packages = with pkgs; [
     hyprsunset
     pyprland
-    swww
+    # swww
+    inputs.swww.packages.${pkgs.system}.swww
     swaybg
     dunst
     brightnessctl
