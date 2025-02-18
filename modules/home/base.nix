@@ -15,6 +15,11 @@
     };
   };
   home.packages = with pkgs; [
+    age
+    inputs.agenix.packages.${pkgs.system}.default
+    psmisc
+    fastfetch
+
     gcc
     gnumake
     (pkgs.python312.withPackages (

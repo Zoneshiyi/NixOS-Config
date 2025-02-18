@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>SSH</short>
+  <description>SSH Service</description>
+  <port port="22" protocol="tcp"/>
+</service>

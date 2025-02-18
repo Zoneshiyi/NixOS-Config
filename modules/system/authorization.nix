@@ -1,7 +1,6 @@
 {
   pkgs,
   pkgs-24_11,
-  inputs,
   ...
 }:
 {
@@ -25,8 +24,6 @@
 
   environment.systemPackages = with pkgs; [
     seahorse
-    age
-    inputs.agenix.packages.${pkgs.system}.default
     lxqt.lxqt-policykit
   ];
 }

@@ -5,9 +5,12 @@
 {
   services.openssh = {
     enable = true;
+    # ~/.ssh/authorized_keys
+    authorizedKeysInHomedir = true;
+    ports = [ 22 ];
     settings = {
       PermitRootLogin = "yes";
-      PasswordAuthentication = true;
+      PasswordAuthentication = false;
       PubkeyAuthentication = true;
     };
   };

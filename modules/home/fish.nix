@@ -12,7 +12,6 @@ let
   templatesPath = "${userhome}/.config/templates";
 in
 {
-  programs.atuin.enable = true;
   programs.fish = {
     enable = true;
     plugins = [

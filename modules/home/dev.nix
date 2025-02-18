@@ -16,6 +16,8 @@
     lua-language-server
     stylua
 
+    hyprls
+
     tree-sitter
     nodejs_23
   ];

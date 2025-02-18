@@ -21,11 +21,6 @@
   };
   users.defaultUserShell = pkgs.fish;
 
-  services.atuin = {
-    enable = true;
-    database.createLocally = true;
-  };
-
   services.gvfs = {
     enable = true;
     package = pkgs.gvfs;
@@ -44,5 +39,6 @@
 
   environment.systemPackages = with pkgs; [
     inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    ntfs3g
   ];
 }

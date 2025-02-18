@@ -41,10 +41,6 @@ in
     };
   };
   programs = {
-    appimage = {
-      enable = true;
-      binfmt = true;
-    };
     dconf.enable = true;
     thunar.enable = true;
     thunar.plugins = with pkgs.xfce; [
@@ -53,10 +49,32 @@ in
       tumbler
     ];
   };
-  xdg.icons.enable = true;
-  xdg.mime = {
+  xdg = {
+    icons.enable = true;
+    menus.enable = true;
+    autostart.enable = true;
+    mime = {
+      enable = true;
+      defaultApplications = { };
+    };
+    portal = {
+      enable = true;
+      wlr.enable = true;
+    };
+    terminal-exec = {
+      enable = true;
+      settings = {
+        Hyprland = [
+          "Alacritty.desktop"
+        ];
+      };
+    };
+  };
+  services.sunshine = {
     enable = true;
-    defaultApplications = { };
+    autoStart = false;
+    capSysAdmin = true;
+    settings.port = 47989;
   };
   environment.variables = {
     NIXOS_OZONE_WL = "1";
@@ -72,7 +90,5 @@ in
     wlrctl
     xdg-desktop-portal-wlr
     wl-clipboard
-    xdg-terminal-exec
-    # echo kitty.desktop >> $HOME/.config/xdg-terminals.list
   ];
 }

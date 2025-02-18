@@ -5,10 +5,10 @@
   ...
 }:
 {
+  wayland.windowManager.hyprland.systemd.enable = false;
   home.packages = with pkgs; [
     hyprsunset
     pyprland
-    # swww
     inputs.swww.packages.${pkgs.system}.swww
     swaybg
     dunst
@@ -20,9 +20,12 @@
     xfce.xfce4-settings
     swayimg
     gthumb
+    moonlight-qt
 
     grim
     slurp
     swappy
+
+    trashy
   ];
 }
