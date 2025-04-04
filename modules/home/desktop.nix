@@ -38,6 +38,7 @@
     swayimg
     gthumb
     moonlight-qt
+    remmina
 
     grim
     slurp

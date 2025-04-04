@@ -34,7 +34,8 @@ in
     kitty
     alacritty
     qbittorrent
-    netease-cloud-music-gtk
+    # netease-cloud-music-gtk
+    pkgs-24_11.yesplaymusic
     vscode
     obsidian
     google-chrome

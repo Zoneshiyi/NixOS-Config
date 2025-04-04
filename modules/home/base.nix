@@ -29,6 +29,7 @@
       ]
     ))
 
+    inetutils
     nurl
     bat
     zoxide

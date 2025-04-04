@@ -10,7 +10,7 @@
     ports = [ 22 ];
     settings = {
       PermitRootLogin = "yes";
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       PubkeyAuthentication = true;
     };
   };
