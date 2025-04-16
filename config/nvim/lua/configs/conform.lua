@@ -4,8 +4,9 @@ return {
 		formatters_by_ft = {
 			c = { "clang-format" },
 			cpp = { "clang-format" },
+			rust = { "rustfmt" },
 			python = { "isort", "black" },
-      nix = { "nixfmt" },
+			nix = { "nixfmt" },
 			lua = { "stylua" },
 		},
 		-- Set default options

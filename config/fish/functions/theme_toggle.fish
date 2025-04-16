@@ -6,7 +6,7 @@ function theme_toggle
     set alacritty ~/.config/alacritty/themes/themes
     if test (dconf read /org/gnome/desktop/interface/gtk-theme) = "'catppuccin-latte-flamingo-standard'"
         dconf write /org/gnome/desktop/interface/gtk-theme "'catppuccin-frappe-blue-standard'";
-        kvantummanager --set "Catppuccin-Frappe-Sapphire";
+        kvantummanager --set "catppuccin-frappe-sapphire";
         install -D -m 644 $waybar/night.css $template/waybar/style.css;
         install -D -m 644 $kitty/frappe.conf $template/kitty/style.conf;
         install -D -m 644 $alacritty/catppuccin_frappe.toml $template/alacritty/theme.toml;
@@ -14,7 +14,7 @@ function theme_toggle
         pkill -SIGUSR2 waybar;
     else
         dconf write /org/gnome/desktop/interface/gtk-theme "'catppuccin-latte-flamingo-standard'";
-        kvantummanager --set "Catppuccin-Latte-Flamingo";
+        kvantummanager --set "catppuccin-latte-flamingo";
         install -D -m 644 $waybar/daytime.css $template/waybar/style.css;
         install -D -m 644 $kitty/latte.conf $template/kitty/style.conf;
         install -D -m 644 $alacritty/catppuccin_latte.toml $template/alacritty/theme.toml;

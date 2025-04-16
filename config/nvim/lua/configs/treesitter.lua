@@ -1,6 +1,7 @@
 local opts = {
 	ensure_installed = {
 		"c",
+    "rust",
 		"python",
 		"nix",
 		"lua",

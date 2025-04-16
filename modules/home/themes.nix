@@ -4,25 +4,25 @@
 }:
 let
   validKvantumThemes = {
-    Catppuccin-Frappe-Flamingo = (
+    catppuccin-frappe-flamingo = (
       pkgs.catppuccin.override {
         variant = "frappe";
         accent = "flamingo";
       }
     );
-    Catppuccin-Frappe-Sapphire = (
+    catppuccin-frappe-sapphire = (
       pkgs.catppuccin.override {
         variant = "frappe";
         accent = "sapphire";
       }
     );
-    Catppuccin-Latte-Flamingo = (
+    catppuccin-latte-flamingo = (
       pkgs.catppuccin.override {
         variant = "latte";
         accent = "flamingo";
       }
     );
-    Catppuccin-Latte-Sapphire = (
+    catppuccin-latte-sapphire = (
       pkgs.catppuccin.override {
         variant = "latte";
         accent = "sapphire";

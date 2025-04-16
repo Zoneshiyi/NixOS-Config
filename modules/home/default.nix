@@ -2,6 +2,7 @@
   imports = [
     ./alacritty.nix
     ./base.nix
+    ./clangd.nix
     ./desktop.nix
     ./dev.nix
     ./dunst.nix

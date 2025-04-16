@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     glibc
     libclang
+    cmake
 
     pyright
     isort
