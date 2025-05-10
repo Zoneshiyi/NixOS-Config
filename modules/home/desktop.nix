@@ -39,6 +39,7 @@
     gthumb
     moonlight-qt
     remmina
+    eww
 
     grim
     slurp

@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ../../modules/system
   ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   networking.hostName = "dell-i713700";
   nixpkgs.config.allowUnfree = true;
@@ -16,10 +17,13 @@
     fsType = "ext4";
   };
 
-  # virtualisation.docker.daemon.settings = {
-  #   data-root = "/data/docker";
-  # };
-  # virtualisation.docker.storageDriver = "overlay2";
+  boot.loader.grub.extraEntries = ''
+    menuentry "Windows 11" {
+      search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
+      chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
+    }
+  '';
+  virtualisation.docker.enableNvidia = false;
 
   system.stateVersion = "24.11";
 

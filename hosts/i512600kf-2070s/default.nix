@@ -43,5 +43,7 @@
   boot.loader.grub.gfxmodeEfi = lib.mkForce "2560x1440x32,1280x720x32";
   boot.loader.grub.gfxmodeBios = lib.mkForce "2560x1440x32,1280x720x32";
 
+  virtualisation.docker.enableNvidia = true;
+
   system.stateVersion = "24.11";
 }

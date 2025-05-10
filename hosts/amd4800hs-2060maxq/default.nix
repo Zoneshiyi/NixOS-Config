@@ -78,6 +78,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
+  virtualisation.docker.enableNvidia = true;
+
   system.stateVersion = "24.11";
 
 }

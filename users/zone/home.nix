@@ -41,5 +41,7 @@ in
     google-chrome
     qq
     wechat-uos
+    mpv
+    ffmpeg
   ];
 }

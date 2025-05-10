@@ -6,6 +6,7 @@
     ./desktop.nix
     ./dev.nix
     ./dunst.nix
+    ./eww.nix
     ./gpg.nix
     ./nvim.nix
     ./password-store.nix

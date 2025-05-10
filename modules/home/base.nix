@@ -29,6 +29,7 @@
       ]
     ))
 
+    unzip
     inetutils
     nurl
     bat

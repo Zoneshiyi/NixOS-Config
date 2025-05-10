@@ -1,7 +1,7 @@
 {
   imports = [
     ./audio.nix
-    ./authorization.nix
+    ./auth.nix
     ./base.nix
     ./bluetooth.nix
     ./boot.nix
@@ -10,5 +10,6 @@
     ./network.nix
     ./nix.nix
     ./utils.nix
+    ./virt.nix
   ];
 }
