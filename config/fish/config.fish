@@ -1,4 +1,5 @@
 set -g fish_greeting ''
+starship init fish | source
 
 set -gx FZF_DEFAULT_OPTS "--preview 'echo {}' --preview-window=right:50%:wrap"
 fzf --fish | source
