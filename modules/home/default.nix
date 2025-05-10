@@ -10,6 +10,7 @@
     ./gpg.nix
     ./nvim.nix
     ./password-store.nix
+    ./starship.nix
     ./syncthing.nix
     ./themes.nix
     ./tmux.nix
