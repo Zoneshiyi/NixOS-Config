@@ -1,0 +1,30 @@
+(defpoll volume
+  :interval "1s"
+  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2"
+)
+
+(defpoll time
+  :interval "5s"
+  :initial `date '+%H:%M %b %d, %Y'`
+  "date '+%H:%M %b %d'"
+)
+
+(defwidget metric [label value onchange]
+  (box
+    :orientation "h"
+    :class "metric"
+    :space-evenly false
+    (label :text label)
+    (scale
+      :hexpand true
+      :min 0.0
+      :max 101.0
+      :draw-value true
+      :value-pos "right"
+      :round-digits 0
+      :active {onchange != ""}
+      :value value
+      :onchange onchange
+    )
+  )
+)

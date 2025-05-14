@@ -1,0 +1,64 @@
+(defwindow top_bar [screen]
+  :monitor screen
+  :geometry (geometry
+    :anchor "top center"
+    :width "100%"
+    :height "2%"
+  )
+  :stacking "bg"
+  :exclusive true
+  :focusable "none"
+  (top_bar)
+)
+
+(defwidget top_bar []
+  (centerbox
+    :orientation "h"
+    (workspaces)
+    (current_time)
+    (sidestuff)
+  )
+)
+
+(defwidget workspaces []
+  (box
+    :class "workspaces"
+    :orientation "h"
+    :space-evenly true
+    :halign "start"
+    :spacing 7
+    (button :onclick "hyprctl dispatch workspace 1" 1)
+    (button :onclick "hyprctl dispatch workspace 2" 2)
+    (button :onclick "hyprctl dispatch workspace 3" 3)
+    (button :onclick "hyprctl dispatch workspace 4" 4)
+    (button :onclick "hyprctl dispatch workspace 5" 5)
+  )
+)
+
+(defwidget current_time []
+  (box
+    :class "current_time"
+    (label
+      :text "${time}"
+    )
+  )
+)
+
+(defwidget sidestuff []
+  (box
+    :class "sidestuff"
+    :orientation "h"
+    :halign "end"
+    :space-evenly false
+    (button
+      :class "pavucontrol"
+      :onclick "pavucontrol &"
+      ""
+    )
+    (metric
+      :label ""
+      :value {volume*100}
+      :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
+    )
+  )
+)

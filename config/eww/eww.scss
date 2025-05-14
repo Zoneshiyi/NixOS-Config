@@ -1,0 +1,17 @@
+@import "./style";
+* {
+  font-family: FiraCode Nerd Font Propo;
+  color: $text;
+}
+
+button {
+  background-color: rgba($base, 1);
+}
+
+.side_systray {
+  margin: 0.5em;
+}
+
+scale{
+  min-width: 128px;
+}

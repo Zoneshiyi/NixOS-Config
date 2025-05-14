@@ -1,0 +1,27 @@
+(defwidget side_bar []
+  (centerbox
+    :orientation "v"
+    (label)
+    (label)
+    (systray
+      :class "side_systray"
+      :orientation "v"
+      :valign "end"
+      :spacing 11
+      :icon-size 22
+    )
+  )
+)
+
+(defwindow side_bar [screen]
+  :monitor screen
+  :geometry (geometry
+    :anchor "right center"
+    :width "2%"
+    :height "100%"
+  )
+  :stacking "bottom"
+  :exclusive true
+  :focusable "none"
+  (side_bar)
+)
