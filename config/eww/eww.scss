@@ -4,59 +4,108 @@
   font-family: FiraCode Nerd Font Propo;
   font-size: 16px;
   background-color: rgba($base, 1);
-  color: $text;
+  color: rgba($text, 1);
 }
 
 button {
-  border-radius: 0.5em;
-  padding-left: 0.7em;
-  padding-right: 0.7em;
+  border-radius: .5em;
+  padding-left: .7em;
+  padding-right: .7em;
+  &:hover {
+    background-color: rgba($surface1, 1);
+    label {
+      background-color: inherit;
+      color: rgba($sapphire, 1);
+    }
+  }
 }
 
-button:hover {
-  background-color: rgba($surface1, 1);
+image {
+  background-color: inherit;
 }
 
-button:hover label {
-  background-color: rgba($surface1, 1);
-  color: rgba($red, 1);
-}
-
-.powermenu{
+.powermenu {
   background-color: rgba($surface0, 1);
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-right: 0.5em;
+  border-radius: .5em 0 0 .5em;
+  padding-right: .5em;
+  label {
+    background-color: inherit;
+    color: rgba($red, 1);
+  }
 }
 
-.powermenu label{
+.calendar {
+  border-radius: 1em;
+  padding: .3em;
+  &:selected {
+    color: rgba($red, 1);
+  }
+}
+
+.btm-systray {
   background-color: rgba($surface0, 1);
-  color: rgba($red, 1);
+  padding-left: .7em;
+  padding-right: .5em;
+  border-top-left-radius: .5em;
+  border-bottom-left-radius: .5em;
+  widget {
+    background-color: inherit;
+  }
 }
 
-.btm-systray{
-  background-color: rgba($surface0, 1);
-  padding-left: 0.7em;
-  padding-right: 0.5em;
-  border-top-left-radius: 0.5em;
-  border-bottom-left-radius: 0.5em;
+.popup {
+  background-color: rgba($base, 1);
+  decoration {
+    padding: .5em;
+    border-radius: .5em;
+    border: .1em solid rgba($surface1, 1);
+    background-color: inherit;
+  }
+  menu {
+    background-color: inherit;
+    menuitem {
+      &:hover{
+        background-color: rgba($surface1, 1);
+      }
+      border-radius: .3em;
+      margin: .2em;
+      check {
+        border: .4em solid rgba($surface0, 1);
+        border-radius: 999em;
+      }
+      check:checked {
+        margin-left: .5em;
+        margin-right: .5em;
+        border: .4em solid rgba($sapphire, 1);
+        border-radius: 999em;
+      }
+      label, box {
+        background-color: inherit;
+      }
+    }
+    separator {
+      border: .1em solid rgba($surface0, 1);
+      margin: .2em;
+    }
+  }
+  image {
+    background-color: inherit;
+  }
 }
 
-.btm-systray image{
-  background-color: rgba($surface0, 1);
+scale trough {
+  background-color: rgba($surface2, 1);
+  border-radius: .5em;
+  min-height: .5em;
+  min-width: 5em;
+  margin: 0 .5em 0 .5em;
 }
 
-.btm-systray menu{
-  padding: 0.5em;
-  border-radius: 0.5em;
+scale trough highlight {
+  background-color: rgba($sapphire, 1);
+  border-radius: .5em;
 }
 
-.volume-panel scale {
-  min-width: 8em;
-}
-
-.volume-panel button {
-  margin-left: 1em;
-  margin-right: 1em;
-  color: $sapphire;
+.btm-systray {
+  margin-left: .3em;
 }

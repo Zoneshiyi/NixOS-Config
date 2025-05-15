@@ -7,26 +7,17 @@
 (defvar volume-revealed false)
 
 (defwidget volume-panel []
-  (eventbox
-    :onhover "eww update volume-revealed=true"
-    :onhoverlost "eww update volume-revealed=false"
-    (box
-      :class "volume-panel"
-      :space-evenly false
-      (button
-        :onclick "pavucontrol &"
-        ""
-      )
-      (revealer
-        :transition "slideright"
-        :reveal volume-revealed
-        :duration "500ms"
-        (metric
-          :orientation "h"
-          :value {volume*100}
-          :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
-        )
-      )
+  (revealer-on-hover
+    :var volume-revealed
+    :varname "volume-revealed"
+    :class "volume-panel"
+    (metric
+      :value {volume*100}
+      :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
+    )
+    (button
+      :onclick "pavucontrol &"
+      ""
     )
   )
 )
@@ -37,19 +28,40 @@
   "date '+%H:%M %a %m-%d'"
 )
 
-(defwidget metric [orientation value onchange]
+(defwidget metric [?orientation ?flipped ?draw-value ?value-pos value onchange]
   (scale
+    :orientation {orientation?:"h"}
+    :flipped {flipped?:false}
+    :draw-value {draw-value?:true}
+    :value-pos {value-pos?:"left"}
+    :hexpand true
     :min 0.0
     :max 101.0
-    :draw-value true
-    :value-pos "right"
     :round-digits 0
     :active {onchange != ""}
-    :orientation orientation
     :value value
     :onchange onchange
   )
 )
+
+(defwidget revealer-on-hover [var varname ?class ?duration ?transition]
+  (eventbox
+    :onhover "eww update ${varname}=true"
+    :onhoverlost "eww update ${varname}=false"
+    (box
+      :class {class?:"revealer-on-hover"}
+      :space-evenly false
+      (revealer
+        :transition {transition?:"slideleft"}
+        :reveal var
+        :duration {duration?:"500ms"}
+        (children :nth 0)
+      )
+      (children :nth 1)
+    )
+  )
+)
+
 
 (defwidget powermenu []
   (button

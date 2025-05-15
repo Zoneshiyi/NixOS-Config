@@ -8,13 +8,17 @@
   :stacking "bg"
   :exclusive true
   :focusable "none"
-  (top-bar)
+  (top-bar
+    :screen screen
+  )
 )
 
-(defwidget top-bar []
+(defwidget top-bar [screen]
   (centerbox
     (workspaces)
-    (current-time)
+    (current-time
+      :screen screen
+    )
     (top-tray)
   )
 )
@@ -24,18 +28,28 @@
     :class "workspaces"
     :halign "start"
     :spacing 7
-    (button :onclick "hyprctl dispatch workspace 1" 1)
-    (button :onclick "hyprctl dispatch workspace 2" 2)
-    (button :onclick "hyprctl dispatch workspace 3" 3)
-    (button :onclick "hyprctl dispatch workspace 4" 4)
-    (button :onclick "hyprctl dispatch workspace 5" 5)
+    (button :onclick "hyprctl dispatch workspace 1" "󰲠")
+    (button :onclick "hyprctl dispatch workspace 2" "󰲢")
+    (button :onclick "hyprctl dispatch workspace 3" "󰲤")
+    (button :onclick "hyprctl dispatch workspace 4" "󰲦")
+    (button :onclick "hyprctl dispatch workspace 5" "󰲨")
   )
 )
+; "1": "󰲠",
+; "2": "󰲢",
+; "3": "󰲤",
+; "4": "󰲦",
+; "5": "󰲨",
+; "6": "󰲪",
+; "7": "󰲬",
+; "8": "󰲮",
+; "9": "󰲰",
+; "10": "󰿬",
 
-(defwidget current-time []
+(defwidget current-time [screen]
   (eventbox
     :class "current-time"
-    :onclick "eww open calendar --toggle --arg screen=0"
+    :onclick "eww open calendar --toggle --arg screen=${screen}"
     (label
       :text "${time}"
     )
@@ -50,6 +64,7 @@
     :space-evenly false
     ; (volume-panel)
     (powermenu)
+
   )
 )
 
