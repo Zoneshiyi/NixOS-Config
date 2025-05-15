@@ -1,0 +1,36 @@
+(defwindow btm-bar [screen]
+  :monitor screen
+  :geometry (geometry
+    :anchor "bottom center"
+    :width "100%"
+    :height "2%"
+  )
+  :stacking "bg"
+  :exclusive true
+  :focusable "none"
+  (btm-bar)
+)
+
+(defwidget btm-bar []
+  (centerbox
+    :orientation "h"
+    (label :text "left")
+    (label :text "center")
+    (btm-tray)
+  )
+)
+
+(defwidget btm-tray []
+  (box
+    :halign "end"
+    :space-evenly false
+    (volume-panel)
+    (systray
+      :class "btm-systray"
+      :orientation "h"
+      :halign "end"
+      :spacing 11
+      :icon-size 22
+    )
+  )
+)

@@ -1,10 +1,10 @@
-(defwidget side_bar []
+(defwidget side-bar []
   (centerbox
     :orientation "v"
     (label)
     (label)
     (systray
-      :class "side_systray"
+      :class "side-systray"
       :orientation "v"
       :valign "end"
       :spacing 11
@@ -13,15 +13,16 @@
   )
 )
 
-(defwindow side_bar [screen]
+(defwindow side-bar [screen]
   :monitor screen
   :geometry (geometry
     :anchor "right center"
-    :width "2%"
-    :height "100%"
+    :y "10%"
+    :width "0%"
+    :height "92%"
   )
-  :stacking "bottom"
+  :stacking "bg"
   :exclusive true
-  :focusable "none"
-  (side_bar)
+  :focusable "ondemand"
+  (side-bar)
 )

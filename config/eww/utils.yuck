@@ -1,30 +1,60 @@
 (defpoll volume
   :interval "1s"
+  :initial "0"
   "wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2"
+)
+
+(defvar volume-revealed false)
+
+(defwidget volume-panel []
+  (eventbox
+    :onhover "eww update volume-revealed=true"
+    :onhoverlost "eww update volume-revealed=false"
+    (box
+      :class "volume-panel"
+      :space-evenly false
+      (button
+        :onclick "pavucontrol &"
+        ""
+      )
+      (revealer
+        :transition "slideright"
+        :reveal volume-revealed
+        :duration "500ms"
+        (metric
+          :orientation "h"
+          :value {volume*100}
+          :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
+        )
+      )
+    )
+  )
 )
 
 (defpoll time
   :interval "5s"
   :initial `date '+%H:%M %b %d, %Y'`
-  "date '+%H:%M %b %d'"
+  "date '+%H:%M %a %m-%d'"
 )
 
-(defwidget metric [label value onchange]
-  (box
-    :orientation "h"
-    :class "metric"
-    :space-evenly false
-    (label :text label)
-    (scale
-      :hexpand true
-      :min 0.0
-      :max 101.0
-      :draw-value true
-      :value-pos "right"
-      :round-digits 0
-      :active {onchange != ""}
-      :value value
-      :onchange onchange
-    )
+(defwidget metric [orientation value onchange]
+  (scale
+    :min 0.0
+    :max 101.0
+    :draw-value true
+    :value-pos "right"
+    :round-digits 0
+    :active {onchange != ""}
+    :orientation orientation
+    :value value
+    :onchange onchange
+  )
+)
+
+(defwidget powermenu []
+  (button
+    :class "powermenu"
+    :onclick "wlogout -b 4 &"
+    "󰐥"
   )
 )

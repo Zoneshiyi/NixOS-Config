@@ -1,4 +1,4 @@
 (include "./utils.yuck")
-(include "./side_bar.yuck")
-(include "./bottom_bar.yuck")
-(include "./top_bar.yuck")
+(include "./top-bar.yuck")
+(include "./btm-bar.yuck")
+(include "./side-bar.yuck")

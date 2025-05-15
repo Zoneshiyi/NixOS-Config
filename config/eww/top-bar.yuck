@@ -1,4 +1,4 @@
-(defwindow top_bar [screen]
+(defwindow top-bar [screen]
   :monitor screen
   :geometry (geometry
     :anchor "top center"
@@ -8,23 +8,20 @@
   :stacking "bg"
   :exclusive true
   :focusable "none"
-  (top_bar)
+  (top-bar)
 )
 
-(defwidget top_bar []
+(defwidget top-bar []
   (centerbox
-    :orientation "h"
     (workspaces)
-    (current_time)
-    (sidestuff)
+    (current-time)
+    (top-tray)
   )
 )
 
 (defwidget workspaces []
   (box
     :class "workspaces"
-    :orientation "h"
-    :space-evenly true
     :halign "start"
     :spacing 7
     (button :onclick "hyprctl dispatch workspace 1" 1)
@@ -35,30 +32,35 @@
   )
 )
 
-(defwidget current_time []
-  (box
-    :class "current_time"
+(defwidget current-time []
+  (eventbox
+    :class "current-time"
+    :onclick "eww open calendar --toggle --arg screen=0"
     (label
       :text "${time}"
     )
   )
 )
 
-(defwidget sidestuff []
+(defwidget top-tray []
   (box
-    :class "sidestuff"
+    :class "top-tray"
     :orientation "h"
     :halign "end"
     :space-evenly false
-    (button
-      :class "pavucontrol"
-      :onclick "pavucontrol &"
-      ""
-    )
-    (metric
-      :label ""
-      :value {volume*100}
-      :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
-    )
+    ; (volume-panel)
+    (powermenu)
   )
+)
+
+(defwindow calendar [screen]
+  :monitor screen
+  :stacking "fg"
+  :exclusive false
+  :geometry (geometry
+    :anchor "top center"
+    :y "0.1%"
+    :width "13%"
+  )
+  (calendar)
 )

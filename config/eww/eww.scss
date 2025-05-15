@@ -1,17 +1,62 @@
 @import "./style";
 * {
+  all: unset;
   font-family: FiraCode Nerd Font Propo;
+  font-size: 16px;
+  background-color: rgba($base, 1);
   color: $text;
 }
 
 button {
-  background-color: rgba($base, 1);
+  border-radius: 0.5em;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
 }
 
-.side_systray {
-  margin: 0.5em;
+button:hover {
+  background-color: rgba($surface1, 1);
 }
 
-scale{
-  min-width: 128px;
+button:hover label {
+  background-color: rgba($surface1, 1);
+  color: rgba($red, 1);
+}
+
+.powermenu{
+  background-color: rgba($surface0, 1);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-right: 0.5em;
+}
+
+.powermenu label{
+  background-color: rgba($surface0, 1);
+  color: rgba($red, 1);
+}
+
+.btm-systray{
+  background-color: rgba($surface0, 1);
+  padding-left: 0.7em;
+  padding-right: 0.5em;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+}
+
+.btm-systray image{
+  background-color: rgba($surface0, 1);
+}
+
+.btm-systray menu{
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+.volume-panel scale {
+  min-width: 8em;
+}
+
+.volume-panel button {
+  margin-left: 1em;
+  margin-right: 1em;
+  color: $sapphire;
 }
