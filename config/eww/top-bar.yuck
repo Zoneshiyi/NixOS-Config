@@ -1,5 +1,5 @@
-(defwindow top-bar [screen]
-  :monitor screen
+(defwindow top-bar [monitor]
+  :monitor monitor
   :geometry (geometry
     :anchor "top center"
     :width "100%"
@@ -9,47 +9,67 @@
   :exclusive true
   :focusable "none"
   (top-bar
-    :screen screen
+    :monitor monitor
   )
 )
 
-(defwidget top-bar [screen]
+(defwidget top-bar [monitor]
   (centerbox
-    (workspaces)
+    (workspaces
+      :monitor monitor
+    )
     (current-time
-      :screen screen
+      :monitor monitor
     )
     (top-tray)
   )
 )
 
-(defwidget workspaces []
+(defpoll workspaces
+  :interval "1s"
+  :initial "fish -c 'hypr-wsp available'"
+  "fish -c 'hypr-wsp available'"
+)
+
+(defwidget workspaces [monitor]
   (box
     :class "workspaces"
     :halign "start"
+    :space-evenly false
     :spacing 7
-    (button :onclick "hyprctl dispatch workspace 1" "󰲠")
-    (button :onclick "hyprctl dispatch workspace 2" "󰲢")
-    (button :onclick "hyprctl dispatch workspace 3" "󰲤")
-    (button :onclick "hyprctl dispatch workspace 4" "󰲦")
-    (button :onclick "hyprctl dispatch workspace 5" "󰲨")
+    ; (button :onclick "hyprctl dispatch workspace 1" "󰲠")
+    ; (button :onclick "hyprctl dispatch workspace 2" "󰲢")
+    ; (button :onclick "hyprctl dispatch workspace 3" "󰲤")
+    ; (button :onclick "hyprctl dispatch workspace 4" "󰲦")
+    ; (button :onclick "hyprctl dispatch workspace 5" "󰲨")
+    ; (label :text workspaces)
+    (for wsp in "${workspaces[monitor]}"
+      (label
+        :text 1
+      )
+      (button
+        :class "workspace"
+        :onclick "hyprctl dispatch workspace ${wsp}"
+        :text wsp
+        :halign "center"
+        :valign "center"
+        :width "100%"
+        :height "100%"
+      )
+    )
   )
 )
-; "1": "󰲠",
-; "2": "󰲢",
-; "3": "󰲤",
-; "4": "󰲦",
-; "5": "󰲨",
-; "6": "󰲪",
-; "7": "󰲬",
-; "8": "󰲮",
-; "9": "󰲰",
-; "10": "󰿬",
 
-(defwidget current-time [screen]
+(defpoll time
+  :interval "5s"
+  :initial `date '+%H:%M %b %d, %Y'`
+  "date '+%H:%M %A %m-%d'"
+)
+
+(defwidget current-time [monitor]
   (eventbox
     :class "current-time"
-    :onclick "eww open calendar --toggle --arg screen=${screen}"
+    :onclick "eww open calendar --toggle --arg monitor=${monitor}"
     (label
       :text "${time}"
     )
@@ -69,8 +89,8 @@
   )
 )
 
-(defwindow calendar [screen]
-  :monitor screen
+(defwindow calendar [monitor]
+  :monitor monitor
   :stacking "fg"
   :exclusive false
   :geometry (geometry
@@ -79,4 +99,34 @@
     :width "13%"
   )
   (calendar)
+)
+
+(defvar theme "")
+
+(defwidget theme []
+  (button
+    :class "theme"
+    :onclick "eww update theme= && fish -c 'theme-choose light' &"
+    :onrightclick "eww update theme= && fish -c 'theme-choose dark' &"
+    theme
+  )
+)
+
+(defvar nightmode "󱩍")
+
+(defwidget nightmode []
+  (button
+    :class "nightmode"
+    :onclick "eww update nightmode=󱩌 && hyprsunset > /dev/null 2>&1 &"
+    :onrightclick "eww update nightmode=󱩍 && pkill hyprsunset &"
+    nightmode
+  )
+)
+
+(defwidget powermenu []
+  (button
+    :class "powermenu"
+    :onclick "wlogout -b 4 &"
+    "󰐥"
+  )
 )

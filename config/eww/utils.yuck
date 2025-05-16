@@ -1,73 +1,9 @@
-(defpoll volume
-  :interval "3600s"
-  :initial "0"
-  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2"
-)
-
-(defvar volume-revealed false)
-
-(defwidget volume-panel []
-  (revealer-on-hover
-    :var volume-revealed
-    :varname "volume-revealed"
-    :class "volume-panel"
-    (metric
-      :value {volume*100}
-      :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
-    )
-    (button
-      :onclick "pavucontrol &"
-      ""
-    )
-  )
-)
-
-(defpoll time
-  :interval "5s"
-  :initial `date '+%H:%M %b %d, %Y'`
-  "date '+%H:%M %a %m-%d'"
-)
-
-(defpoll theme
-  :interval "3600s"
-  :initial ""
-  "fish -c 'set theme (dconf read /org/gnome/desktop/interface/gtk-theme); if test $theme = \"\\'catppuccin-latte-flamingo-standard\\'\"; echo ; else; echo $theme; end'"
-)
-
-(defwidget theme []
-  (button
-    :class "theme"
-    :onclick "eww update theme= && fish -c 'theme-choose light' &"
-    :onrightclick "eww update theme= && fish -c 'theme-choose dark' &"
-    theme
-  )
-)
-
-(defvar nightmode "󱩍")
-
-(defwidget nightmode []
-  (button
-    :class "nightmode"
-    :onclick "eww update nightmode=󱩌 && hyprsunset > /dev/null 2>&1  &"
-    :onrightclick "eww update nightmode=󱩍 && pkill hyprsunset &"
-    nightmode
-  )
-)
-
-(defwidget powermenu []
-  (button
-    :class "powermenu"
-    :onclick "wlogout -b 4 &"
-    "󰐥"
-  )
-)
-
 (defwidget metric [?orientation ?flipped ?draw-value ?value-pos value onchange]
   (scale
     :orientation {orientation?:"h"}
     :flipped {flipped?:false}
     :draw-value {draw-value?:true}
-    :value-pos {value-pos?:"left"}
+    :value-pos {value-pos?:"right"}
     :hexpand true
     :min 0.0
     :max 101.0

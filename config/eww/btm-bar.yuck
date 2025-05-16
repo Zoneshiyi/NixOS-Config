@@ -1,5 +1,5 @@
-(defwindow btm-bar [screen]
-  :monitor screen
+(defwindow btm-bar [monitor]
+  :monitor monitor
   :geometry (geometry
     :anchor "bottom center"
     :width "100%"
@@ -31,6 +31,26 @@
       :halign "end"
       :spacing 11
       :icon-size 22
+    )
+  )
+)
+
+(defvar volume 0)
+
+(defvar volume-revealed false)
+
+(defwidget volume-panel []
+  (revealer-on-hover
+    :var volume-revealed
+    :varname "volume-revealed"
+    :class "volume-panel"
+    (metric
+      :value {volume*100}
+      :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
+    )
+    (button
+      :onclick "pavucontrol &"
+      ""
     )
   )
 )

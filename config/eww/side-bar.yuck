@@ -13,8 +13,8 @@
   )
 )
 
-(defwindow side-bar [screen]
-  :monitor screen
+(defwindow side-bar [monitor]
+  :monitor monitor
   :geometry (geometry
     :anchor "right center"
     :y "10%"

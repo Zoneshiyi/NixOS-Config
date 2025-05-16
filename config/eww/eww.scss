@@ -1,7 +1,7 @@
 @import "./style";
 * {
   all: unset;
-  font-family: FiraCode Nerd Font Propo;
+  font-family: "FiraCode Nerd Font Propo";
   font-size: 16px;
   background-color: rgba($base, 1);
   color: rgba($text, 1);
@@ -22,6 +22,10 @@ button {
 
 image {
   background-color: inherit;
+}
+
+.current-time label {
+  font-family: "Sarasa UI SC";
 }
 
 .powermenu {

@@ -42,6 +42,7 @@
     noto-fonts-color-emoji
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
+    sarasa-gothic
     vistafonts-chs
   ];
   fonts.fontconfig = {
