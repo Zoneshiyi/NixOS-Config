@@ -8,9 +8,9 @@
 }
 
 button {
-  border-radius: .5em;
-  padding-left: .7em;
-  padding-right: .7em;
+  border-radius: 0.5em;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
   &:hover {
     background-color: rgba($surface1, 1);
     label {
@@ -26,17 +26,21 @@ image {
 
 .powermenu {
   background-color: rgba($surface0, 1);
-  border-radius: .5em 0 0 .5em;
-  padding-right: .5em;
+  border-radius: 0.5em 0 0 0.5em;
+  padding-right: 0.5em;
+  margin-left: 0.5em;
   label {
     background-color: inherit;
+    color: rgba($red, 1);
+  }
+  &:hover label {
     color: rgba($red, 1);
   }
 }
 
 .calendar {
   border-radius: 1em;
-  padding: .3em;
+  padding: 0.3em;
   &:selected {
     color: rgba($red, 1);
   }
@@ -44,10 +48,10 @@ image {
 
 .btm-systray {
   background-color: rgba($surface0, 1);
-  padding-left: .7em;
-  padding-right: .5em;
-  border-top-left-radius: .5em;
-  border-bottom-left-radius: .5em;
+  padding-left: 0.7em;
+  padding-right: 0.5em;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
   widget {
     background-color: inherit;
   }
@@ -56,36 +60,39 @@ image {
 .popup {
   background-color: rgba($base, 1);
   decoration {
-    padding: .5em;
-    border-radius: .5em;
-    border: .1em solid rgba($surface1, 1);
+    padding: 0.5em;
+    border-radius: 0.5em;
+    border: 0.1em solid rgba($surface1, 1);
     background-color: inherit;
   }
   menu {
     background-color: inherit;
     menuitem {
-      &:hover{
+      &:hover {
         background-color: rgba($surface1, 1);
       }
-      border-radius: .3em;
-      margin: .2em;
-      check {
-        border: .4em solid rgba($surface0, 1);
+      border-radius: 0.3em;
+      margin: 0.2em;
+      check,
+      radio {
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        border: 0.4em solid rgba($surface0, 1);
         border-radius: 999em;
       }
-      check:checked {
-        margin-left: .5em;
-        margin-right: .5em;
-        border: .4em solid rgba($sapphire, 1);
+      check:checked,
+      radio:checked {
+        border: 0.4em solid rgba($sapphire, 1);
         border-radius: 999em;
       }
-      label, box {
+      label,
+      box {
         background-color: inherit;
       }
     }
     separator {
-      border: .1em solid rgba($surface0, 1);
-      margin: .2em;
+      border: 0.1em solid rgba($surface0, 1);
+      margin: 0.2em;
     }
   }
   image {
@@ -95,17 +102,17 @@ image {
 
 scale trough {
   background-color: rgba($surface2, 1);
-  border-radius: .5em;
-  min-height: .5em;
+  border-radius: 0.5em;
+  min-height: 0.5em;
   min-width: 5em;
-  margin: 0 .5em 0 .5em;
+  margin: 0 0.5em 0 0.5em;
 }
 
 scale trough highlight {
   background-color: rgba($sapphire, 1);
-  border-radius: .5em;
+  border-radius: 0.5em;
 }
 
 .btm-systray {
-  margin-left: .3em;
+  margin-left: 0.3em;
 }

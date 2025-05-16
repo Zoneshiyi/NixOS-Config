@@ -63,8 +63,9 @@
     :halign "end"
     :space-evenly false
     ; (volume-panel)
+    (nightmode)
+    (theme)
     (powermenu)
-
   )
 )
 

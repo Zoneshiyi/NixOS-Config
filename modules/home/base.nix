@@ -49,6 +49,7 @@
     curl
     fd
     fzf
+    jq
 
     aria2
     lux
