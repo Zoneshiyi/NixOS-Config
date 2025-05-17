@@ -4,6 +4,12 @@
   "fish -c 'eww-poll once'"
 )
 
+(defpoll per-one-s
+  :interval "1s"
+  :initial "{}"
+  "fish -c 'eww-poll 1s'"
+)
+
 (defpoll per-five-s
   :interval "5s"
   :initial "{}"
@@ -30,8 +36,8 @@
   (eventbox
     :onhover "eww update ${varname}=true"
     :onhoverlost "eww update ${varname}=false"
-    :class {class?:"revealer-on-hover"}
     (box
+      :class {class?:"revealer-on-hover"}
       :space-evenly false
       (revealer
         :transition {transition?:"slideleft"}

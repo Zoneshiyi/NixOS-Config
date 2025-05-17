@@ -1,7 +1,13 @@
-function hypr-wsp
+function hypr-event
+  if test $argv[1] = "wsp"
+    workspaces
+  end
+end
+
+function workspaces
   used-workspaces
   socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | while read line
-    if string match -q "workspacev2*" $line
+    if string match -q "workspacev2*" $line; or string match -q "focusedmonv2*" $line
       used-workspaces
     end
   end

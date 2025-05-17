@@ -1,31 +1,25 @@
 @import "./style";
+$en-font: "FiraCode Nerd Font Propo";
+$zh-font: "Sarasa UI SC";
+$font-size: 17px;
 * {
   all: unset;
-  font-family: "FiraCode Nerd Font Propo";
-  font-size: 16px;
-  background-color: rgba($base, 1);
-  color: rgba($text, 1);
-}
-
-button {
-  border-radius: 0.5em;
-  padding: 0 0.5em 0 0.5em;
-  &:hover {
-    background-color: rgba($surface1, 1);
-    label {
-      background-color: inherit;
-      color: rgba($sapphire, 1);
-    }
-  }
-}
-
-image {
+  font-family: inherit;
+  font-size: inherit;
   background-color: inherit;
+  border-radius: inherit;
+  color: inherit;
 }
 
 .top-bar,
 .btm-bar {
-  // background-color: rgba($red, 1);
+  button {
+    padding: 0 0.5em 0 0.5em;
+  }
+  font-family: $en-font;
+  font-size: $font-size;
+  color: rgba($text, 1);
+  background-color: rgba($base, 1);
   border-width: 0 0.5em 0 0.5em;
   border-style: solid;
   border-radius: 0.5em;
@@ -33,16 +27,43 @@ image {
   border-right-color: rgba($surface0, 1);
 }
 
-.workspaces {
-  .active label {
-    color: rgba($flamingo, 1);
+.calendar-win,
+tooltip {
+  // border-radius: 0.5em;
+  background-color: rgba($base, 1);
+  font-family: $zh-font;
+  font-size: $font-size;
+  color: rgba($text, 1);
+  padding: 0.3em;
+  &:selected {
+    color: rgba($red, 1);
   }
 }
 
-.current-time {
-  label {
-    font-family: "Sarasa UI SC";
+button {
+  border-radius: 0.5em;
+  &:hover {
+    background-color: rgba($surface1, 1);
+    label {
+      color: rgba($sapphire, 1);
+    }
   }
+}
+
+.workspaces {
+  .active {
+    color: rgba($flamingo, 1);
+  }
+  font-size: 19px;
+}
+
+.current-time {
+  // background-color: rgba($surface0, 1);
+  // box{
+  //   padding-left: 1em;
+  //   padding-right: 1em;
+  // }
+  font-family: $zh-font;
   .time {
     color: rgba($flamingo, 1);
   }
@@ -55,55 +76,77 @@ image {
 }
 
 .powermenu {
-  background-color: rgba($surface0, 1);
-  padding-right: 0;
-  border-radius: 0.5em 0 0 0.5em;
+  padding-left: 0.5em;
   margin-left: 0.5em;
+  background-color: rgba($surface0, 1);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  button:hover {
+    // background-color: inherit;
+    label {
+      color: rgba($red, 1);
+    }
+  }
   label {
-    background-color: inherit;
     color: rgba($flamingo, 1);
-    font-size: 19px;
-  }
-  &:hover label {
-    color: rgba($red, 1);
-  }
-  &:hover {
-    background-color: rgba($surface0, 1)
   }
 }
 
-.calendar-win {
-  // border-radius: 1em;
-  padding: 0.3em;
-  &:selected {
-    color: rgba($red, 1);
+.player-metadata {
+  font-family: $zh-font;
+  &:hover {
+    background-color: rgba($surface1, 1);
+  }
+  background-color: rgba($surface0, 1);
+  box {
+    padding: 0 1em 0 1em;
+  }
+  .title {
+    color: rgba($flamingo, 1);
+  }
+  .artist {
+    color: rgba($sapphire, 1);
+  }
+  .status {
+    color: rgba($mauve, 1);
+  }
+}
+
+.volume-panel scale {
+  &:hover trough {
+    background-color: rgba($surface2, 1);
+  }
+  trough {
+    background-color: rgba($surface1, 1);
+    min-height: 0.5em;
+    min-width: 5em;
+    margin: 0 0.5em 0 0.5em;
+    highlight {
+      background-color: rgba($sapphire, 1);
+    }
   }
 }
 
 .btm-systray {
+  margin-left: 0.5em;
   background-color: rgba($surface0, 1);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   padding-left: 1em;
   padding-right: 0.5em;
-  border-top-left-radius: 0.5em;
-  border-bottom-left-radius: 0.5em;
-  widget {
-    background-color: inherit;
-  }
 }
 
 .popup {
-  background-color: rgba($base, 1);
+  background-color: rgba($surface0, 1);
   decoration {
-    padding: 0.5em;
+    padding: 0.3em;
     border-radius: 0.5em;
-    border: 0.1em solid rgba($surface1, 1);
-    background-color: inherit;
+    border: 0.2em solid rgba($surface1, 1);
   }
   menu {
-    background-color: inherit;
     menuitem {
       &:hover {
-        background-color: rgba($surface1, 1);
+        background-color: rgba($surface2, 1);
       }
       border-radius: 0.3em;
       margin: 0.2em;
@@ -111,71 +154,22 @@ image {
       radio {
         margin-left: 0.5em;
         margin-right: 0.5em;
-        border: 0.4em solid rgba($surface0, 1);
+        border: 0.4em solid rgba($overlay2, 1);
         border-radius: 999em;
-      }
-      check:checked,
-      radio:checked {
-        border: 0.4em solid rgba($sapphire, 1);
-        border-radius: 999em;
-      }
-      label,
-      box {
-        background-color: inherit;
+        &:checked{
+          border: 0.4em solid rgba($sapphire, 1);
+          border-radius: 999em;
+        }
       }
     }
     separator {
-      border: 0.1em solid rgba($surface0, 1);
+      border: 0.1em solid rgba($surface1, 1);
       margin: 0.2em;
     }
   }
-  image {
-    background-color: inherit;
-  }
 }
 
-scale trough {
-  background-color: rgba($surface2, 1);
-  border-radius: 0.5em;
-  min-height: 0.5em;
-  min-width: 5em;
-  margin: 0 0.5em 0 0.5em;
-}
-
-scale trough highlight {
-  background-color: rgba($sapphire, 1);
-  border-radius: 0.5em;
-}
-
-.player-metadata:hover {
-  background-color: rgba($surface1, 1);
-}
-
-.player-metadata{
-  border-radius: 0.5em;
-  background-color: rgba($surface0, 1);
-  box {
-    background-color: inherit;
-    padding: 0 1.5em 0 1.5em;
-    border-radius: inherit;
-  }
-  label {
-    font-family: "Sarasa UI SC";
-    background-color: inherit;
-  }
-  .title {
-    color: rgba($flamingo, 1);
-  }
-  .artist {
-    color: rgba($mauve, 1);
-  }
-}
-
-.btm-systray {
-  margin-left: 0.3em;
-}
-
-arrow {
-  min-width: 1em;
-  -gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
-}
+// arrow {
+//   min-width: 1em;
+//   -gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
+// }

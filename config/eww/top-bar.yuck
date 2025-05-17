@@ -28,7 +28,7 @@
 
 (deflisten workspaces
   :initial "{}"
-  "fish -c hypr-wsp"
+  "fish -c 'hypr-event wsp'"
 )
 
 (defwidget workspaces [monitor]
@@ -76,7 +76,7 @@
     :class "top-tray"
     :orientation "h"
     :halign "end"
-    ; :space-evenly false
+    :space-evenly false
     (nightmode)
     (theme)
     (powermenu)
@@ -113,10 +113,39 @@
   )
 )
 
+(defvar powermenu-revealed false)
+
 (defwidget powermenu []
-  (button
+  (revealer-on-hover
+    :var powermenu-revealed
+    :varname "powermenu-revealed"
     :class "powermenu"
-    :onclick "wlogout -b 4 &"
-    "󰐥"
+    (box
+      (button
+        ; :onclick "hyprlock"
+        :tooltip "Lock"
+        :class "lock"
+        ""
+      )
+      (button
+        ; :onclick "systemctl reboot"
+        :tooltip "Reboot"
+        :class "reboot"
+        ""
+      )
+      (button
+        ; :onclick "loginctl kill-session $XDG_SESSION_ID"
+        :tooltip "Logout"
+        :class "logout"
+        ""
+      )
+    )
+    (button
+      ; :onclick "systemctl poweroff"
+      :tooltip "Poweroff"
+      :class "poweroff"
+      ""
+    )
+    
   )
 )

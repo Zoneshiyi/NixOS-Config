@@ -13,10 +13,10 @@ in
     wayland = true;
     banner = '''';
   };
-  services.hypridle = {
-    enable = true;
-    package = pkgs.hypridle;
-  };
+  # services.hypridle = {
+  #   enable = true;
+  #   package = pkgs.hypridle;
+  # };
   programs.uwsm = {
     enable = true;
     waylandCompositors = {

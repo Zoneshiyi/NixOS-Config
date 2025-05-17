@@ -73,12 +73,6 @@
   )
 )
 
-(defpoll volume
-  :interval "1s"
-  :initial "0"
-  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2"
-)
-
 (defvar volume-revealed false)
 
 (defwidget volume-panel []
@@ -87,12 +81,12 @@
     :varname "volume-revealed"
     :class "volume-panel"
     (metric
-      :value {volume*100}
+      :value {per-one-s["volume"]}
       :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
     )
     (button
       :onclick "pavucontrol &"
-      ""
+      {per-one-s["icon"]}
     )
   )
 )
