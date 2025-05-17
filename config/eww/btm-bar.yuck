@@ -11,17 +11,55 @@
   (btm-bar)
 )
 
+(deflisten player-metadata
+  :initial "{}"
+  "fish -c player-metadata"
+)
+
+(defwidget player-metadata []
+  (eventbox
+    :class "player-metadata"
+    :halign "center"
+    :onclick "playerctl play-pause"
+    :onscroll "echo {} | rg -q -F 'down' && playerctl next || playerctl previous"
+    :visible {"${player-metadata?.['status']}"!="null"?true:false}
+    (box
+      :space-evenly false
+      :spacing 11
+      (label
+        :text {player-metadata['title']}
+        :class "title"
+      )
+      (label
+        :text {player-metadata['artist']}
+        :class "artist"
+      )
+      (label
+        :text {"${player-metadata['status']=='Playing'}"
+        ?""
+        :""
+        }
+        :class "status"
+      )
+    )
+  )
+)
+
 (defwidget btm-bar []
-  (centerbox
-    :orientation "h"
-    (label :text "left")
-    (label :text "center")
+  (box
+    :class "btm-bar"
+    (label
+      :text ""
+      :halign "start"
+    )
+    (player-metadata)
     (btm-tray)
   )
 )
 
 (defwidget btm-tray []
   (box
+    :class "btm-tray"
     :halign "end"
     :space-evenly false
     (volume-panel)
@@ -35,7 +73,11 @@
   )
 )
 
-(defvar volume 0)
+(defpoll volume
+  :interval "1s"
+  :initial "0"
+  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2"
+)
 
 (defvar volume-revealed false)
 

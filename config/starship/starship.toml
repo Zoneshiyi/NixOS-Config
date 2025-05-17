@@ -3,18 +3,19 @@
 add_newline = false
 
 format = """
-$os \
+$os\
 $username\
 $hostname\
+$time\
 $directory\
 $git_branch\
 $git_status\
 $character
 """
 
-right_format = """
-$time\
-"""
+# right_format = """
+# $time\
+# """
 
 [os]
 disabled = false
@@ -33,7 +34,7 @@ success_symbol = '[➜](bold green)'
 
 [time]
 disabled = false
-format = "[$time]($style)"
+format = "[$time]($style) "
 
 [aws]
 symbol = "  "

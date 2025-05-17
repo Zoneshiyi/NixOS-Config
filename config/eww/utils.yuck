@@ -1,3 +1,15 @@
+(defpoll poll-once
+  :interval "24h"
+  :initial "{}"
+  "fish -c 'eww-poll once'"
+)
+
+(defpoll per-five-s
+  :interval "5s"
+  :initial "{}"
+  "fish -c 'eww-poll 5s'"
+)
+
 (defwidget metric [?orientation ?flipped ?draw-value ?value-pos value onchange]
   (scale
     :orientation {orientation?:"h"}
@@ -18,8 +30,8 @@
   (eventbox
     :onhover "eww update ${varname}=true"
     :onhoverlost "eww update ${varname}=false"
+    :class {class?:"revealer-on-hover"}
     (box
-      :class {class?:"revealer-on-hover"}
       :space-evenly false
       (revealer
         :transition {transition?:"slideleft"}

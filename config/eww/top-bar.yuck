@@ -14,7 +14,8 @@
 )
 
 (defwidget top-bar [monitor]
-  (centerbox
+  (box
+    :class "top-bar"
     (workspaces
       :monitor monitor
     )
@@ -25,53 +26,47 @@
   )
 )
 
-(defpoll workspaces
-  :interval "1s"
-  :initial "fish -c 'hypr-wsp available'"
-  "fish -c 'hypr-wsp available'"
+(deflisten workspaces
+  :initial "{}"
+  "fish -c hypr-wsp"
 )
 
 (defwidget workspaces [monitor]
   (box
     :class "workspaces"
     :halign "start"
-    :space-evenly false
-    :spacing 7
-    ; (button :onclick "hyprctl dispatch workspace 1" "󰲠")
-    ; (button :onclick "hyprctl dispatch workspace 2" "󰲢")
-    ; (button :onclick "hyprctl dispatch workspace 3" "󰲤")
-    ; (button :onclick "hyprctl dispatch workspace 4" "󰲦")
-    ; (button :onclick "hyprctl dispatch workspace 5" "󰲨")
-    ; (label :text workspaces)
-    (for wsp in "${workspaces[monitor]}"
-      (label
-        :text 1
-      )
+    :spacing 3
+    ; :space-evenly false
+    (for wsp in "${workspaces?.[monitor]=='null'?[]:workspaces[monitor]}"
       (button
-        :class "workspace"
-        :onclick "hyprctl dispatch workspace ${wsp}"
-        :text wsp
-        :halign "center"
-        :valign "center"
-        :width "100%"
-        :height "100%"
+        :class "${wsp[2]}"
+        :onclick "hyprctl dispatch workspace ${wsp[0]}"
+        {wsp[1]}
       )
     )
   )
 )
 
-(defpoll time
-  :interval "5s"
-  :initial `date '+%H:%M %b %d, %Y'`
-  "date '+%H:%M %A %m-%d'"
-)
-
 (defwidget current-time [monitor]
   (eventbox
     :class "current-time"
-    :onclick "eww open calendar --toggle --arg monitor=${monitor}"
-    (label
-      :text "${time}"
+    :onclick "eww open calendar-win --toggle --arg monitor=${monitor}"
+    :halign "center"
+    (box
+      :space-evenly false
+      :spacing 7
+      (label
+        :class "time"
+        :text {per-five-s['time']}
+      )
+      (label
+        :class "weekday"
+        :text {per-five-s['weekday']}
+      )
+      (label
+        :class "date"
+        :text {per-five-s['date']}
+      )
     )
   )
 )
@@ -81,15 +76,14 @@
     :class "top-tray"
     :orientation "h"
     :halign "end"
-    :space-evenly false
-    ; (volume-panel)
+    ; :space-evenly false
     (nightmode)
     (theme)
     (powermenu)
   )
 )
 
-(defwindow calendar [monitor]
+(defwindow calendar-win [monitor]
   :monitor monitor
   :stacking "fg"
   :exclusive false
@@ -101,25 +95,21 @@
   (calendar)
 )
 
-(defvar theme "")
-
 (defwidget theme []
   (button
     :class "theme"
-    :onclick "eww update theme= && fish -c 'theme-choose light' &"
-    :onrightclick "eww update theme= && fish -c 'theme-choose dark' &"
-    theme
+    :onclick "fish -c 'theme-choose light' & eww poll poll-once &"
+    :onrightclick "fish -c 'theme-choose dark' & eww poll poll-once &"
+    {poll-once["theme"]}
   )
 )
-
-(defvar nightmode "󱩍")
 
 (defwidget nightmode []
   (button
     :class "nightmode"
-    :onclick "eww update nightmode=󱩌 && hyprsunset > /dev/null 2>&1 &"
-    :onrightclick "eww update nightmode=󱩍 && pkill hyprsunset &"
-    nightmode
+    :onclick "setsid hyprsunset > /dev/null 2>&1 & eww poll poll-once &"
+    :onrightclick "pkill hyprsunset && eww poll poll-once &"
+    {poll-once["nightmode"]}
   )
 )
 

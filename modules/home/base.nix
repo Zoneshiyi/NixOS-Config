@@ -50,6 +50,7 @@
     fd
     fzf
     jq
+    socat
 
     aria2
     lux

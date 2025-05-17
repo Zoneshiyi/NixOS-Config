@@ -9,8 +9,7 @@
 
 button {
   border-radius: 0.5em;
-  padding-left: 0.7em;
-  padding-right: 0.7em;
+  padding: 0 0.5em 0 0.5em;
   &:hover {
     background-color: rgba($surface1, 1);
     label {
@@ -24,26 +23,57 @@ image {
   background-color: inherit;
 }
 
-.current-time label {
-  font-family: "Sarasa UI SC";
+.top-bar,
+.btm-bar {
+  // background-color: rgba($red, 1);
+  border-width: 0 0.5em 0 0.5em;
+  border-style: solid;
+  border-radius: 0.5em;
+  border-left-color: rgba($base, 1);
+  border-right-color: rgba($surface0, 1);
+}
+
+.workspaces {
+  .active label {
+    color: rgba($flamingo, 1);
+  }
+}
+
+.current-time {
+  label {
+    font-family: "Sarasa UI SC";
+  }
+  .time {
+    color: rgba($flamingo, 1);
+  }
+  .weekday {
+    color: rgba($sapphire, 1);
+  }
+  .date {
+    color: rgba($mauve, 1);
+  }
 }
 
 .powermenu {
   background-color: rgba($surface0, 1);
+  padding-right: 0;
   border-radius: 0.5em 0 0 0.5em;
-  padding-right: 0.5em;
   margin-left: 0.5em;
   label {
     background-color: inherit;
-    color: rgba($red, 1);
+    color: rgba($flamingo, 1);
+    font-size: 19px;
   }
   &:hover label {
     color: rgba($red, 1);
   }
+  &:hover {
+    background-color: rgba($surface0, 1)
+  }
 }
 
-.calendar {
-  border-radius: 1em;
+.calendar-win {
+  // border-radius: 1em;
   padding: 0.3em;
   &:selected {
     color: rgba($red, 1);
@@ -52,7 +82,7 @@ image {
 
 .btm-systray {
   background-color: rgba($surface0, 1);
-  padding-left: 0.7em;
+  padding-left: 1em;
   padding-right: 0.5em;
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
@@ -117,6 +147,35 @@ scale trough highlight {
   border-radius: 0.5em;
 }
 
+.player-metadata:hover {
+  background-color: rgba($surface1, 1);
+}
+
+.player-metadata{
+  border-radius: 0.5em;
+  background-color: rgba($surface0, 1);
+  box {
+    background-color: inherit;
+    padding: 0 1.5em 0 1.5em;
+    border-radius: inherit;
+  }
+  label {
+    font-family: "Sarasa UI SC";
+    background-color: inherit;
+  }
+  .title {
+    color: rgba($flamingo, 1);
+  }
+  .artist {
+    color: rgba($mauve, 1);
+  }
+}
+
 .btm-systray {
   margin-left: 0.3em;
+}
+
+arrow {
+  min-width: 1em;
+  -gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
 }
