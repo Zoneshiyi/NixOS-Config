@@ -59,10 +59,10 @@ button {
 
 .current-time {
   // background-color: rgba($surface0, 1);
-  // box{
-  //   padding-left: 1em;
-  //   padding-right: 1em;
-  // }
+  label {
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+  }
   font-family: $zh-font;
   .time {
     color: rgba($flamingo, 1);
@@ -75,20 +75,18 @@ button {
   }
 }
 
-.powermenu {
+.horizon-right-end {
   padding-left: 0.5em;
   margin-left: 0.5em;
   background-color: rgba($surface0, 1);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  button:hover {
-    // background-color: inherit;
-    label {
-      color: rgba($red, 1);
-    }
-  }
-  label {
-    color: rgba($flamingo, 1);
+}
+
+.powermenu {
+  color: rgba($flamingo, 1);
+  label:hover {
+    color: rgba($red, 1);
   }
 }
 
@@ -99,7 +97,10 @@ button {
   }
   background-color: rgba($surface0, 1);
   box {
-    padding: 0 1em 0 1em;
+    padding: 0 0.5em 0 0.5em;
+  }
+  label {
+    padding: 0 0.3em 0 0.3em;
   }
   .title {
     color: rgba($flamingo, 1);
@@ -128,12 +129,15 @@ button {
 }
 
 .btm-systray {
-  margin-left: 0.5em;
-  background-color: rgba($surface0, 1);
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-left: 1em;
-  padding-right: 0.5em;
+  widget {
+    border-radius: 0.5em;
+    &:hover {
+      background-color: rgba($surface1, 1);
+    }
+    image {
+      padding: 0.5em;
+    }
+  }
 }
 
 .popup {
@@ -156,7 +160,7 @@ button {
         margin-right: 0.5em;
         border: 0.4em solid rgba($overlay2, 1);
         border-radius: 999em;
-        &:checked{
+        &:checked {
           border: 0.4em solid rgba($sapphire, 1);
           border-radius: 999em;
         }
@@ -167,6 +171,11 @@ button {
       margin: 0.2em;
     }
   }
+}
+
+.taskbar {
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
 }
 
 // arrow {

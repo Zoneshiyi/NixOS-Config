@@ -12,8 +12,6 @@
     usb-modeswitch
     tcpdump
     usbutils
-    bc
-    git-repo
     inetutils
   ];
 }

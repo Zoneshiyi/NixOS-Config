@@ -27,7 +27,7 @@
 )
 
 (deflisten workspaces
-  :initial "{}"
+  :initial `{"DP-1":[[1,"󰲠","active"]]}`
   "fish -c 'hypr-event wsp'"
 )
 
@@ -35,9 +35,8 @@
   (box
     :class "workspaces"
     :halign "start"
-    :spacing 3
     ; :space-evenly false
-    (for wsp in "${workspaces?.[monitor]=='null'?[]:workspaces[monitor]}"
+    (for wsp in {"${workspaces?.[monitor]}"?:[]}
       (button
         :class "${wsp[2]}"
         :onclick "hyprctl dispatch workspace ${wsp[0]}"
@@ -54,7 +53,6 @@
     :halign "center"
     (box
       :space-evenly false
-      :spacing 7
       (label
         :class "time"
         :text {per-five-s['time']}
@@ -116,36 +114,38 @@
 (defvar powermenu-revealed false)
 
 (defwidget powermenu []
-  (revealer-on-hover
-    :var powermenu-revealed
-    :varname "powermenu-revealed"
-    :class "powermenu"
-    (box
-      (button
-        ; :onclick "hyprlock"
-        :tooltip "Lock"
-        :class "lock"
-        ""
+  (horizon-right-end
+    (revealer-on-hover
+      :var powermenu-revealed
+      :varname "powermenu-revealed"
+      :class "powermenu"
+      (box
+        (button
+          ; :onclick "hyprlock"
+          :tooltip "Lock"
+          :class "lock"
+          ""
+        )
+        (button
+          ; :onclick "systemctl reboot"
+          :tooltip "Reboot"
+          :class "reboot"
+          ""
+        )
+        (button
+          ; :onclick "loginctl kill-session $XDG_SESSION_ID"
+          :tooltip "Logout"
+          :class "logout"
+          ""
+        )
       )
       (button
-        ; :onclick "systemctl reboot"
-        :tooltip "Reboot"
-        :class "reboot"
-        ""
+        ; :onclick "systemctl poweroff"
+        :tooltip "Poweroff"
+        :class "poweroff"
+        ""
       )
-      (button
-        ; :onclick "loginctl kill-session $XDG_SESSION_ID"
-        :tooltip "Logout"
-        :class "logout"
-        ""
-      )
+      (label :text "1")
     )
-    (button
-      ; :onclick "systemctl poweroff"
-      :tooltip "Poweroff"
-      :class "poweroff"
-      ""
-    )
-    
   )
 )

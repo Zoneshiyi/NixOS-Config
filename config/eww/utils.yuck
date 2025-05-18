@@ -1,18 +1,18 @@
 (defpoll poll-once
   :interval "24h"
-  :initial "{}"
+  :initial `{"theme": "","nightmode": "󱩍"}`
   "fish -c 'eww-poll once'"
 )
 
 (defpoll per-one-s
   :interval "1s"
-  :initial "{}"
+  :initial `{"volume": [ "1",""]}`
   "fish -c 'eww-poll 1s'"
 )
 
 (defpoll per-five-s
   :interval "5s"
-  :initial "{}"
+  :initial `{"time": "","weekday": "","date": ""}`
   "fish -c 'eww-poll 5s'"
 )
 
@@ -47,5 +47,12 @@
       )
       (children :nth 1)
     )
+  )
+)
+
+(defwidget horizon-right-end []
+  (box
+    :class "horizon-right-end"
+    (children)
   )
 )

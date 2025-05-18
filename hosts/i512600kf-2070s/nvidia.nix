@@ -4,6 +4,7 @@
   ...
 }:
 {
+  hardware.nvidia-container-toolkit.enable = true;
   #disable nouveau
   boot.blacklistedKernelModules = [ "nouveau" ];
 

@@ -1,4 +1,8 @@
 {
+  pkgs,
+  ...
+}:
+{
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
@@ -19,4 +23,7 @@
     };
   };
   users.users.zone.extraGroups = [ "docker" ];
+  environment.systemPackages = with pkgs; [
+    docker-compose
+  ];
 }

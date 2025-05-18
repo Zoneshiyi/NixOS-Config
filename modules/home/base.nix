@@ -44,13 +44,15 @@
     yazi
     procs
     btop
-    bottom
     git
     curl
     fd
     fzf
     jq
+    jqp
     socat
+    bc
+    git-repo
 
     aria2
     lux

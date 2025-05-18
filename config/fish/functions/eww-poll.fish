@@ -9,46 +9,46 @@ function eww-poll
 end
 
 function poll-once
-  echo "{"
+  echo -n "{"
 
   set -l theme (theme-choose check)
 
-  echo "\"theme\": \"$theme\","
+  echo -n "\"theme\": \"$theme\","
   if test (pgrep hyprsunset)
-    echo "\"nightmode\": \"󱩌\""
+    echo -n "\"nightmode\": \"󱩌\""
   else
-    echo "\"nightmode\": \"󱩍\""
+    echo -n "\"nightmode\": \"󱩍\""
   end
 
-  echo "}"
+  echo -n "}"
 end
 
 function poll-1s
-  echo "{"
+  echo -n "{"
 
   set -l volume (wpctl get-volume @DEFAULT_AUDIO_SINK@)
   set -l muted (echo $volume | cut -d ' ' -f 3)
   set -l volume (math "$(echo $volume | cut -d ' ' -f 2) * 100")
-  echo "\"volume\": \"$volume\","
+  echo -n "\"volume\": [ \"$volume\","
   if test -z $muted
-    echo "\"icon\": \"\""
+    echo -n "\"\"]"
   else
-    echo "\"icon\": \"󰖁\""
+    echo -n "\"\"]"
   end
 
-  echo "}"
+  echo -n "}"
 end
 
 function poll-5s
-  echo "{"
+  echo -n "{"
 
   set -l time (date +%H:%M)
   set -l weekday (date +%A)
   set -l date (date +%m-%d)
 
-  echo "\"time\": \"$time\","
-  echo "\"weekday\": \"$weekday\","
-  echo "\"date\": \"$date\""
+  echo -n "\"time\": \"$time\","
+  echo -n "\"weekday\": \"$weekday\","
+  echo -n "\"date\": \"$date\""
 
-  echo "}"
+  echo -n "}"
 end

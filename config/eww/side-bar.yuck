@@ -7,7 +7,6 @@
       :class "side-systray"
       :orientation "v"
       :valign "end"
-      :spacing 11
       :icon-size 22
     )
   )

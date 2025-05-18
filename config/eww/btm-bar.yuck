@@ -8,7 +8,9 @@
   :stacking "bg"
   :exclusive true
   :focusable "none"
-  (btm-bar)
+  (btm-bar
+    :monitor monitor
+  )
 )
 
 (deflisten player-metadata
@@ -25,7 +27,6 @@
     :visible {"${player-metadata?.['status']}"!="null"?true:false}
     (box
       :space-evenly false
-      :spacing 11
       (label
         :text {player-metadata['title']}
         :class "title"
@@ -45,15 +46,35 @@
   )
 )
 
-(defwidget btm-bar []
+(defwidget btm-bar [monitor]
   (box
     :class "btm-bar"
-    (label
-      :text ""
-      :halign "start"
+    (taskbar
+      :monitor monitor
     )
     (player-metadata)
     (btm-tray)
+  )
+)
+
+(deflisten windows
+  :initial `{"DP-1":["app"]}`
+  "fish -c 'hypr-event win'"
+)
+
+(defwidget taskbar [monitor]
+  (box
+    :halign "start"
+    :space-evenly false
+    :class "taskbar"
+    (for window in {"${windows[monitor]}"?:[]}
+      (button
+        (image
+          :icon-size "dnd"
+          :icon window
+        )
+      )
+    )
   )
 )
 
@@ -63,12 +84,13 @@
     :halign "end"
     :space-evenly false
     (volume-panel)
-    (systray
-      :class "btm-systray"
-      :orientation "h"
-      :halign "end"
-      :spacing 11
-      :icon-size 22
+    (horizon-right-end
+      (systray
+        :class "btm-systray"
+        :orientation "h"
+        :halign "end"
+        :icon-size 22
+      )
     )
   )
 )
@@ -81,12 +103,13 @@
     :varname "volume-revealed"
     :class "volume-panel"
     (metric
-      :value {per-one-s["volume"]}
+      :value {per-one-s["volume"]?.[0]}
       :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
     )
     (button
       :onclick "pavucontrol &"
-      {per-one-s["icon"]}
+      :onrightclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      {per-one-s["volume"]?.[1]}
     )
   )
 )
