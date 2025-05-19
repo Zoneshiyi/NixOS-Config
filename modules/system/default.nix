@@ -9,7 +9,6 @@
     ./inputMethod.nix
     ./network.nix
     ./nix.nix
-    ./utils.nix
     ./virt.nix
   ];
 }

@@ -48,6 +48,10 @@ in
       thunar-archive-plugin
       tumbler
     ];
+    wireshark = {
+      enable = true;
+      dumpcap.enable = true;
+    };
   };
   xdg = {
     icons.enable = true;
@@ -90,5 +94,7 @@ in
     wlrctl
     xdg-desktop-portal-wlr
     wl-clipboard
+
+    wireshark
   ];
 }

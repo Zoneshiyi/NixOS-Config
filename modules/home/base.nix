@@ -2,14 +2,14 @@
   inputs,
   pkgs,
   lib,
-  userhome,
   config,
   ...
 }:
 {
   home = {
     stateVersion = "24.11";
-    homeDirectory = lib.mkDefault "${userhome}";
+    homeDirectory =
+      if (config.home.username == "root") then "/root" else "/home/${config.home.username}";
     sessionVariables = {
       LANG = "en_US.UTF-8";
       LC_ALL = "en_US.UTF-8";
@@ -18,44 +18,44 @@
   home.packages = with pkgs; [
     age
     inputs.agenix.packages.${pkgs.system}.default
-    psmisc
-    fastfetch
 
-    gcc
-    gnumake
-    (pkgs.python312.withPackages (
-      ps: with ps; [
-        pynvim
-      ]
-    ))
-
-    unzip
+    # utils
+    efibootmgr
+    usb-modeswitch
+    tcpdump
+    usbutils
     inetutils
+    parted
+    psmisc
+    unzip
     nurl
+    file
+    ripgrep
+    fd
+    procs
+    fzf
+    jq
+    bc
+    socat
+
+    fastfetch
     bat
     zoxide
-    file
     tldr
     navi
     tmux
     # neovim
     inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
-    ripgrep
     yazi
-    procs
     btop
     git
     curl
-    fd
-    fzf
-    jq
     jqp
-    socat
-    bc
     git-repo
-
+    starship
     aria2
     lux
+
   ];
 
   # targets.genericLinux.enable = true;

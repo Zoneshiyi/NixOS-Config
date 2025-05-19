@@ -2,12 +2,11 @@
   pkgs,
   pkgs-24_11,
   config,
-  userhome,
   ...
 }:
 let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-  configPath = "${userhome}/NixOS/config";
+  configPath = "${config.home.homeDirectory}/NixOS/config";
 in
 {
 
@@ -21,6 +20,8 @@ in
     "wlogout".source = mkSymlink "${configPath}/wlogout";
     "kitty".source = mkSymlink "${configPath}/kitty";
     "git".source = mkSymlink "${configPath}/git";
+    "eww".source = mkSymlink "${configPath}/eww";
+    "starship.toml".source = mkSymlink "${configPath}/starship/starship.toml";
   };
 
   programs.firefox.enable = true;

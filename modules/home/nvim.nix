@@ -3,12 +3,11 @@
   config,
   pkgs,
   pkgs-24_11,
-  userhome,
+  configPath,
   ...
 }:
 let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-  configPath = "${userhome}/NixOS/config/nvim";
   files = builtins.attrNames (builtins.readDir configPath);
 in
 {
@@ -17,7 +16,7 @@ in
       builtins.map (filename: {
         name = "nvim/${filename}";
         value = {
-          source = mkSymlink "${configPath}/${filename}";
+          source = mkSymlink "${configPath}/nvim/${filename}";
         };
       }) files
     )

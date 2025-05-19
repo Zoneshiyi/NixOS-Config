@@ -17,7 +17,7 @@
       flake = false;
     };
   };
-
+  # (outputs {self=inputs;nixpkgs=inputs.nixpkgs;nixpkgs-24_11=inputs.nixpkgs-24_11;home-manager=inputs.home-manager;}).nixosConfigurations
   outputs =
     inputs@{
       self,
@@ -35,30 +35,20 @@
           inherit system;
           config.allowUnfree = true;
         };
+        configPath = "/home/zone/NixOS/config";
       };
-      home-manager-zone.home-manager = {
+      home-manager-config.home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
+        backupFileExtension = "home-manager.backup";
         users.zone = import ./users/zone/home.nix;
-        # home-manager的特殊参数
-        extraSpecialArgs = {
-          userhome = "/home/zone";
-        } // specialArgs;
-      };
-      home-manager-root.home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
         users.root = import ./users/root/home.nix;
         # home-manager的特殊参数
-        extraSpecialArgs = {
-          userhome = "/root";
-        } // specialArgs;
+        extraSpecialArgs = specialArgs;
       };
       base-modules = [
         home-manager.nixosModules.home-manager
-        home-manager-zone
-        home-manager.nixosModules.home-manager
-        home-manager-root
+        home-manager-config
         # ./secrets
       ];
     in

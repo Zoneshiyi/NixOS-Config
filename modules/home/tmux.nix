@@ -1,16 +1,15 @@
 {
   pkgs,
   config,
-  userhome,
+  configPath,
   ...
 }:
 let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-  configPath = "${userhome}/NixOS/config/tmux";
 in
 {
   xdg.configFile = {
-    "tmux/tmux.conf".source = mkSymlink "${configPath}/tmux.conf";
+    "tmux/tmux.conf".source = mkSymlink "${configPath}/tmux/tmux.conf";
     "templates/tmux/plugins/catppuccin" = {
       source = pkgs.fetchFromGitHub {
         owner = "catppuccin";

@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  userhome,
   ...
 }:
 {
@@ -17,7 +16,7 @@
       exts.pass-update # an easy flow for updating passwords
     ]);
     settings = {
-      PASSWORD_STORE_DIR = "${userhome}/.password-store";
+      PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
       # Overrides the default gpg key identification set by init.
       # Hexadecimal key signature is recommended.
       # Multiple keys may be specified separated by spaces.

@@ -1,8 +1,17 @@
 {
   pkgs,
   ...
-}:{
+}:
+{
   home.packages = with pkgs; [
+    gcc
+    gnumake
+    (pkgs.python312.withPackages (
+      ps: with ps; [
+        pynvim
+      ]
+    ))
+
     glibc
     libclang
     cmake

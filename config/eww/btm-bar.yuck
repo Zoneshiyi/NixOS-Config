@@ -59,7 +59,7 @@
 
 (deflisten windows
   :initial `{"DP-1":["app"]}`
-  "fish -c 'hypr-event win'"
+  "fish -c 'listen-events win'"
 )
 
 (defwidget taskbar [monitor]
@@ -69,9 +69,11 @@
     :class "taskbar"
     (for window in {"${windows[monitor]}"?:[]}
       (button
+        :class {window[2]}
+        :onclick "hyprctl dispatch focuswindow address:${window[1]}"
         (image
           :icon-size "dnd"
-          :icon window
+          :icon {window[0]}
         )
       )
     )
@@ -95,6 +97,11 @@
   )
 )
 
+(deflisten volume
+  :initial `[1,""]`
+  "fish -c 'listen-events vol'"
+)
+
 (defvar volume-revealed false)
 
 (defwidget volume-panel []
@@ -103,13 +110,13 @@
     :varname "volume-revealed"
     :class "volume-panel"
     (metric
-      :value {per-one-s["volume"]?.[0]}
+      :value {volume[0]}
       :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
     )
     (button
-      :onclick "pavucontrol &"
+      :onclick "nohup pavucontrol > /dev/null 2>&1 &"
       :onrightclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      {per-one-s["volume"]?.[1]}
+      {volume[1]}
     )
   )
 )

@@ -9,6 +9,6 @@ plugins = [
 animation = "fromTop"
 # command = "kitty --class kitty-dropterm"
 # class = "kitty-dropterm"
-command = "alacritty --class Alacritty-dropterm"
+command = "alacritty"
 class = "Alacritty-dropterm"
 size = "75% 60%"

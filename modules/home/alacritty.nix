@@ -1,16 +1,15 @@
 {
   pkgs,
   config,
-  userhome,
+  configPath,
   ...
 }:
 let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-  configPath = "${userhome}/NixOS/config/alacritty";
 in
 {
   xdg.configFile = {
-    "alacritty/alacritty.toml".source = mkSymlink "${configPath}/alacritty.toml";
+    "alacritty/alacritty.toml".source = mkSymlink "${configPath}/alacritty/alacritty.toml";
     "alacritty/themes" = {
       source = pkgs.fetchFromGitHub {
         owner = "alacritty";

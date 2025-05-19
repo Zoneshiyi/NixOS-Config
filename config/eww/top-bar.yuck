@@ -28,7 +28,7 @@
 
 (deflisten workspaces
   :initial `{"DP-1":[[1,"󰲠","active"]]}`
-  "fish -c 'hypr-event wsp'"
+  "fish -c 'listen-events wsp'"
 )
 
 (defwidget workspaces [monitor]
@@ -105,7 +105,7 @@
 (defwidget nightmode []
   (button
     :class "nightmode"
-    :onclick "setsid hyprsunset > /dev/null 2>&1 & eww poll poll-once &"
+    :onclick "nohup hyprsunset > /dev/null 2>&1 & eww poll poll-once &"
     :onrightclick "pkill hyprsunset && eww poll poll-once &"
     {poll-once["nightmode"]}
   )
@@ -121,7 +121,7 @@
       :class "powermenu"
       (box
         (button
-          ; :onclick "hyprlock"
+          :onclick "hyprlock &"
           :tooltip "Lock"
           :class "lock"
           ""

@@ -1,11 +1,10 @@
 {
-  userhome,
   config,
+  configPath,
   ...
 }:
 let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-  configPath = "${userhome}/NixOS/config";
 in
 {
   imports = [
@@ -13,10 +12,10 @@ in
     ../../modules/home/dev.nix
     ../../modules/home/fish.nix
     ../../modules/home/nvim.nix
-    ../../modules/home/starship.nix
     ../../modules/home/tmux.nix
   ];
   xdg.configFile = {
     "git".source = mkSymlink "${configPath}/git";
+    "starship.toml".source = mkSymlink "${configPath}/starship/starship.toml";
   };
 }

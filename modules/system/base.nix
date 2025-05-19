@@ -38,8 +38,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     ntfs3g
-    starship
   ];
 }

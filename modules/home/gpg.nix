@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  userhome,
   ...
 }: {
   services.gpg-agent = {
@@ -11,7 +10,7 @@
   };
   programs.gpg = {
     enable = true;
-    homedir = "${userhome}/.gnupg";
+    homedir = "${config.home.homeDirectory}/.gnupg";
     #  $GNUPGHOME/trustdb.gpg stores all the trust level you specified in `programs.gpg.publicKeys` option.
     # false: can only update trsutedb.gpg via home-manager.
     mutableTrust = true;

@@ -2,9 +2,12 @@
   pkgs,
   pkgs-24_11,
   inputs,
-  userhome,
+  config,
   ...
 }:
+let
+  homeDir = config.home.homeDirectory;
+in
 {
   wayland.windowManager.hyprland.systemd.enable = false;
   xdg.userDirs = {
@@ -13,14 +16,14 @@
     desktop = null;
     publicShare = null;
     templates = null;
-    documents = "${userhome}/Documents";
-    download = "${userhome}/Downloads";
-    music = "${userhome}/Music";
-    pictures = "${userhome}/Pictures";
-    videos = "${userhome}/Videos";
+    documents = "${config.home.homeDirectory}/Documents";
+    download = "${config.home.homeDirectory}/Downloads";
+    music = "${config.home.homeDirectory}/Music";
+    pictures = "${config.home.homeDirectory}/Pictures";
+    videos = "${config.home.homeDirectory}/Videos";
     extraConfig = {
-      XDG_CODES_DIR = "${userhome}/Codes";
-      XDG_TMP_DIR = "${userhome}/Tmp";
+      XDG_CODES_DIR = "${config.home.homeDirectory}/Codes";
+      XDG_TMP_DIR = "${config.home.homeDirectory}/Tmp";
     };
   };
   home.packages = with pkgs; [

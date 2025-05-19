@@ -2,14 +2,13 @@
   lib,
   pkgs,
   config,
-  userhome,
+  configPath,
   ...
 }:
 let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-  configPath = "${userhome}/NixOS/config/fish";
-  funcFiles = builtins.attrNames (builtins.readDir "${configPath}/functions");
-  templatesPath = "${userhome}/.config/templates";
+  funcFiles = builtins.attrNames (builtins.readDir "${configPath}/fish/functions");
+  templatesPath = "${config.home.homeDirectory}/.config/templates";
 in
 {
   programs.fish = {
@@ -31,13 +30,13 @@ in
       builtins.map (filename: {
         name = "fish/functions/${filename}";
         value = {
-          source = mkSymlink "${configPath}/functions/${filename}";
+          source = mkSymlink "${configPath}/fish/functions/${filename}";
         };
       }) funcFiles
     ))
     // {
       "fish/config.fish" = {
-        source = lib.mkForce (mkSymlink "${configPath}/config.fish");
+        source = lib.mkForce (mkSymlink "${configPath}/fish/config.fish");
       };
       "fish/fish_variables" = {
         source = mkSymlink "${templatesPath}/fish/fish_variables";
