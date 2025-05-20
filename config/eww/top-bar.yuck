@@ -40,7 +40,7 @@
       (button
         :class "${wsp[2]}"
         :onclick "hyprctl dispatch workspace ${wsp[0]}"
-        {wsp[1]}
+        {wsp[1]?:wsp[0]}
       )
     )
   )

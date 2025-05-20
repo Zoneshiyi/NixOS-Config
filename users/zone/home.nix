@@ -26,6 +26,13 @@ in
 
   programs.firefox.enable = true;
   home.packages = with pkgs; [
+    rofi-wayland
+    xfce.xfce4-settings
+    gthumb
+    moonlight-qt
+    remmina
+    swayimg
+    copyq
     networkmanagerapplet
     waypaper
     wdisplays

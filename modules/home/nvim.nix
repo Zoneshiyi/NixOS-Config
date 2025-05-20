@@ -8,7 +8,7 @@
 }:
 let
   mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-  files = builtins.attrNames (builtins.readDir configPath);
+  files = builtins.attrNames (builtins.readDir "${configPath}/nvim");
 in
 {
   xdg.configFile = (

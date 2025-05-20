@@ -35,13 +35,6 @@ in
     brightnessctl
     wlogout
     waybar
-    rofi-wayland
-    copyq
-    xfce.xfce4-settings
-    swayimg
-    gthumb
-    moonlight-qt
-    remmina
     eww
 
     grim

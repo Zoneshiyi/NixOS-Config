@@ -1,14 +1,27 @@
 [pyprland]
 
 plugins = [
-  "scratchpads",
+  "expose",
+  "fetch_client_menu",
+  "layout_center",
   "magnify",
+  # "monitor",
+  "shortcuts_menu",
+  # "system_notifier",
+  "toggle_dpms", # if any screen is powered on, turn them all off, else turn them all on
 ]
 
-[scratchpads.term]
-animation = "fromTop"
-# command = "kitty --class kitty-dropterm"
-# class = "kitty-dropterm"
-command = "alacritty"
-class = "Alacritty-dropterm"
-size = "75% 60%"
+[expose]
+include_special = false
+
+[fetch_client_menu]
+engine = "rofi"
+separator = "|"
+parameters = ""
+
+[layout_center]
+on_new_client = "close"
+margin = 0
+
+[shortcuts_menu.entries]
+"Fetch window" = "pypr fetch_client_menu"
