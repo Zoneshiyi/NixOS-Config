@@ -41,8 +41,9 @@ function opened-windows
   set -l active_window (hyprctl activewindow -j | jq '.address')
 
   set -l windows (hyprctl clients -j | jq --argjson id2name $id2name --argjson active_window $active_window -c '
-  map({monitor,initialClass,address})
-  | sort_by(.initialClass)
+  sort_by(.pid)
+  | sort_by(.workspace.id)
+  | map({monitor,initialClass,address})
   | group_by(.monitor)
   | map ({key:$id2name[.[0].monitor],
   value:map([.initialClass,.address,
