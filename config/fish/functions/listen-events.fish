@@ -36,20 +36,21 @@ function windows
 end
 
 function opened-windows
-  set -l id2name (hyprctl monitors -j | jq -c 'sort_by(.id)|map(.name)|.[]')
+  set -l id2name (hyprctl monitors -j | jq -c 'sort_by(.id)|map(.name)')
 
   set -l active_window (hyprctl activewindow -j | jq '.address')
 
-  set -l windows (hyprctl clients -j | jq -c "
+  set -l windows (hyprctl clients -j | jq --argjson id2name $id2name --argjson active_window $active_window -c '
   map({monitor,initialClass,address})
   | sort_by(.initialClass)
   | group_by(.monitor)
-  | map ({key:[$id2name][.[0].monitor],value:map([.initialClass,.address,
-    if .address==$active_window then \"active\"
-    else \"opened\"
+  | map ({key:$id2name[.[0].monitor],
+  value:map([.initialClass,.address,
+    if .address==$active_window then "active"
+    else "opened"
     end
   ])})
-  |from_entries")
+  |from_entries')
 
   echo $windows
 end
