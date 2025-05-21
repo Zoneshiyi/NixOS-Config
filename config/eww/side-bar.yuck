@@ -1,27 +1,125 @@
-(defwidget side-bar []
-  (centerbox
-    :orientation "v"
-    (label)
-    (label)
-    (systray
-      :class "side-systray"
-      :orientation "v"
-      :valign "end"
-      :icon-size 22
-    )
-  )
-)
-
 (defwindow side-bar [monitor]
   :monitor monitor
   :geometry (geometry
     :anchor "right center"
-    :y "10%"
-    :width "0%"
-    :height "92%"
+    :width "2%"
+    :height "97%"
   )
-  :stacking "bg"
+  :stacking "fg"
   :exclusive true
-  :focusable "ondemand"
-  (side-bar)
+  (side-bar
+    :monitor monitor
+  )
+)
+
+(defwidget side-bar [monitor]
+  (box
+    :orientation "v"
+    (taskbar :monitor monitor)
+    (side-tray
+      :monitor monitor
+    )
+  )
+)
+
+(defwidget taskbar [monitor ?orientation ?halign]
+  (box
+    :orientation {orientation?:"v"}
+    :halign {halign?:"center"}
+    :space-evenly false
+    :class "taskbar"
+    (for window in {"${windows[monitor]}"?:[]}
+      (button
+        :class {window[2]}
+        :onclick "hyprctl dispatch focuswindow address:${window[1]}"
+        (image
+          :icon-size "dnd"
+          :icon {window[0]}
+        )
+      )
+    )
+  )
+)
+
+(defwidget side-tray [monitor]
+  (box
+    :orientation "v"
+    :class "side-tray"
+    :valign "end"
+    :space-evenly false
+    (volume-panel
+      :value-pos "top"
+      :transition "slideup"
+      :orientation "v"
+    )
+    ; (side-time
+    ;   :monitor monitor
+    ; )
+    (vertical-end
+      (systray
+        :class "side-systray"
+        :orientation "v"
+        :halign "center"
+        :icon-size 22
+      )
+    )
+  )
+)
+
+(defwidget side-time [monitor]
+  (eventbox
+    :class "side-time"
+    :onclick `eww open calendar-win --toggle --arg monitor=${monitor} --arg anchor="right bottom" --arg x="0.3%" --arg y="7%" --arg width="13%"`
+    (box
+      :space-evenly false
+      :orientation "v"
+      (label
+        :class "hour"
+        :text {per-five-s['hour']}
+      )
+      (label
+        :class "minute"
+        :text {per-five-s['minute']}
+      )
+      ; (label
+      ;   :class "weekday"
+      ;   :text {per-five-s['weekday']}
+      ; )
+      ; (label
+      ;   :class "date"
+      ;   :text "${per-five-s['month']}${per-five-s['day']}"
+      ; )
+    )
+  )
+)
+
+
+(deflisten volume
+  :initial `[1,""]`
+  "fish -c 'listen-events vol'"
+)
+
+(defvar volume-revealed false)
+
+(defwidget volume-panel [value-pos transition orientation]
+  (revealer-on-hover
+    :var volume-revealed
+    :varname "volume-revealed"
+    :class "volume-panel"
+    :value-pos value-pos
+    :transition transition
+    :orientation orientation
+    (metric
+      :value {volume[0]}
+      :orientation orientation
+      :value-pos value-pos
+      :flipped true
+      :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
+    )
+    (button
+      :onclick "nohup pavucontrol > /dev/null 2>&1 &"
+      :onrightclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      {volume[1]}
+    )
+  )
 )

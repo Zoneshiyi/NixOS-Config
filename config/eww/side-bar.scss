@@ -1,0 +1,58 @@
+.side-systray {
+  widget {
+    border-radius: 0.5em;
+    image {
+      padding: 0.5em;
+    }
+  }
+}
+
+box.side-bar {
+  button {
+    padding: 0.3em;
+    label {
+      padding: 0.3em;
+      
+    }
+  }
+}
+
+.side-bar .volume-panel scale {
+  font-family: $zh-font;
+  trough {
+    min-height: 5em;
+    min-width: 0.5em;
+    margin: 0.5em 0 0.5em 0;
+  }
+}
+
+.side-bar .taskbar {
+  button {
+    // border-radius: 0;
+    // margin-left: 0.2em;
+    margin-right: 0.2em;
+  }
+  button:hover {
+    background-color: rgba($overlay2, 1);
+  }
+  .active {
+    background-color: rgba($surface2, 1);
+  }
+  image {
+    -gtk-icon-theme: "WhiteSur";
+  }
+}
+
+.side-time {
+  font-family: $en-font;
+  font-weight: bolder;
+  box {
+    margin: 0.2em 0 0.2em 0;
+  }
+  .hour {
+    color: $flamingo;
+  }
+  .minute {
+    color: $flamingo;
+  }
+}

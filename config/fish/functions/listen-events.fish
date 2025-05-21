@@ -9,7 +9,7 @@ function listen-events
 end
 
 function volume
-  pw-mon | rg --line-buffered "Channel Volumes" | while read line
+  pw-mon | rg --line-buffered -F "Channel Volumes" | while read line
     echo -n "["
 
     set -l volume (wpctl get-volume @DEFAULT_AUDIO_SINK@)
@@ -30,7 +30,7 @@ end
 
 function windows
   opened-windows
-  socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | rg --line-buffered "activewindowv2" | while read line
+  socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | rg --line-buffered -F "activewindowv2" | while read line
     opened-windows
   end
 end
@@ -58,7 +58,7 @@ end
 
 function workspaces
   created-workspaces
-  socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | rg --line-buffered "workspacev2|focusedmonv2" | while read line
+  socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | rg --line-buffered -F -e "workspacev2" -e "focusedmonv2" | while read line
     created-workspaces
   end
 end

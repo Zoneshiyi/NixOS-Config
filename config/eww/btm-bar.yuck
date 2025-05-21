@@ -5,44 +5,11 @@
     :width "100%"
     :height "2%"
   )
-  :stacking "bg"
+  :stacking "fg"
   :exclusive true
   :focusable "none"
   (btm-bar
     :monitor monitor
-  )
-)
-
-(deflisten player-metadata
-  :initial "{}"
-  "fish -c player-metadata"
-)
-
-(defwidget player-metadata []
-  (eventbox
-    :class "player-metadata"
-    :halign "center"
-    :onclick "playerctl play-pause"
-    :onscroll "echo {} | rg -q -F 'down' && playerctl next || playerctl previous"
-    :visible {"${player-metadata?.['status']}"!="null"?true:false}
-    (box
-      :space-evenly false
-      (label
-        :text {player-metadata['title']}
-        :class "title"
-      )
-      (label
-        :text {player-metadata['artist']}
-        :class "artist"
-      )
-      (label
-        :text {"${player-metadata['status']=='Playing'}"
-        ?""
-        :""
-        }
-        :class "status"
-      )
-    )
   )
 )
 
@@ -51,72 +18,32 @@
     :class "btm-bar"
     (taskbar
       :monitor monitor
+      :orientation "h"
+      :halign "start"
     )
     (player-metadata)
     (btm-tray)
   )
 )
 
-(deflisten windows
-  :initial `{"DP-1":["app"]}`
-  "fish -c 'listen-events win'"
-)
-
-(defwidget taskbar [monitor]
-  (box
-    :halign "start"
-    :space-evenly false
-    :class "taskbar"
-    (for window in {"${windows[monitor]}"?:[]}
-      (button
-        :class {window[2]}
-        :onclick "hyprctl dispatch focuswindow address:${window[1]}"
-        (image
-          :icon-size "dnd"
-          :icon {window[0]}
-        )
-      )
-    )
-  )
-)
-
 (defwidget btm-tray []
   (box
+    :orientation "h"
     :class "btm-tray"
     :halign "end"
     :space-evenly false
-    (volume-panel)
-    (horizon-right-end
+    (volume-panel
+      :value-pos "right"
+      :transition "slideleft"
+      :orientation "h"
+    )
+    (horizon-end
       (systray
         :class "btm-systray"
         :orientation "h"
         :halign "end"
         :icon-size 22
       )
-    )
-  )
-)
-
-(deflisten volume
-  :initial `[1,""]`
-  "fish -c 'listen-events vol'"
-)
-
-(defvar volume-revealed false)
-
-(defwidget volume-panel []
-  (revealer-on-hover
-    :var volume-revealed
-    :varname "volume-revealed"
-    :class "volume-panel"
-    (metric
-      :value {volume[0]}
-      :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
-    )
-    (button
-      :onclick "nohup pavucontrol > /dev/null 2>&1 &"
-      :onrightclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      {volume[1]}
     )
   )
 )

@@ -1,7 +1,11 @@
-@import "./style";
 $en-font: "FiraCode Nerd Font Propo";
 $zh-font: "Sarasa UI SC";
 $font-size: 17px;
+@import "./style";
+@import "./top-bar.scss";
+@import "./btm-bar.scss";
+@import "./side-bar.scss";
+
 * {
   all: unset;
   font-family: inherit;
@@ -12,7 +16,8 @@ $font-size: 17px;
 }
 
 .top-bar,
-.btm-bar {
+.btm-bar,
+.side-bar {
   button {
     padding: 0 0.5em 0 0.5em;
   }
@@ -25,6 +30,12 @@ $font-size: 17px;
   border-radius: 0.5em;
   border-left-color: rgba($base, 1);
   border-right-color: rgba($surface0, 1);
+}
+
+.side-bar {
+  border-width: 0.5em 0 0.5em 0;
+  border-top-color: rgba($base, 1);
+  border-bottom-color: rgba($surface0, 1);
 }
 
 .calendar-win,
@@ -48,35 +59,7 @@ button {
   }
 }
 
-.workspaces {
-  .active {
-    color: rgba($flamingo, 1);
-  }
-  button:hover {
-    color: rgba($flamingo, 1);
-  }
-  font-size: 19px;
-}
-
-.current-time {
-  // background-color: rgba($surface0, 1);
-  label {
-    padding-left: 0.3em;
-    padding-right: 0.3em;
-  }
-  font-family: $zh-font;
-  .time {
-    color: rgba($flamingo, 1);
-  }
-  .weekday {
-    color: rgba($sapphire, 1);
-  }
-  .date {
-    color: rgba($mauve, 1);
-  }
-}
-
-.horizon-right-end {
+.horizon-end {
   padding-left: 0.5em;
   margin-left: 0.5em;
   background-color: rgba($surface0, 1);
@@ -84,10 +67,29 @@ button {
   border-bottom-right-radius: 0;
 }
 
-.powermenu {
-  color: rgba($flamingo, 1);
-  button:hover {
-    color: rgba($red, 1);
+.horizon-separator {
+  font-family: $zh-font;
+  margin: 0 0.5em 0 0.5em;
+  color: rgba($overlay2, 1);
+}
+
+.vertical-end {
+  padding-top: 0.5em;
+  margin-top: 0.5em;
+  background-color: rgba($surface0, 1);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.volume-panel scale {
+  &:hover trough {
+    background-color: rgba($surface2, 1);
+  }
+  trough {
+    background-color: rgba($surface1, 1);
+    highlight {
+      background-color: rgba($sapphire, 1);
+    }
   }
 }
 
@@ -98,7 +100,7 @@ button {
   }
   background-color: rgba($surface0, 1);
   box {
-    padding: 0 0.5em 0 0.5em;
+    padding: 0 0.7em 0 0.7em;
   }
   label {
     padding: 0 0.3em 0 0.3em;
@@ -111,33 +113,6 @@ button {
   }
   .status {
     color: rgba($mauve, 1);
-  }
-}
-
-.volume-panel scale {
-  &:hover trough {
-    background-color: rgba($surface2, 1);
-  }
-  trough {
-    background-color: rgba($surface1, 1);
-    min-height: 0.5em;
-    min-width: 5em;
-    margin: 0 0.5em 0 0.5em;
-    highlight {
-      background-color: rgba($sapphire, 1);
-    }
-  }
-}
-
-.btm-systray {
-  widget {
-    border-radius: 0.5em;
-    &:hover {
-      background-color: rgba($surface2, 1);
-    }
-    image {
-      padding: 0.5em;
-    }
   }
 }
 
@@ -171,23 +146,6 @@ button {
       border: 0.1em solid rgba($surface1, 1);
       margin: 0.2em;
     }
-  }
-}
-
-.taskbar {
-  button {
-    // border-radius: 0;
-    // margin-left: 0.2em;
-    margin-right: 0.2em;
-  }
-  button:hover {
-    background-color: rgba($overlay2, 1);
-  }
-  .active {
-    background-color: rgba($surface2, 1);
-  }
-  image {
-    -gtk-icon-theme: "WhiteSur";
   }
 }
 

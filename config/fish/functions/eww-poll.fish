@@ -24,13 +24,17 @@ end
 function poll-5s
   echo -n "{"
 
-  set -l time (date +%H:%M)
-  set -l weekday (date +%A)
-  set -l date (date +%m-%d)
+  set -l hour (date +%H)
+  set -l minute (date +%M)
+  set -l weekday (date +%a)
+  set -l month (date +%m)
+  set -l day (date +%d)
 
-  echo -n "\"time\": \"$time\","
+  echo -n "\"hour\": \"$hour\","
+  echo -n "\"minute\": \"$minute\","
   echo -n "\"weekday\": \"$weekday\","
-  echo -n "\"date\": \"$date\""
+  echo -n "\"month\": \"$month\","
+  echo -n "\"day\": \"$day\""
 
   echo -n "}"
 end

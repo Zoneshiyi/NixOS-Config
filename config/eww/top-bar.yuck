@@ -5,7 +5,7 @@
     :width "100%"
     :height "2%"
   )
-  :stacking "bg"
+  :stacking "fg"
   :exclusive true
   :focusable "none"
   (top-bar
@@ -19,10 +19,10 @@
     (workspaces
       :monitor monitor
     )
-    (current-time
+    (player-metadata)
+    (top-tray
       :monitor monitor
     )
-    (top-tray)
   )
 )
 
@@ -46,16 +46,44 @@
   )
 )
 
-(defwidget current-time [monitor]
+(defwidget player-metadata []
   (eventbox
-    :class "current-time"
-    :onclick "eww open calendar-win --toggle --arg monitor=${monitor}"
+    :class "player-metadata"
+    :halign "center"
+    :onclick "playerctl play-pause"
+    :onscroll "echo {} | rg -q -F 'down' && playerctl next || playerctl previous"
+    :visible {"${player-metadata?.['status']}"!="null"?true:false}
+    (box
+      :space-evenly false
+      (label
+        :text {player-metadata['title']?:"󰐑"}
+        :class "title"
+      )
+      (label
+        :text {player-metadata['artist']}
+        :class "artist"
+      )
+      (label
+        :text {"${player-metadata['status']=='Playing'}"
+        ?""
+        :""
+        }
+        :class "status"
+      )
+    )
+  )
+)
+
+(defwidget top-time [monitor]
+  (eventbox
+    :class "top-time"
+    :onclick `eww open calendar-win --toggle --arg monitor=${monitor} --arg anchor="right top" --arg x="1%" --arg y="1%" --arg width="13%"`
     :halign "center"
     (box
       :space-evenly false
       (label
         :class "time"
-        :text {per-five-s['time']}
+        :text "${per-five-s['hour']}:${per-five-s['minute']}"
       )
       (label
         :class "weekday"
@@ -63,34 +91,27 @@
       )
       (label
         :class "date"
-        :text {per-five-s['date']}
+        :text "${per-five-s['month']}-${per-five-s['day']}"
       )
     )
   )
 )
 
-(defwidget top-tray []
+(defwidget top-tray [monitor]
   (box
     :class "top-tray"
     :orientation "h"
     :halign "end"
     :space-evenly false
     (nightmode)
-    (theme)
+    ; (theme)
+    (horizon-separator)
+    (top-time
+      :monitor monitor
+    )
+    (horizon-separator)
     (powermenu)
   )
-)
-
-(defwindow calendar-win [monitor]
-  :monitor monitor
-  :stacking "fg"
-  :exclusive false
-  :geometry (geometry
-    :anchor "top center"
-    :y "0.1%"
-    :width "13%"
-  )
-  (calendar)
 )
 
 (defwidget theme []
@@ -114,11 +135,13 @@
 (defvar powermenu-revealed false)
 
 (defwidget powermenu []
-  (horizon-right-end
+  (horizon-end
     (revealer-on-hover
       :var powermenu-revealed
       :varname "powermenu-revealed"
       :class "powermenu"
+      :transition "slideleft"
+      :orientation "h"
       (box
         (button
           :onclick "hyprlock &"

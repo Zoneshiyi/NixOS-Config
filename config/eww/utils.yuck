@@ -4,24 +4,28 @@
   "fish -c 'eww-poll once'"
 )
 
-(defpoll per-one-s
-  :interval "1s"
-  :initial `{"volume": [ "1",""]}`
-  "fish -c 'eww-poll 1s'"
-)
-
 (defpoll per-five-s
   :interval "5s"
   :initial `{"time": "","weekday": "","date": ""}`
   "fish -c 'eww-poll 5s'"
 )
 
+(deflisten player-metadata
+  :initial "{}"
+  "fish -c player-metadata"
+)
+
+(deflisten windows
+  :initial `{"DP-1":["app"]}`
+  "fish -c 'listen-events win'"
+)
+
 (defwidget metric [?orientation ?flipped ?draw-value ?value-pos value onchange]
   (scale
-    :orientation {orientation?:"h"}
+    :orientation {orientation?:"v"}
     :flipped {flipped?:false}
     :draw-value {draw-value?:true}
-    :value-pos {value-pos?:"right"}
+    :value-pos {value-pos?:"top"}
     :hexpand true
     :min 0.0
     :max 101.0
@@ -32,15 +36,16 @@
   )
 )
 
-(defwidget revealer-on-hover [var varname ?class ?duration ?transition]
+(defwidget revealer-on-hover [var varname orientation ?class ?duration ?transition]
   (eventbox
     :onhover "eww update ${varname}=true"
     :onhoverlost "eww update ${varname}=false"
     (box
       :class {class?:"revealer-on-hover"}
       :space-evenly false
+      :orientation orientation
       (revealer
-        :transition {transition?:"slideleft"}
+        :transition {transition?:"slideup"}
         :reveal var
         :duration {duration?:"500ms"}
         (children :nth 0)
@@ -50,9 +55,36 @@
   )
 )
 
-(defwidget horizon-right-end []
+(defwidget horizon-end []
   (box
-    :class "horizon-right-end"
+    :class "horizon-end"
     (children)
+  )
+)
+
+(defwidget vertical-end []
+  (box
+    :class "vertical-end"
+    (children)
+  )
+)
+
+(defwindow calendar-win [monitor anchor x y width]
+  :monitor monitor
+  :stacking "fg"
+  :exclusive false
+  :geometry (geometry
+    :anchor anchor
+    :x x
+    :y y
+    :width width
+  )
+  (calendar)
+)
+
+(defwidget horizon-separator []
+  (label
+    :class "horizon-separator"
+    :text "|"
   )
 )

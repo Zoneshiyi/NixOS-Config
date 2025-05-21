@@ -1,0 +1,33 @@
+.workspaces {
+  .active {
+    color: rgba($flamingo, 1);
+  }
+  button:hover {
+    color: rgba($flamingo, 1);
+  }
+  font-size: 19px;
+}
+
+.top-time {
+  label {
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+  }
+  font-family: $zh-font;
+  .time {
+    color: rgba($flamingo, 1);
+  }
+  .weekday {
+    color: rgba($sapphire, 1);
+  }
+  .date {
+    color: rgba($mauve, 1);
+  }
+}
+
+.powermenu {
+  color: rgba($flamingo, 1);
+  button:hover {
+    color: rgba($red, 1);
+  }
+}
