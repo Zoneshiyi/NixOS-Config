@@ -1,4 +1,5 @@
 (defwindow side-bar [monitor]
+  :namespace "eww-bar"
   :monitor monitor
   :geometry (geometry
     :anchor "right center"
@@ -53,14 +54,20 @@
       :orientation "v"
     )
     ; (side-time
-    ;   :monitor monitor
+      ;   :monitor monitor
     ; )
-    (vertical-end
+    (box
+      :class "side-systray"
       (systray
-        :class "side-systray"
         :orientation "v"
         :halign "center"
         :icon-size 22
+      )
+    )
+    (vertical-end
+      (powermenu
+        :transition "slideup"
+        :orientation "v"
       )
     )
   )
@@ -81,14 +88,6 @@
         :class "minute"
         :text {per-five-s['minute']}
       )
-      ; (label
-      ;   :class "weekday"
-      ;   :text {per-five-s['weekday']}
-      ; )
-      ; (label
-      ;   :class "date"
-      ;   :text "${per-five-s['month']}${per-five-s['day']}"
-      ; )
     )
   )
 )
@@ -121,5 +120,45 @@
       :onrightclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       {volume[1]}
     )
+  )
+)
+
+(defvar powermenu-revealed false)
+
+(defwidget powermenu [transition orientation]
+  (revealer-on-hover
+    :var powermenu-revealed
+    :varname "powermenu-revealed"
+    :class "powermenu"
+    :transition transition
+    :orientation orientation
+    (box
+      :orientation orientation
+      (button
+        :onclick "hyprlock &"
+        :tooltip "Lock"
+        :class "lock"
+        ""
+      )
+      (button
+        ; :onclick "systemctl reboot"
+        :tooltip "Reboot"
+        :class "reboot"
+        ""
+      )
+      (button
+        ; :onclick "loginctl kill-session $XDG_SESSION_ID"
+        :tooltip "Logout"
+        :class "logout"
+        ""
+      )
+    )
+    (button
+      ; :onclick "systemctl poweroff"
+      :tooltip "Poweroff"
+      :class "poweroff"
+      ""
+    )
+    (label :text "1")
   )
 )

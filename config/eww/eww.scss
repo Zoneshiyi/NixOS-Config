@@ -41,7 +41,7 @@ $font-size: 17px;
 .calendar-win,
 tooltip {
   // border-radius: 0.5em;
-  background-color: rgba($base, 1);
+  background-color: rgba($surface0, 1);
   font-family: $zh-font;
   font-size: $font-size;
   color: rgba($text, 1);
@@ -49,6 +49,11 @@ tooltip {
   &:selected {
     color: rgba($red, 1);
   }
+}
+
+tooltip {
+  background-color: rgba($surface1, 1);
+  border-radius: 0.5em;
 }
 
 button {

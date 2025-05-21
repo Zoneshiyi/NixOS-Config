@@ -1,4 +1,5 @@
 (defwindow btm-bar [monitor]
+  :namespace "eww-bar"
   :monitor monitor
   :geometry (geometry
     :anchor "bottom center"

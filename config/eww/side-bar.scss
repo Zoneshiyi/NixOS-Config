@@ -1,28 +1,9 @@
-.side-systray {
-  widget {
-    border-radius: 0.5em;
-    image {
-      padding: 0.5em;
-    }
-  }
-}
-
 box.side-bar {
   button {
     padding: 0.3em;
     label {
       padding: 0.3em;
-      
     }
-  }
-}
-
-.side-bar .volume-panel scale {
-  font-family: $zh-font;
-  trough {
-    min-height: 5em;
-    min-width: 0.5em;
-    margin: 0.5em 0 0.5em 0;
   }
 }
 
@@ -43,6 +24,15 @@ box.side-bar {
   }
 }
 
+.side-bar .volume-panel scale {
+  font-family: $zh-font;
+  trough {
+    min-height: 5em;
+    min-width: 0.5em;
+    margin: 0.5em 0 0.5em 0;
+  }
+}
+
 .side-time {
   font-family: $en-font;
   font-weight: bolder;
@@ -54,5 +44,20 @@ box.side-bar {
   }
   .minute {
     color: $flamingo;
+  }
+}
+
+.side-systray {
+  background-color: rgba($surface0, 1);
+  margin-top: 0.5em;
+  image {
+    padding: 0.5em;
+  }
+}
+
+.side-bar .powermenu {
+  color: rgba($flamingo, 1);
+  button:hover {
+    color: rgba($red, 1);
   }
 }

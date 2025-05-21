@@ -1,4 +1,5 @@
 (defwindow top-bar [monitor]
+  :namespace "eww-bar"
   :monitor monitor
   :geometry (geometry
     :anchor "top center"
@@ -35,7 +36,6 @@
   (box
     :class "workspaces"
     :halign "start"
-    ; :space-evenly false
     (for wsp in {"${workspaces?.[monitor]}"?:[]}
       (button
         :class "${wsp[2]}"
@@ -55,13 +55,16 @@
     :visible {"${player-metadata?.['status']}"!="null"?true:false}
     (box
       :space-evenly false
+      :tooltip {player-metadata['title']?:"󰐑"}
       (label
         :text {player-metadata['title']?:"󰐑"}
         :class "title"
+        :truncate true
       )
       (label
         :text {player-metadata['artist']}
         :class "artist"
+        :truncate true
       )
       (label
         :text {"${player-metadata['status']=='Playing'}"
@@ -106,11 +109,18 @@
     (nightmode)
     ; (theme)
     (horizon-separator)
-    (top-time
-      :monitor monitor
+    (horizon-end
+      (top-time
+        :monitor monitor
+      )
     )
-    (horizon-separator)
-    (powermenu)
+    ; (horizon-separator)
+    ; (horizon-end
+      ;   (powermenu
+        ;     :transition "slideleft"
+        ;     :orientation "h"
+      ;   )
+    ; )
   )
 )
 
@@ -129,46 +139,5 @@
     :onclick "nohup hyprsunset > /dev/null 2>&1 & eww poll poll-once &"
     :onrightclick "pkill hyprsunset && eww poll poll-once &"
     {poll-once["nightmode"]}
-  )
-)
-
-(defvar powermenu-revealed false)
-
-(defwidget powermenu []
-  (horizon-end
-    (revealer-on-hover
-      :var powermenu-revealed
-      :varname "powermenu-revealed"
-      :class "powermenu"
-      :transition "slideleft"
-      :orientation "h"
-      (box
-        (button
-          :onclick "hyprlock &"
-          :tooltip "Lock"
-          :class "lock"
-          ""
-        )
-        (button
-          ; :onclick "systemctl reboot"
-          :tooltip "Reboot"
-          :class "reboot"
-          ""
-        )
-        (button
-          ; :onclick "loginctl kill-session $XDG_SESSION_ID"
-          :tooltip "Logout"
-          :class "logout"
-          ""
-        )
-      )
-      (button
-        ; :onclick "systemctl poweroff"
-        :tooltip "Poweroff"
-        :class "poweroff"
-        ""
-      )
-      (label :text "1")
-    )
   )
 )
