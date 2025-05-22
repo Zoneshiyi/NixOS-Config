@@ -24,7 +24,6 @@ in
     "starship.toml".source = mkSymlink "${configPath}/starship/starship.toml";
   };
 
-  programs.firefox.enable = true;
   home.packages = with pkgs; [
     rofi-wayland
     xfce.xfce4-settings
@@ -46,7 +45,9 @@ in
     pkgs-24_11.yesplaymusic
     vscode
     obsidian
+    firefox
     google-chrome
+    chromium
     qq
     wechat-uos
     mpv

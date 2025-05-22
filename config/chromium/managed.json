@@ -1,0 +1,7 @@
+{
+  "HomepageLocation": "bing.com",
+  "HomepageIsNewTabPage": true,
+  "RestoreOnStartup": 4,
+  "RestoreOnStartupURLs": ["bing.com"],
+  "DefaultBrowserSettingEnabled": true
+}

@@ -1,6 +1,5 @@
 {
   imports = [
-    ./alacritty.nix
     ./base.nix
     ./clangd.nix
     ./desktop.nix
@@ -10,7 +9,6 @@
     ./nvim.nix
     ./password-store.nix
     ./syncthing.nix
-    ./themes.nix
     ./tmux.nix
     ./fish.nix
   ];

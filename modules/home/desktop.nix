@@ -9,6 +9,10 @@ let
   homeDir = config.home.homeDirectory;
 in
 {
+  imports = [
+    ./alacritty.nix
+    ./themes.nix
+  ];
   wayland.windowManager.hyprland.systemd.enable = false;
   xdg.userDirs = {
     enable = true;

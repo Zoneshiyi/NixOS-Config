@@ -3,7 +3,6 @@
 plugins = [
   "expose",
   "fetch_client_menu",
-  "layout_center",
   "magnify",
   # "monitor",
   "shortcuts_menu",
@@ -24,4 +23,5 @@ on_new_client = "close"
 margin = 0
 
 [shortcuts_menu.entries]
-"Fetch window" = "pypr fetch_client_menu"
+"Fetch Window" = "pypr fetch_client_menu"
+"Hyprland socket" = 'alacritty socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"'
