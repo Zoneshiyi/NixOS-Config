@@ -1,0 +1,12 @@
+// 启动时打开自定义主页
+user_pref("browser.startup.homepage", "about:home");
+// 禁用默认浏览器检查
+user_pref("browser.shell.checkDefaultBrowser", false);
+// 禁用推荐内容和广告
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
+// 关闭推荐扩展提示
+user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
+// 启用所有开发者工具
+user_pref("devtools.chrome.enabled", true);
+user_pref("devtools.debugger.remote-enabled", true);

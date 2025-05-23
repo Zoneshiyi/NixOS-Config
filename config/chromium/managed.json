@@ -1,7 +1,10 @@
 {
-  "HomepageLocation": "bing.com",
-  "HomepageIsNewTabPage": true,
-  "RestoreOnStartup": 4,
-  "RestoreOnStartupURLs": ["bing.com"],
-  "DefaultBrowserSettingEnabled": true
+  "DefaultBrowserSettingEnabled": false,
+  "GoogleSearchSidePanelEnabled": false,
+  "ExtensionManifestV2Availability": 2,
+  "ExtensionSettings": {
+    "pfnededegaaopdmhkdmcofjmoldfiped": {
+      "toolbar_pin": "force_pinned"
+    }
+  }
 }

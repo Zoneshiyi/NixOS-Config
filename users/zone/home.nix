@@ -45,9 +45,6 @@ in
     pkgs-24_11.yesplaymusic
     vscode
     obsidian
-    firefox
-    google-chrome
-    chromium
     qq
     wechat-uos
     mpv

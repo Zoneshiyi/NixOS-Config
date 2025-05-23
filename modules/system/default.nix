@@ -5,6 +5,7 @@
     ./base.nix
     ./bluetooth.nix
     ./boot.nix
+    ./browser.nix
     ./desktop.nix
     ./inputMethod.nix
     ./network.nix

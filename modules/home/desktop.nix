@@ -11,6 +11,7 @@ in
 {
   imports = [
     ./alacritty.nix
+    ./browser.nix
     ./themes.nix
   ];
   wayland.windowManager.hyprland.systemd.enable = false;
