@@ -1,0 +1,40 @@
+{
+  "policies": {
+    "Extensions": {
+      "Install": [
+        "https://addons.mozilla.org/firefox/downloads/latest/zeroomega/latest.xpi",
+        "https://addons.mozilla.org/firefox/downloads/latest/browserpass-ce/latest.xpi",
+        "https://addons.mozilla.org/firefox/downloads/latest/floccus/latest.xpi",
+        "https://addons.mozilla.org/firefox/downloads/latest/immersive-translate/latest.xpi",
+        "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi",
+        "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+      ]
+    },
+    "ExtensionSettings": {
+      "suziwen1@gmail.com": {
+        "install_mode": "normal_installed",
+        "private_browsing": true
+      },
+      "browserpass@maximbaz.com": {
+        "install_mode": "normal_installed",
+        "private_browsing": true
+      },
+      "floccus@handmadeideas.org": {
+        "install_mode": "normal_installed",
+        "private_browsing": true
+      },
+      "{5efceaa7-f3a2-4e59-a54b-85319448e305}": {
+        "install_mode": "normal_installed",
+        "private_browsing": true
+      },
+      "firefox@tampermonkey.net": {
+        "install_mode": "normal_installed",
+        "private_browsing": true
+      },
+      "uBlock0@raymondhill.net": {
+        "install_mode": "normal_installed",
+        "private_browsing": true
+      }
+    }
+  }
+}

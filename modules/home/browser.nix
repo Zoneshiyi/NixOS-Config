@@ -17,9 +17,6 @@ in
       name = "default";
       isDefault = true;
     };
-    policies = {
-      DefaultDownloadDirectory = "\${home}/test";
-    };
   };
   home.packages = with pkgs; [
     google-chrome

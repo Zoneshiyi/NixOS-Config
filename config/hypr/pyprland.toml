@@ -2,7 +2,6 @@
 
 plugins = [
   "expose",
-  "fetch_client_menu",
   "magnify",
   # "monitor",
   "shortcuts_menu",
@@ -23,5 +22,7 @@ on_new_client = "close"
 margin = 0
 
 [shortcuts_menu.entries]
-"Fetch Window" = "pypr fetch_client_menu"
+"Window" = "rofi -show window"
+"Drun" = "rofi -show drun"
+"SSH" = "rofi -show ssh"
 "Hyprland socket" = 'alacritty socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"'

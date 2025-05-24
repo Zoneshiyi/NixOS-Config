@@ -1,5 +1,5 @@
 (defwindow top-bar [monitor]
-  :namespace "eww-bar"
+  :namespace "eww-slide"
   :monitor monitor
   :geometry (geometry
     :anchor "top center"
@@ -15,8 +15,10 @@
 )
 
 (defwidget top-bar [monitor]
-  (box
+  (centerbox
     :class "top-bar"
+    :halign "fill"
+    :space-evenly false
     (workspaces
       :monitor monitor
     )
@@ -36,6 +38,7 @@
   (box
     :class "workspaces"
     :halign "start"
+    :hexpand false
     (for wsp in {"${workspaces?.[monitor]}"?:[]}
       (button
         :class "${wsp[2]}"
@@ -49,7 +52,6 @@
 (defwidget player-metadata []
   (eventbox
     :class "player-metadata"
-    :halign "center"
     :onclick "playerctl play-pause"
     :onscroll "echo {} | rg -q -F 'down' && playerctl next || playerctl previous"
     :visible {"${player-metadata?.['status']}"!="null"?true:false}
@@ -105,6 +107,7 @@
     :class "top-tray"
     :orientation "h"
     :halign "end"
+    :hexpand false
     :space-evenly false
     (nightmode)
     ; (theme)

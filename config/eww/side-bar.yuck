@@ -1,5 +1,5 @@
 (defwindow side-bar [monitor]
-  :namespace "eww-bar"
+  :namespace "eww-slide"
   :monitor monitor
   :geometry (geometry
     :anchor "right center"
@@ -16,6 +16,8 @@
 (defwidget side-bar [monitor]
   (box
     :orientation "v"
+    :valign "fill"
+    :space-evenly false
     (taskbar :monitor monitor)
     (side-tray
       :monitor monitor
@@ -27,6 +29,8 @@
   (box
     :orientation {orientation?:"v"}
     :halign {halign?:"center"}
+    :valign "fill"
+    :vexpand true
     :space-evenly false
     :class "taskbar"
     (for window in {"${windows[monitor]}"?:[]}
@@ -47,6 +51,7 @@
     :orientation "v"
     :class "side-tray"
     :valign "end"
+    :vexpand false
     :space-evenly false
     (volume-panel
       :value-pos "top"
@@ -60,7 +65,6 @@
       :class "side-systray"
       (systray
         :orientation "v"
-        :halign "center"
         :icon-size 22
       )
     )

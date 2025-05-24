@@ -70,6 +70,7 @@
 )
 
 (defwindow calendar-win [monitor anchor x y width]
+  :namespace "eww-slide"
   :monitor monitor
   :stacking "fg"
   :exclusive false
@@ -86,5 +87,29 @@
   (label
     :class "horizon-separator"
     :text "|"
+  )
+)
+
+(defwindow apps [monitor]
+  :monitor monitor
+  :stacking "fg"
+  :exclusive false
+  :geometry (geometry
+    :height "30%"
+    :width "30%"
+    :anchor "center"
+  )
+  (box
+    :class "apps-bg"
+    (box
+      :class "apps-panel"
+      :halign "start"
+      :width 30
+      :valign "start"
+      (image
+        :icon-size "dialog"
+        :icon "firefox"
+      )
+    )
   )
 )

@@ -38,9 +38,14 @@ $font-size: 17px;
   border-bottom-color: rgba($surface0, 1);
 }
 
+window.calendar-win {
+  background-color: rgba($surface0, 0);
+  border-radius: 0.5em;
+}
+
 .calendar-win,
 tooltip {
-  // border-radius: 0.5em;
+  border-radius: 0.5em;
   background-color: rgba($surface0, 1);
   font-family: $zh-font;
   font-size: $font-size;
@@ -53,7 +58,22 @@ tooltip {
 
 tooltip {
   background-color: rgba($surface1, 1);
-  border-radius: 0.5em;
+}
+
+window.apps {
+  background-color: rgba($base, 0);
+}
+.apps-bg{
+  font-family: $zh-font;
+  color: rgba($text, 1);
+  background-color: rgba($base, 1);
+  border: 0.2em solid rgba($text, 1);
+  border-radius: 1em;
+}
+
+.apps-panel {
+  background-color: $red;
+  margin: 0.5em;
 }
 
 button {

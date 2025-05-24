@@ -1,5 +1,5 @@
 (defwindow btm-bar [monitor]
-  :namespace "eww-bar"
+  :namespace "eww-slide"
   :monitor monitor
   :geometry (geometry
     :anchor "bottom center"
