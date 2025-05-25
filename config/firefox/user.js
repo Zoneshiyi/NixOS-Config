@@ -15,6 +15,8 @@ user_pref("sidebar.verticalTabs", true);
 user_pref("sidebar.visibility", "always-show");
 // 书签栏
 user_pref("browser.toolbars.bookmarks.visibility", "newTab");
+// ctrl+Tab 切换标签页
+user_pref("browser.ctrlTab.sortByRecentlyUsed", true);
 
 //for nvidia-vaapi-driver since Firefox 137
 user_pref("media.hardware-video-decoding.force-enabled", true);

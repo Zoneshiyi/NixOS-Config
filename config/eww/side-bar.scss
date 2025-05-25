@@ -1,13 +1,22 @@
 box.side-bar {
-  button {
-    padding: 0.3em;
-    label {
-      padding: 0.3em;
-    }
+  font-family: $en-font;
+  font-size: $font-size;
+  color: rgba($text, 1);
+  background-color: rgba($base, 1);
+  border-width: 0.5em 0 0.5em 0;
+  border-style: solid;
+  border-radius: 0.5em;
+  border-top-color: rgba($base, 1);
+  border-bottom-color: rgba($surface0, 1);
+  label {
+    padding: 0.7em 0 0.7em 0;
   }
 }
 
 .taskbar {
+  button {
+    padding: 0.3em;
+  }
   button:hover {
     background-color: rgba($overlay2, 1);
   }
@@ -19,8 +28,7 @@ box.side-bar {
   }
 }
 
-.side-bar .volume-panel scale {
-  font-family: $zh-font;
+.volume-panel scale {
   trough {
     min-height: 5em;
     min-width: 0.5em;
@@ -55,5 +63,38 @@ box.side-bar {
   color: rgba($flamingo, 1);
   button:hover {
     color: rgba($red, 1);
+  }
+}
+
+.side-systray window.popup {
+  background-color: rgba($surface0, 1);
+  decoration {
+    padding: 0.3em;
+    border-radius: 0.5em;
+    border: 0.2em solid rgba($surface1, 1);
+  }
+  menu {
+    menuitem {
+      &:hover {
+        background-color: rgba($surface2, 1);
+      }
+      border-radius: 0.3em;
+      margin: 0.2em;
+      check,
+      radio {
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        border: 0.4em solid rgba($overlay2, 1);
+        border-radius: 999em;
+        &:checked {
+          border: 0.4em solid rgba($sapphire, 1);
+          border-radius: 999em;
+        }
+      }
+    }
+    separator {
+      border: 0.1em solid rgba($surface1, 1);
+      margin: 0.2em;
+    }
   }
 }

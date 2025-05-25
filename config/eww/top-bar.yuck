@@ -38,7 +38,6 @@
   (box
     :class "workspaces"
     :halign "start"
-    :hexpand false
     (for wsp in {"${workspaces?.[monitor]}"?:[]}
       (button
         :class "${wsp[2]}"
@@ -107,7 +106,6 @@
     :class "top-tray"
     :orientation "h"
     :halign "end"
-    :hexpand false
     :space-evenly false
     (nightmode)
     ; (theme)

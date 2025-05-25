@@ -50,10 +50,30 @@ function opened-windows
     if .address==$active_window then "active"
     else "opened"
     end
-  ])})
-  |from_entries')
+  ])}) | .[]')
 
-  echo $windows
+  echo $windows | while read -l entry
+    set -l monitor (echo $entry | jq -r '.key')
+    set -l apps (echo $entry | jq -c '.value[]')
+
+    set -l new_apps
+
+    for app in $apps
+      set -l name (echo $app | jq -r '.[0]')
+      set -l addr (echo $app | jq -r '.[1]')
+      set -l state (echo $app | jq -r '.[2]')
+      set -l new_name (cat $(xdg-which $name) | rg -F -m 1 "Icon" | cut -d "=" -f 2)
+      if test -z $new_name
+        set new_name "default-application"
+      end
+
+      set -l json_line (jq -nc --arg name "$new_name" --arg addr "$addr" --arg state "$state" '[$name, $addr, $state]')
+      set new_apps $new_apps $json_line
+    end
+
+    set new_apps "[$(string join "," $new_apps)]"
+    echo (jq -nc --arg key "$monitor" --argjson value $new_apps '{($key): $value}')
+  end | jq -s -c 'add'
 end
 
 function workspaces

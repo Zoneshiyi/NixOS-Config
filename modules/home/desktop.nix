@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-24_11,
   inputs,
   config,
   ...
@@ -41,6 +40,7 @@ in
     wlogout
     waybar
     eww
+    xdg-launch
 
     grim
     slurp

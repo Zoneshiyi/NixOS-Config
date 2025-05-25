@@ -5,6 +5,6 @@ configuration {
   show-icons: true;
   icon-theme: "WhiteSur";
   drun-display-format : "{name}";
-  application-fallback-icon: "/etc/profiles/per-user/zone/share/icons/WhiteSur/apps/scalable/application-default-icon.svg";
+  application-fallback-icon: "/etc/profiles/per-user/zone/share/icons/WhiteSur/apps/scalable/default-application.svg";
 }
 @theme "fancy2"

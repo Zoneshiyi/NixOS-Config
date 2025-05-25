@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  pkgs-24_11,
   configPath,
   ...
 }:

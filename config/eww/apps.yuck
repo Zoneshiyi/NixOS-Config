@@ -1,0 +1,88 @@
+(defwindow apps [monitor]
+  :monitor monitor
+  :stacking "fg"
+  :exclusive false
+  :geometry (geometry
+    :width "20%"
+    :height "20%"
+    :anchor "center"
+  )
+  (scroll
+    :class "apps-bg"
+    :hscroll false
+    :vscroll true
+    (box
+      :class "apps-panel"
+      :orientation "v"
+      :valign "start"
+      (box
+        :halign "start"
+        (app
+          :icon "firefox"
+          :description "Firefox"
+          :onclick "xdg-launch firefox &"
+          :tooltip "Firefox"
+        )
+        (app
+          :icon "chromium"
+          :description "Chromium"
+          :onclick "xdg-launch chromium-browser &"
+          :tooltip "Chromium"
+        )
+        (app
+          :icon "yesplaymusic"
+          :description "Music"
+          :onclick "xdg-launch yesplaymusic &"
+          :tooltip "YesPlayMusic"
+        )
+        (app
+          :icon "applets-template"
+          :description "Inspector"
+          :onclick "eww inspector &"
+          :tooltip "EWW Inspector"
+        )
+      )
+      (box
+        :halign "start"
+        (app
+          :icon "moonlight"
+          :description "Moonlight"
+          :onclick "xdg-launch com.moonlight_stream.Moonlight &"
+          :tooltip "Moonlight"
+        )
+        (app
+          :icon "remmina"
+          :description "Remmina"
+          :onclick "xdg-launch org.remmina.Remmina &"
+          :tooltip "Remmina"
+        )
+      )
+    )
+  )
+)
+
+(defvar close-apps "eww close apps")
+; icon-size - "menu", "small-toolbar", "toolbar", "large-toolbar", "button", "dnd", "dialog"
+(defwidget app [icon description onclick tooltip]
+  (button
+    :class "app"
+    :onclick "${onclick} ${close-apps}"
+    :tooltip tooltip
+    (box
+      :orientation "v"
+      :space-evenly false
+      (image
+        :icon icon
+        :icon-size "dialog"
+      )
+      (label
+        :text description
+        :limit-width 9
+        :lines 3
+        :wrap true
+        :wrap-mode "word"
+        :justify "center"
+      )
+    )
+  )
+)

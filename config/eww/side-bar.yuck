@@ -17,6 +17,7 @@
   (box
     :orientation "v"
     :valign "fill"
+    :halign "center"
     :space-evenly false
     (taskbar :monitor monitor)
     (side-tray
@@ -25,21 +26,26 @@
   )
 )
 
-(defwidget taskbar [monitor ?orientation ?halign]
-  (box
-    :orientation {orientation?:"v"}
-    :halign {halign?:"center"}
+(defwidget taskbar [monitor]
+  (scroll
     :valign "fill"
     :vexpand true
-    :space-evenly false
-    :class "taskbar"
-    (for window in {"${windows[monitor]}"?:[]}
-      (button
-        :class {window[2]}
-        :onclick "hyprctl dispatch focuswindow address:${window[1]}"
-        (image
-          :icon-size "dnd"
-          :icon {window[0]}
+    :hscroll false
+    :vscroll true
+    :halign "center"
+    (box
+      :orientation "v"
+      :halign "center"
+      :space-evenly false
+      :class "taskbar"
+      (for window in {"${windows[monitor]}"?:[]}
+        (button
+          :class {window[2]}
+          :onclick "hyprctl dispatch focuswindow address:${window[1]}"
+          (image
+            :icon-size "dnd"
+            :icon {window[0]}
+          )
         )
       )
     )
@@ -51,7 +57,7 @@
     :orientation "v"
     :class "side-tray"
     :valign "end"
-    :vexpand false
+    :halign "fill"
     :space-evenly false
     (volume-panel
       :value-pos "top"
@@ -63,6 +69,7 @@
     ; )
     (box
       :class "side-systray"
+      :halign "fill"
       (systray
         :orientation "v"
         :icon-size 22

@@ -3,8 +3,8 @@ $zh-font: "Sarasa UI SC";
 $font-size: 17px;
 @import "./style";
 @import "./top-bar.scss";
-@import "./btm-bar.scss";
 @import "./side-bar.scss";
+@import "./apps.scss";
 
 * {
   all: unset;
@@ -15,34 +15,55 @@ $font-size: 17px;
   color: inherit;
 }
 
-.top-bar,
-.btm-bar,
-.side-bar {
-  button {
-    padding: 0 0.5em 0 0.5em;
+window.background {
+  background-color: transparent;
+}
+
+button {
+  border-radius: 0.5em;
+  &:hover {
+    background-color: rgba($surface2, 1);
+    color: rgba($sapphire, 1);
   }
-  font-family: $en-font;
-  font-size: $font-size;
-  color: rgba($text, 1);
-  background-color: rgba($base, 1);
-  border-width: 0 0.5em 0 0.5em;
-  border-style: solid;
-  border-radius: 0.5em;
-  border-left-color: rgba($base, 1);
-  border-right-color: rgba($surface0, 1);
 }
 
-.side-bar {
-  border-width: 0.5em 0 0.5em 0;
-  border-top-color: rgba($base, 1);
-  border-bottom-color: rgba($surface0, 1);
+tooltip {
+  background-color: rgba($surface1, 1);
 }
 
-window.calendar-win {
-  background-color: rgba($surface0, 0);
-  border-radius: 0.5em;
+scale {
+  font-family: $zh-font;
+  &:hover trough {
+    background-color: rgba($surface2, 1);
+  }
+  trough {
+    background-color: rgba($surface1, 1);
+    highlight {
+      background-color: rgba($sapphire, 1);
+    }
+  }
 }
 
+scrollbar {
+  background-color: rgba($surface1, 1);
+  margin: 0.5em;
+  padding: 0.1em;
+  &:hover {
+    background-color: rgba($surface2, 1);
+  }
+  slider {
+    background-color: rgba($sapphire, 1);
+    padding: 0.23em;
+  }
+}
+undershoot {
+  background-color: transparent;
+}
+overshoot {
+  background-color: transparent;
+}
+
+// calendar
 .calendar-win,
 tooltip {
   border-radius: 0.5em;
@@ -56,34 +77,7 @@ tooltip {
   }
 }
 
-tooltip {
-  background-color: rgba($surface1, 1);
-}
-
-window.apps {
-  background-color: rgba($base, 0);
-}
-.apps-bg{
-  font-family: $zh-font;
-  color: rgba($text, 1);
-  background-color: rgba($base, 1);
-  border: 0.2em solid rgba($text, 1);
-  border-radius: 1em;
-}
-
-.apps-panel {
-  background-color: $red;
-  margin: 0.5em;
-}
-
-button {
-  border-radius: 0.5em;
-  &:hover {
-    background-color: rgba($surface2, 1);
-    color: rgba($sapphire, 1);
-  }
-}
-
+// horizon widget
 .horizon-end {
   padding-left: 0.5em;
   margin-left: 0.5em;
@@ -91,13 +85,13 @@ button {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-
 .horizon-separator {
   font-family: $zh-font;
   margin: 0 0.5em 0 0.5em;
   color: rgba($overlay2, 1);
 }
 
+// vertical widget
 .vertical-end {
   padding-top: 0.5em;
   margin-top: 0.5em;
@@ -105,76 +99,3 @@ button {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-
-.volume-panel scale {
-  &:hover trough {
-    background-color: rgba($surface2, 1);
-  }
-  trough {
-    background-color: rgba($surface1, 1);
-    highlight {
-      background-color: rgba($sapphire, 1);
-    }
-  }
-}
-
-.player-metadata {
-  font-family: $zh-font;
-  &:hover {
-    background-color: rgba($surface1, 1);
-  }
-  background-color: rgba($surface0, 1);
-  box {
-    padding: 0 0.7em 0 0.7em;
-  }
-  label {
-    padding: 0 0.3em 0 0.3em;
-  }
-  .title {
-    color: rgba($flamingo, 1);
-  }
-  .artist {
-    color: rgba($sapphire, 1);
-  }
-  .status {
-    color: rgba($mauve, 1);
-  }
-}
-
-.popup {
-  background-color: rgba($surface0, 1);
-  decoration {
-    padding: 0.3em;
-    border-radius: 0.5em;
-    border: 0.2em solid rgba($surface1, 1);
-  }
-  menu {
-    menuitem {
-      &:hover {
-        background-color: rgba($surface2, 1);
-      }
-      border-radius: 0.3em;
-      margin: 0.2em;
-      check,
-      radio {
-        margin-left: 0.5em;
-        margin-right: 0.5em;
-        border: 0.4em solid rgba($overlay2, 1);
-        border-radius: 999em;
-        &:checked {
-          border: 0.4em solid rgba($sapphire, 1);
-          border-radius: 999em;
-        }
-      }
-    }
-    separator {
-      border: 0.1em solid rgba($surface1, 1);
-      margin: 0.2em;
-    }
-  }
-}
-
-// arrow {
-//   min-width: 1em;
-//   -gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
-// }

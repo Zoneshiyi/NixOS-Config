@@ -1,0 +1,20 @@
+// apps
+.apps-bg {
+  font-family: $zh-font;
+  color: rgba($text, 1);
+  background-color: rgba($base, 1);
+  border: 0.2em solid rgba($text, 1);
+  border-radius: 1em;
+}
+.apps-panel {
+  margin: 1em 1.5em 1em 1.5em;
+}
+.app {
+  margin: 0.5em;
+  padding: 1.5em;
+  background-color: rgba($surface0, 1);
+  &:hover {
+    background-color: rgba($surface2, 1);
+    color: rgba($sapphire, 1);
+  }
+}

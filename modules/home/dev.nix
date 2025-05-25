@@ -29,6 +29,6 @@
     hyprls
 
     tree-sitter
-    nodejs_23
+    nodejs_24
   ];
 }

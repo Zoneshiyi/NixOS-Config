@@ -5,6 +5,7 @@
 }:
 {
   programs = {
+    seahorse.enable = true;
     ssh.startAgent = true;
   };
   security.polkit = {
@@ -13,7 +14,7 @@
   };
   security.soteria = {
     enable = true;
-    package = pkgs-24_11.soteria;
+    package = pkgs.soteria;
   };
   services.gnome.gnome-keyring.enable = true;
 
@@ -23,7 +24,6 @@
   # security.pam.services.gpg-agent.enableGnomeKeyring = true;
 
   environment.systemPackages = with pkgs; [
-    seahorse
     lxqt.lxqt-policykit
   ];
 }
