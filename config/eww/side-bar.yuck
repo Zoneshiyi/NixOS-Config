@@ -44,7 +44,7 @@
           :onclick "hyprctl dispatch focuswindow address:${window[1]}"
           (image
             :icon-size "dnd"
-            :icon {window[0]}
+            :icon `${poll-apps-name-to-icon["${window[0]}"]?:"default-application"}`
           )
         )
       )

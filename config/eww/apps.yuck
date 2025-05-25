@@ -30,13 +30,13 @@
           :tooltip "Chromium"
         )
         (app
-          :icon "yesplaymusic"
+          :icon "multimedia-audio-player"
           :description "Music"
           :onclick "xdg-launch yesplaymusic &"
           :tooltip "YesPlayMusic"
         )
         (app
-          :icon "applets-template"
+          :icon "default-application"
           :description "Inspector"
           :onclick "eww inspector &"
           :tooltip "EWW Inspector"

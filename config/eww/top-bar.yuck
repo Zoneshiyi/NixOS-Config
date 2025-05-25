@@ -18,7 +18,6 @@
   (centerbox
     :class "top-bar"
     :halign "fill"
-    :space-evenly false
     (workspaces
       :monitor monitor
     )
@@ -130,7 +129,7 @@
     :class "theme"
     :onclick "fish -c 'theme-choose light' & eww poll poll-once &"
     :onrightclick "fish -c 'theme-choose dark' & eww poll poll-once &"
-    {poll-once["theme"]}
+    theme
   )
 )
 
@@ -139,6 +138,6 @@
     :class "nightmode"
     :onclick "nohup hyprsunset > /dev/null 2>&1 & eww poll poll-once &"
     :onrightclick "pkill hyprsunset && eww poll poll-once &"
-    {poll-once["nightmode"]}
+    poll-once
   )
 )
