@@ -38,7 +38,6 @@ in
     dunst
     brightnessctl
     wlogout
-    waybar
     eww
     xdg-launch
 

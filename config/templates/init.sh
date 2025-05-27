@@ -11,7 +11,7 @@ if [ ! -d "$dstDir" ]; then
 fi
 
 files=("hyprland.conf")
-dirs=("fish" "kitty" "waybar")
+dirs=("fish" "kitty")
 
 for file in "${files[@]}"; do
   if [ ! -f "$dstDir/$file" ]; then

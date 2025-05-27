@@ -15,7 +15,6 @@ in
   ];
   xdg.configFile = {
     "hypr".source = mkSymlink "${configPath}/hypr";
-    "waybar".source = mkSymlink "${configPath}/waybar";
     "rofi".source = mkSymlink "${configPath}/rofi";
     "wlogout".source = mkSymlink "${configPath}/wlogout";
     "kitty".source = mkSymlink "${configPath}/kitty";

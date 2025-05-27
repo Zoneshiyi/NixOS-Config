@@ -1,6 +1,5 @@
 function theme-choose
   set -l ConfigPath ~/NixOS/config
-  set -l waybar $ConfigPath/waybar
   set -l kitty $ConfigPath/kitty
   set -l template ~/.config/templates
   set -l alacritty ~/.config/alacritty/themes/themes
