@@ -3,7 +3,7 @@
   :stacking "fg"
   :exclusive false
   :geometry (geometry
-    :width "20%"
+    :width "0%"
     :height "20%"
     :anchor "center"
   )
@@ -36,10 +36,16 @@
           :tooltip "YesPlayMusic"
         )
         (app
-          :icon "default-application"
-          :description "Inspector"
-          :onclick "eww inspector &"
-          :tooltip "EWW Inspector"
+          :icon "qq"
+          :description "QQ"
+          :onclick "xdg-launch qq &"
+          :tooltip "QQ"
+        )
+        (app
+          :icon "com.tencent.wechat"
+          :description "WeChat"
+          :onclick "xdg-launch com.tencent.wechat &"
+          :tooltip "WeChat"
         )
       )
       (box
@@ -55,6 +61,12 @@
           :description "Remmina"
           :onclick "xdg-launch org.remmina.Remmina &"
           :tooltip "Remmina"
+        )
+        (app
+          :icon "default-application"
+          :description "Inspector"
+          :onclick "eww inspector &"
+          :tooltip "EWW Inspector"
         )
       )
     )

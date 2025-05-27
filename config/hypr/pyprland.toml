@@ -25,4 +25,3 @@ margin = 0
 "Window" = "rofi -show window"
 "Drun" = "rofi -show drun"
 "SSH" = "rofi -show ssh"
-"Hyprland socket" = 'alacritty socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"'
