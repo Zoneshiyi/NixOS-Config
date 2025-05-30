@@ -10,6 +10,10 @@
     hyprland.url = "github:hyprwm/Hyprland";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     swww.url = "github:LGFae/swww";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     agenix.url = "github:ryantm/agenix";
     secrets = {
@@ -24,10 +28,11 @@
       nixpkgs,
       nixpkgs-24_11,
       home-manager,
+      nix-index-database,
       ...
     }:
     let
-      system = "x86_64-linux";
+      system = builtins.currentSystem;
       # 系统层面modules的特殊参数
       specialArgs = {
         inherit inputs;
@@ -47,6 +52,7 @@
         extraSpecialArgs = specialArgs;
       };
       base-modules = [
+        nix-index-database.nixosModules.nix-index
         home-manager.nixosModules.home-manager
         home-manager-config
         # ./secrets

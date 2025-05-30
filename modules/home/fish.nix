@@ -25,6 +25,7 @@ in
       }
     ];
   };
+  programs.nix-index.enableFishIntegration = true;
   xdg.configFile =
     (builtins.listToAttrs (
       builtins.map (filename: {

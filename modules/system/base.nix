@@ -33,7 +33,6 @@
 
   programs = {
     fish.enable = true;
-    nix-ld.enable = true;
     clash-verge.enable = true;
   };
 

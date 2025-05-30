@@ -32,5 +32,8 @@
   };
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   nix.channel.enable = false;
-  programs.command-not-found.enable = false;
+  programs = {
+    nix-ld.enable = true;
+    command-not-found.enable = false;
+  };
 }

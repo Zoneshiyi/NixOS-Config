@@ -44,6 +44,8 @@
     noto-fonts-cjk-serif
     sarasa-gothic
     vistafonts-chs
+    corefonts
+    twemoji-color-font
   ];
   fonts.fontconfig = {
     useEmbeddedBitmaps = true;
