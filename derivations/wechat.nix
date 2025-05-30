@@ -82,10 +82,10 @@ pkgs.stdenvNoCC.mkDerivation {
     install -Dm444 $wechatLogo $out/share/icons/hicolor/scalable/apps/wechat-logo.svg
     mkdir -p $out/bin
     makeBinaryWrapper $out/wechat/wechat $out/bin/wechat \
-    --suffix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath librarys}"
+    --suffix LD_LIBRARY_PATH : "${lib.makeLibraryPath librarys}"
   '';
 
-  meta = with pkgs.lib; {
+  meta = with lib; {
     description = "WeChat for Linux";
     homepage = "https://linux.weixin.qq.com";
     license = licenses.unfree;

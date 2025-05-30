@@ -1,66 +1,55 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, kernel
-, bc
-, nukeReferences
-,
+{
+  pkgs,
+  lib,
+  kernel,
+  kernelModuleMakeFlags,
+  bc,
+  ...
 }:
-
-stdenv.mkDerivation rec {
-  pname = "rtl8831";
-  version = "${kernel.version}-unstable-2025-01-04";
-
-  src = fetchFromGitHub {
-    owner = "shenmintao";
-    repo = pname;
-    rev = "45f8ed2510d4dcbc535ec02acc9cfc048530d1e7";
-    hash = "sha256-opiwyQr2ZvwLsytypb1FH1HcNxGKxxOV0Xvd+lK2Zp0=";
+let
+  version = "1.19.10";
+  pname = "RTL8851BU";
+  src = pkgs.fetchFromGitHub {
+    owner = "fofajardo";
+    repo = "rtl8851bu";
+    rev = "c623a50381243b41276862352020a469ca768ecc";
+    hash = "sha256-6su7+1UklLrTqoHlF7GHqxzb1l1YLn1Fyv7hekI4cwU=";
   };
+  runtime = [ ];
+  librarys = [ ];
+in
+pkgs.stdenv.mkDerivation {
+  inherit pname version src;
 
   nativeBuildInputs = [
     bc
-    nukeReferences
+    pkgs.nukeReferences
   ] ++ kernel.moduleBuildDependencies;
-  hardeningDisable = [
-    "pic"
-    "format"
-  ];
+  buildInputs = runtime;
+  makeFlags = kernelModuleMakeFlags;
 
-  postPatch = ''
+  hardeningDisable = [ "pic" ];
+
+  prePatch = ''
     substituteInPlace ./Makefile \
-      --replace-fail /sbin/depmod \# \
-      --replace-fail '$(MODDESTDIR)' "$out/lib/modules/${kernel.modDirVersion}/kernel/net/wireless/"
-    substituteInPlace ./platform/i386_pc.mk \
-      --replace-fail /lib/modules "${kernel.dev}/lib/modules"
+    --replace-fail '$(KSRC)' "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build" \
+    --replace-fail /sbin/depmod \# \
+    --replace-fail '$(MODDESTDIR)' "$out/lib/modules/${kernel.modDirVersion}/kernel/net/wireless/"
   '';
-
-  makeFlags =
-    [
-      "ARCH=${stdenv.hostPlatform.linuxArch}"
-      ("CONFIG_PLATFORM_I386_PC=" + (if stdenv.hostPlatform.isx86 then "y" else "n"))
-      ("CONFIG_PLATFORM_ARM_RPI=" + (if stdenv.hostPlatform.isAarch then "y" else "n"))
-    ]
-    ++ lib.optionals (stdenv.hostPlatform != stdenv.buildPlatform) [
-      "CROSS_COMPILE=${stdenv.cc.targetPrefix}"
-    ];
 
   preInstall = ''
     mkdir -p "$out/lib/modules/${kernel.modDirVersion}/kernel/net/wireless/"
-    mkdir -p "$out/usr/lib/systemd/system-sleep"
-  '';
-
-  postInstall = ''
-    nuke-refs $out/lib/modules/*/kernel/net/wireless/*.ko
   '';
 
   enableParallelBuilding = true;
 
   meta = with lib; {
-    description = "Driver for Realtek rtl8851bu";
-    homepage = "https://github.com/shenmintao/rtl8831";
-    # license = licenses.gpl2Only;
+    description = "Driver for RTL8851BU";
+    homepage = "https://github.com/fofajardo/rtl8851bu.git";
+    license = licenses.gpl2;
+    maintainers = with maintainers; [
+      Zoneshiyi
+    ];
     platforms = platforms.linux;
-    # maintainers = with maintainers; [ lonyelon ];
   };
 }

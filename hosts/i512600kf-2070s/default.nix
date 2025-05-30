@@ -29,16 +29,12 @@
   boot.initrd.kernelModules = [
   ];
   boot.kernelModules = [
-    "8831bu"
+    "8851bu"
   ];
 
-  # boot.extraModulePackages =
-  #   let
-  #     rtl8831bu = config.boot.kernelPackages.callPackage ../../derivations/rtl8851bu.nix { };
-  #   in
-  #   [
-  #     rtl8831bu
-  #   ];
+  boot.extraModulePackages = [
+    (config.boot.kernelPackages.callPackage ../../derivations/rtl8851bu.nix { })
+  ];
 
   boot.loader.grub.gfxmodeEfi = lib.mkForce "2560x1440x32,1280x720x32";
   boot.loader.grub.gfxmodeBios = lib.mkForce "2560x1440x32,1280x720x32";
