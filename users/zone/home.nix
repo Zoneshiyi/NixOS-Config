@@ -45,7 +45,7 @@ in
     vscode
     obsidian
     qq
-    wechat-uos
+    (pkgs.callPackage ../../derivations/wechat.nix { })
     mpv
     ffmpeg
   ];
