@@ -2,11 +2,9 @@
   pkgs,
   config,
   configPath,
+  mkSymlink,
   ...
 }:
-let
-  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-in
 {
   xdg.configFile = {
     "alacritty/alacritty.toml".source = mkSymlink "${configPath}/alacritty/alacritty.toml";

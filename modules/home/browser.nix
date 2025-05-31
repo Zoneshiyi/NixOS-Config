@@ -2,11 +2,9 @@
   pkgs,
   config,
   configPath,
+  mkSymlink,
   ...
 }:
-let
-  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-in
 {
   xdg.configFile."chromium/External Extensions".source =
     mkSymlink "${configPath}/chromium/extensions";

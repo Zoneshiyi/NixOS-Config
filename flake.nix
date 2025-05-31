@@ -14,14 +14,16 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    nur-self = {
+      url = "github:Zoneshiyi/nur-pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     agenix.url = "github:ryantm/agenix";
     secrets = {
       url = "git+ssh://git@gitee.com/Zoneshiyi/secrets.git";
       flake = false;
     };
   };
-  # (outputs {self=inputs;nixpkgs=inputs.nixpkgs;nixpkgs-24_11=inputs.nixpkgs-24_11;home-manager=inputs.home-manager;}).nixosConfigurations
   outputs =
     inputs@{
       self,
@@ -29,18 +31,32 @@
       nixpkgs-24_11,
       home-manager,
       nix-index-database,
+      nur-self,
       ...
     }:
     let
-      system = builtins.currentSystem;
+      system = "x86_64-linux";
       # 系统层面modules的特殊参数
-      specialArgs = {
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      specialArgs = rec {
         inherit inputs;
         pkgs-24_11 = import nixpkgs-24_11 {
           inherit system;
           config.allowUnfree = true;
         };
         configPath = "/home/zone/NixOS/config";
+        pkgs-self = nur-self.packages.${system};
+        modules-self = nur-self.nixosModules.${system};
+        mkSymlink =
+          path:
+          let
+            pathStr = toString path;
+            name = home-manager.lib.hm.strings.storeFileName (baseNameOf pathStr);
+          in
+          pkgs.runCommandLocal name { } ''ln -s ${pkgs.lib.escapeShellArg pathStr} $out'';
       };
       home-manager-config.home-manager = {
         useGlobalPkgs = true;

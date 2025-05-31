@@ -20,14 +20,14 @@ in
     desktop = null;
     publicShare = null;
     templates = null;
-    documents = "${config.home.homeDirectory}/Documents";
-    download = "${config.home.homeDirectory}/Downloads";
-    music = "${config.home.homeDirectory}/Music";
-    pictures = "${config.home.homeDirectory}/Pictures";
-    videos = "${config.home.homeDirectory}/Videos";
+    documents = "${homeDir}/Documents";
+    download = "${homeDir}/Downloads";
+    music = "${homeDir}/Music";
+    pictures = "${homeDir}/Pictures";
+    videos = "${homeDir}/Videos";
     extraConfig = {
-      XDG_CODES_DIR = "${config.home.homeDirectory}/Codes";
-      XDG_TMP_DIR = "${config.home.homeDirectory}/Tmp";
+      XDG_CODES_DIR = "${homeDir}/Codes";
+      XDG_TMP_DIR = "${homeDir}/Tmp";
     };
   };
   home.packages = with pkgs; [

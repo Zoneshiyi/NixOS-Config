@@ -3,10 +3,10 @@
   pkgs,
   config,
   configPath,
+  mkSymlink,
   ...
 }:
 let
-  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
   funcFiles = builtins.attrNames (builtins.readDir "${configPath}/fish/functions");
   templatesPath = "${config.home.homeDirectory}/.config/templates";
 in

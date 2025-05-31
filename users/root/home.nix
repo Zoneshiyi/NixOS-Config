@@ -1,11 +1,9 @@
 {
   config,
   configPath,
+  mkSymlink,
   ...
 }:
-let
-  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-in
 {
   imports = [
     ../../modules/home/base.nix

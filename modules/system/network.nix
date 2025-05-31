@@ -31,7 +31,7 @@
     firewall.enable = false;
     nftables.enable = true;
   };
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
     (pkgs.firewalld-gui.overrideAttrs {
       withGui = true;
     })

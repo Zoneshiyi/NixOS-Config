@@ -2,11 +2,9 @@
   pkgs,
   config,
   configPath,
+  mkSymlink,
   ...
 }:
-let
-  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-in
 {
   xdg.configFile = {
     "tmux/tmux.conf".source = mkSymlink "${configPath}/tmux/tmux.conf";

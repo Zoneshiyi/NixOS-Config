@@ -727,6 +727,26 @@
         "type": "github"
       }
     },
+    "nur-self": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748693545,
+        "narHash": "sha256-S3a0kJoFIXhB5H2acfFgB9rh6RGdwhI2gVnYZa5f79s=",
+        "owner": "Zoneshiyi",
+        "repo": "nur-pkgs",
+        "rev": "9d4428184d1bdf017e8ae2509db42505b9226175",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Zoneshiyi",
+        "repo": "nur-pkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -759,6 +779,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-24_11": "nixpkgs-24_11",
+        "nur-self": "nur-self",
         "secrets": "secrets",
         "swww": "swww"
       }

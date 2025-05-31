@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  modules-self,
   ...
 }:
 
@@ -10,6 +11,7 @@
     ./hardware-configuration.nix
     ./nvidia.nix
     ../../modules/system
+    modules-self.rtl8851bu
   ];
 
   networking.hostName = "i512600kf-2070s";
@@ -29,11 +31,11 @@
   boot.initrd.kernelModules = [
   ];
   boot.kernelModules = [
-    "8851bu"
+    # "8851bu"
   ];
 
   boot.extraModulePackages = [
-    (config.boot.kernelPackages.callPackage ../../derivations/rtl8851bu.nix { })
+    # (config.boot.kernelPackages.callPackage ../../derivations/rtl8851bu.nix { })
   ];
 
   boot.loader.grub.gfxmodeEfi = lib.mkForce "2560x1440x32,1280x720x32";

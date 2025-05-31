@@ -2,12 +2,11 @@
   pkgs,
   pkgs-24_11,
   config,
+  pkgs-self,
+  mkSymlink,
+  configPath,
   ...
 }:
-let
-  mkSymlink = config.lib.file.mkOutOfStoreSymlink;
-  configPath = "${config.home.homeDirectory}/NixOS/config";
-in
 {
 
   imports = [
@@ -45,7 +44,7 @@ in
     vscode
     obsidian
     qq
-    (pkgs.callPackage ../../derivations/wechat.nix { })
+    (pkgs-self.wechat)
     mpv
     ffmpeg
   ];
