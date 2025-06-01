@@ -11,6 +11,7 @@
         pynvim
       ]
     ))
+    act
 
     glibc
     libclang

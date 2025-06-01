@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur-self = {
-      url = "github:Zoneshiyi/nur-pkgs";
+      url = "github:Zoneshiyi/nur-pkgs/dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix.url = "github:ryantm/agenix";

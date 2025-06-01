@@ -20,6 +20,7 @@
     "git".source = mkSymlink "${configPath}/git";
     "eww".source = mkSymlink "${configPath}/eww";
     "starship.toml".source = mkSymlink "${configPath}/starship/starship.toml";
+    "yazi".source = mkSymlink "${configPath}/yazi";
   };
 
   home.packages = with pkgs; [
@@ -35,6 +36,7 @@
     wdisplays
     dconf-editor
     qtpass
+    vial
 
     kitty
     alacritty

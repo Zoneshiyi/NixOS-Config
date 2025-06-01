@@ -31,10 +31,16 @@ in
       XDG_TMP_DIR = "${homeDir}/Tmp";
     };
   };
+  services = {
+    swww = {
+      enable = true;
+      package = inputs.swww.packages.${pkgs.system}.swww;
+    };
+  };
   home.packages = with pkgs; [
+    hypridle
     hyprsunset
     pyprland
-    inputs.swww.packages.${pkgs.system}.swww
     swaybg
     dunst
     brightnessctl

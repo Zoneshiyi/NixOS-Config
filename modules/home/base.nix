@@ -37,6 +37,7 @@
     jq
     bc
     socat
+    tree
 
     fastfetch
     bat

@@ -12,11 +12,6 @@ plugins = [
 [expose]
 include_special = false
 
-[fetch_client_menu]
-engine = "rofi"
-separator = "|"
-parameters = ""
-
 [layout_center]
 on_new_client = "close"
 margin = 0

@@ -1,0 +1,17 @@
+[mgr]
+linemode = "permissions"
+show_hidden = true
+
+[preview]
+wrap = "yes"
+tab_siez = 2
+
+[opener]
+swayimg = [
+  { run = 'swayimg "$@"', orphan = true, for = "unix" }
+]
+
+[open]
+prepend_rules = [
+	{ mime = "image/*", use = "swayimg" },
+]

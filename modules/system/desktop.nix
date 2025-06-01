@@ -8,15 +8,11 @@ let
 in
 {
   # services.xserver.enable = true;
-  services.xserver.displayManager.gdm = {
+  services.displayManager.gdm = {
     enable = true;
     wayland = true;
     banner = '''';
   };
-  # services.hypridle = {
-  #   enable = true;
-  #   package = pkgs.hypridle;
-  # };
   programs.uwsm = {
     enable = true;
     waylandCompositors = {

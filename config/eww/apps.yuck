@@ -42,14 +42,20 @@
           :tooltip "QQ"
         )
         (app
-          :icon "wechat-logo"
+          :icon "wechat"
           :description "WeChat"
-          :onclick "xdg-launch wechat &"
+          :onclick "QT_SCALE_FACTOR=$XWAYLAND_SCALE xdg-launch wechat &"
           :tooltip "WeChat"
         )
       )
       (box
         :halign "start"
+        (app
+          :icon "obsidian"
+          :description "Obsidian"
+          :onclick "obsidian $DISABLE_GPU &"
+          :tooltip "Obsidian"
+        )
         (app
           :icon "moonlight"
           :description "Moonlight"
@@ -61,6 +67,12 @@
           :description "Remmina"
           :onclick "xdg-launch org.remmina.Remmina &"
           :tooltip "Remmina"
+        )
+        (app
+          :icon "Vial"
+          :description "Vial"
+          :onclick "QT_SCALE_FACTOR=$XWAYLAND_SCALE xdg-launch Vial &"
+          :tooltip "Vial"
         )
         (app
           :icon "default-application"
