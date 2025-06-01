@@ -39,6 +39,7 @@
   };
   environment.systemPackages = with pkgs; [
     nix-output-monitor
+    cachix
   ];
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   nix.channel.enable = false;

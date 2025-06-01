@@ -1,0 +1,33 @@
+[global]
+# width = 300
+notification_limit = 5
+origin = top-center
+offset = (0, 11)
+corner_radius = 11
+icon_corner_radius = 5
+frame_width = 3
+gap_size = 3
+background = "#414559"
+frame_color = "#c6d0f5"
+# highlight = "#51576d"
+font = Sarasa UI SC
+icon_theme = "WhiteSur,hicolor"
+enable_recursive_icon_lookup = true
+history_length = 20
+dmenu = "rofi -dmenu -p dunst"
+browser = "xdg-open"
+default_icon
+format = "<b>%s</b>\n%b"
+always_run_script = true
+script = $HOME/.config/dunst/script.sh
+timeout = 5
+
+[urgency_low]
+
+[urgency_medium]
+
+[urgency_critical]
+
+[QQ]
+appname = QQ
+default_icon = "qq"

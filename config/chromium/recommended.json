@@ -1,3 +1,4 @@
 {
-  "BookmarkBarEnabled": true
+  "BookmarkBarEnabled": true,
+  "ImportAutofillFormData": false
 }

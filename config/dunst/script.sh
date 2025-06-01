@@ -1,0 +1,7 @@
+# echo "DUNST_APP_NAME:$DUNST_APP_NAME" > /dev/pts/3
+# echo "DUNST_ICON_PATH:$DUNST_ICON_PATH" > /dev/pts/3
+# echo "DUNST_URGENCY:$DUNST_URGENCY" > /dev/pts/3
+# echo "DUNST_ICON_PATH:$DUNST_ICON_PATH" > /dev/pts/3
+# echo "DUNST_CATEGORY:$DUNST_CATEGORY" > /dev/pts/3
+# echo "DUNST_TIMEOUT:$DUNST_TIMEOUT" > /dev/pts/3
+# echo "DUNST_DESKTOP_ENTRY:$DUNST_DESKTOP_ENTRY" > /dev/pts/3

@@ -23,3 +23,5 @@ user_pref("media.hardware-video-decoding.force-enabled", true);
 user_pref("media.rdd-ffmpeg.enabled", true);
 // user_pref("media.av1.enabled", false);
 user_pref("widget.dmabuf.force-enabled", true);
+// Remember search and form history
+user_pref("browser.formfill.enable", false);
