@@ -4,7 +4,7 @@
   :exclusive false
   :geometry (geometry
     :width "0%"
-    :height "20%"
+    :height "25%"
     :anchor "center"
   )
   (scroll
@@ -79,6 +79,15 @@
           :description "Inspector"
           :onclick "eww inspector &"
           :tooltip "EWW Inspector"
+        )
+      )
+      (box
+        :halign "start"
+        (app
+          :icon "wps-office2019-wpsmain"
+          :description "WPS"
+          :onclick "QT_SCALE_FACTOR=$XWAYLAND_SCALE xdg-launch wps-office-wps &"
+          :tooltip "WPS Office"
         )
       )
     )

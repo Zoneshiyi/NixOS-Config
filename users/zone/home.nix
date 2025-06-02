@@ -45,6 +45,7 @@
     pkgs-24_11.yesplaymusic
     vscode
     obsidian
+    wpsoffice
     qq
     (pkgs-self.wechat)
     mpv

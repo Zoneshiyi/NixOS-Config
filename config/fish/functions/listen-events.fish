@@ -30,7 +30,7 @@ end
 
 function windows
   opened-windows
-  socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | rg --line-buffered -F "activewindowv2" | while read line
+  socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | rg --line-buffered -F -e "activewindowv2" -e "closewindow" | while read line
     opened-windows
   end
 end

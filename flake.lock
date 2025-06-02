@@ -734,11 +734,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748773579,
-        "narHash": "sha256-PyMOZeUpXlerEUPmvmTViYlgnjL6j4dOBDB/bBcjo88=",
+        "lastModified": 1748831867,
+        "narHash": "sha256-rTu2SPgijeFRteQ4t0DOu2TUxYhKfcmLMRHFcPGGjbA=",
         "owner": "Zoneshiyi",
         "repo": "nur-pkgs",
-        "rev": "bba609ef110c6dc8631195b01d9e1b4a7a16645c",
+        "rev": "27d1e8a63ced130254f7e9ec5a2cd399daa24140",
         "type": "github"
       },
       "original": {

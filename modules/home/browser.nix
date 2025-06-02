@@ -17,7 +17,7 @@
     };
   };
   home.packages = with pkgs; [
-    google-chrome
+    # google-chrome
     chromium
   ];
   home.file = {

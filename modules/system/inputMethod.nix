@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-self,
   ...
 }:
 {
@@ -51,6 +52,7 @@
     vistafonts-chs
     corefonts
     twemoji-color-font
+    pkgs-self.ttf-wps-fonts
   ];
   fonts.fontconfig = {
     useEmbeddedBitmaps = true;
