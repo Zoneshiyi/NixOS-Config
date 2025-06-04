@@ -31,6 +31,9 @@ in
       XDG_TMP_DIR = "${homeDir}/Tmp";
     };
   };
+  xresources.extraConfig = ''
+    #include "${homeDir}/.config/templates/Xresources"
+  '';
   services = {
     swww = {
       enable = true;
@@ -47,6 +50,7 @@ in
     wlogout
     eww
     xdg-launch
+    xorg.xrdb
 
     grim
     slurp

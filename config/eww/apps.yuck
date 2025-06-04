@@ -44,7 +44,7 @@
         (app
           :icon "wechat"
           :description "WeChat"
-          :onclick "QT_SCALE_FACTOR=$XWAYLAND_SCALE xdg-launch wechat &"
+          :onclick "xdg-launch wechat &"
           :tooltip "WeChat"
         )
       )
@@ -53,13 +53,13 @@
         (app
           :icon "obsidian"
           :description "Obsidian"
-          :onclick "obsidian $DISABLE_GPU &"
+          :onclick "obsidian $ELECTRON_OPTIONS &"
           :tooltip "Obsidian"
         )
         (app
           :icon "wps-office2019-wpsmain"
           :description "WPS"
-          :onclick "QT_SCALE_FACTOR=$XWAYLAND_SCALE xdg-launch wps-office-wps &"
+          :onclick "xdg-launch wps-office-wps &"
           :tooltip "WPS Office"
         )
         (app
@@ -77,7 +77,7 @@
         (app
           :icon "Vial"
           :description "Vial"
-          :onclick "QT_SCALE_FACTOR=$XWAYLAND_SCALE xdg-launch Vial &"
+          :onclick "xdg-launch Vial &"
           :tooltip "Vial"
         )
         
