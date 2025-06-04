@@ -106,7 +106,8 @@
     :orientation "h"
     :halign "end"
     :space-evenly false
-    (nightmode)
+    (dunst-paused)
+    ; (nightmode)
     ; (theme)
     (horizon-separator)
     (horizon-end
@@ -124,6 +125,14 @@
   )
 )
 
+(defwidget dunst-paused []
+  (button
+    :class "dunst-paused"
+    :onclick "dunstctl set-paused toggle & eww poll poll-once &"
+    {poll-once[1]}
+  )
+)
+
 (defwidget theme []
   (button
     :class "theme"
@@ -138,6 +147,6 @@
     :class "nightmode"
     :onclick "nohup hyprsunset > /dev/null 2>&1 & eww poll poll-once &"
     :onrightclick "pkill hyprsunset && eww poll poll-once &"
-    poll-once
+    {poll-once[0]}
   )
 )

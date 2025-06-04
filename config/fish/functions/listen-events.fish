@@ -1,10 +1,11 @@
 function listen-events
-  if test $argv[1] = "wsp"
-    workspaces
-  else if test $argv[1] = "win"
-    windows
-  else if test $argv[1] = "vol"
-    volume
+  switch $argv[1]
+    case "wsp"
+      workspaces
+    case "win"
+      windows
+    case "vol"
+      volume
   end
 end
 
@@ -30,7 +31,7 @@ end
 
 function windows
   opened-windows
-  socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | rg --line-buffered -F -e "activewindowv2" -e "closewindow" | while read line
+  socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | rg --line-buffered -F -e "activewindowv2" -e "closewindow" -e "openwindow" | while read line
     opened-windows
   end
 end

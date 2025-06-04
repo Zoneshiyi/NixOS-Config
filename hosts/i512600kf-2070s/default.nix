@@ -24,6 +24,11 @@
     fsType = "vfat";
   };
 
+  fileSystems."/mnt/samsung-T5" = {
+    device = "/dev/disk/by-uuid/C5487018323948B6";
+    fsType = "ntfs";
+  };
+
   boot.kernelParams = [
     # "video=DP-2:e"
   ];

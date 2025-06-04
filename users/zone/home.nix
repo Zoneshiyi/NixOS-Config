@@ -39,7 +39,7 @@
     vial
 
     kitty
-    alacritty
+    pkgs-self.alacritty-with-sixel
     qbittorrent
     # netease-cloud-music-gtk
     pkgs-24_11.yesplaymusic
@@ -47,7 +47,7 @@
     obsidian
     wpsoffice
     qq
-    (pkgs-self.wechat)
+    pkgs-self.wechat
     mpv
     ffmpeg
   ];

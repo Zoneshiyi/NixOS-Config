@@ -57,6 +57,12 @@
           :tooltip "Obsidian"
         )
         (app
+          :icon "wps-office2019-wpsmain"
+          :description "WPS"
+          :onclick "QT_SCALE_FACTOR=$XWAYLAND_SCALE xdg-launch wps-office-wps &"
+          :tooltip "WPS Office"
+        )
+        (app
           :icon "moonlight"
           :description "Moonlight"
           :onclick "xdg-launch com.moonlight_stream.Moonlight &"
@@ -74,20 +80,15 @@
           :onclick "QT_SCALE_FACTOR=$XWAYLAND_SCALE xdg-launch Vial &"
           :tooltip "Vial"
         )
+        
+      )
+      (box
+        :halign "start"
         (app
           :icon "default-application"
           :description "Inspector"
           :onclick "eww inspector &"
           :tooltip "EWW Inspector"
-        )
-      )
-      (box
-        :halign "start"
-        (app
-          :icon "wps-office2019-wpsmain"
-          :description "WPS"
-          :onclick "QT_SCALE_FACTOR=$XWAYLAND_SCALE xdg-launch wps-office-wps &"
-          :tooltip "WPS Office"
         )
       )
     )

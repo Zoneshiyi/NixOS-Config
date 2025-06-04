@@ -1,22 +1,30 @@
 function eww-poll
-  if test $argv[1] = "once"
-    poll-once
-  else if test $argv[1] = "5s"
-    poll-5s
-  else if test $argv[1] = "apps"
-    apps-name2icon
+  switch $argv[1]
+    case "once"
+      poll-once
+    case "5s"
+      poll-5s
+    case "apps"
+      apps-name2icon
   end
 end
 
 function poll-once
+  echo -n "["
   if test (pgrep hyprsunset)
-    echo -n "󱩌"
+    echo -n '"󱩌"'
   else
-    echo -n "󱩍"
+    echo -n '"󱩍"'
   end
 
+  if test (dunstctl is-paused | rg -F "false")
+    echo -n ',"󰂛"'
+  else
+    echo -n ',"󰂚"'
+  end
   # set -l theme (theme-choose check)
   # eww update theme=$theme
+  echo -n "]"
 end
 
 function poll-5s
