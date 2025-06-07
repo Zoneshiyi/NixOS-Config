@@ -1,3 +1,7 @@
+if not status --is-interactive
+  return
+end
+
 set -g fish_greeting ''
 starship init fish | source
 
@@ -11,9 +15,3 @@ bind \cp _fzf_search_processes
 bind -M insert \cp _fzf_search_processes
 
 zoxide init fish --cmd cd | source
-
-if status --is-interactive
-end
-
-if status --is-login
-end

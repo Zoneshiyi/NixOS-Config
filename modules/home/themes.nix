@@ -82,10 +82,10 @@ in
       whitesur-gtk-theme
       whitesur-kde
       whitesur-icon-theme
-      fluent-icon-theme
+      rose-pine-cursor
       whitesur-cursors
       bibata-cursors
-      catppuccin-cursors
+      capitaine-cursors
     ]
     ++ (builtins.attrValues validGtkThemes);
 
@@ -111,6 +111,7 @@ in
     };
 
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
     x11.enable = true;
     size = 32;

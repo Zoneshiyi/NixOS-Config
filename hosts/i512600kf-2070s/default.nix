@@ -48,5 +48,12 @@
 
   hardware.nvidia-container-toolkit.enable = true;
 
+  boot.loader.grub.extraEntries = ''
+    menuentry "Windows 11" {
+      search --fs-uuid --no-floppy --set=root 5ADD-520F
+      chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+    }
+  '';
+
   system.stateVersion = "24.11";
 }
