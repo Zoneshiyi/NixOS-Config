@@ -8,7 +8,6 @@
 }:
 let
   funcFiles = builtins.attrNames (builtins.readDir "${configPath}/fish/functions");
-  templatesPath = "${config.home.homeDirectory}/.config/templates";
 in
 {
   programs.fish = {
@@ -25,7 +24,6 @@ in
       }
     ];
   };
-  programs.nix-index.enableFishIntegration = true;
   xdg.configFile =
     (builtins.listToAttrs (
       builtins.map (filename: {
@@ -38,9 +36,6 @@ in
     // {
       "fish/config.fish" = {
         source = lib.mkForce (mkSymlink "${configPath}/fish/config.fish");
-      };
-      "fish/fish_variables" = {
-        source = mkSymlink "${templatesPath}/fish/fish_variables";
       };
     };
 }

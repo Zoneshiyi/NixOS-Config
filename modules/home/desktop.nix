@@ -1,11 +1,14 @@
 {
+  lib,
   pkgs,
   inputs,
   config,
+  configPath,
   ...
 }:
 let
   homeDir = config.home.homeDirectory;
+  templatesPath = "${homeDir}/.config/templates";
 in
 {
   imports = [
@@ -39,6 +42,21 @@ in
       enable = true;
       package = inputs.swww.packages.${pkgs.system}.swww;
     };
+  };
+  home.activation = {
+    create-templates = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ ! -d "${templatesPath}" ]; then
+        mkdir -p "${templatesPath}"
+      fi
+      mkdir -p "${templatesPath}/wallpapers"
+      for item in "${configPath}/templates/"*; do
+        if [ -e ${templatesPath}/$(basename $item) ]; then
+          continue
+        fi
+        [ -d "$item" ] && cp -r "$item" "${templatesPath}/"
+        [ -f "$item" ] && cp "$item" "${templatesPath}/"
+      done
+    '';
   };
   home.packages = with pkgs; [
     hypridle

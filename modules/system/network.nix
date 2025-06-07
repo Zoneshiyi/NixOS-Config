@@ -1,5 +1,6 @@
 {
   pkgs,
+  configPath,
   ...
 }:
 {
@@ -75,4 +76,22 @@
     };
   };
   services.tailscale.enable = true;
+  system.activationScripts = {
+    create-firewalld = {
+      text = ''
+        if [ ! -d /etc/firewalld ]; then
+          mkdir -p /etc/firewalld
+        fi
+        if [ ! -d /etc/firewalld/services ]; then
+          ln -s ${configPath}/firewalld/services /etc/firewalld/services
+        fi
+        if [ ! -f /etc/firewalld/firewalld.conf ]; then
+          ln -s ${configPath}/firewalld/firewalld.conf /etc/firewalld/firewalld.conf
+        fi
+        if [ ! -d /etc/firewalld/zones ]; then
+          cp -r ${configPath}/firewalld/zones /etc/firewalld/zones
+        fi
+      '';
+    };
+  };
 }
