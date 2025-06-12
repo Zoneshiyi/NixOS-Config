@@ -1,4 +1,6 @@
-local builtin = require("telescope.builtin")
+local builtin = function()
+  return require("telescope.builtin")
+end
 local opts = {
 	extensions = {
 		fzf = {

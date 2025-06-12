@@ -28,6 +28,10 @@ function run-emby
     --device /dev/dri:/dev/dri \
     --publish 8096:8096 \
     --publish 8920:8920 \
+    --env ALL_PROXY=http://172.17.0.1:7897 \
+    --env HTTP_PROXY=http://172.17.0.1:7897 \
+    --env HTTPS_PROXY=http://172.17.0.1:7897 \
+    --env NO_PROXY=localhost,172.17.0.1,127.0.0.1 \
     --env UID=(id -u) \
     --env GID=(id -g) \
     $argv[3..-1] \

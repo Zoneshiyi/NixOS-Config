@@ -19,11 +19,6 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.nvidia.acceptLicense = true;
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/C5D2-9AC0";
-    fsType = "vfat";
-  };
-
   fileSystems."/mnt/samsung-T5" = {
     device = "/dev/disk/by-uuid/C5487018323948B6";
     fsType = "ntfs";
