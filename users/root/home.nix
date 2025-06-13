@@ -8,7 +8,7 @@
   imports = [
     ../../modules/home/base.nix
     ../../modules/home/dev.nix
-    ../../modules/home/fish.nix
+    ../../modules/home/shell.nix
     ../../modules/home/nvim.nix
     ../../modules/home/tmux.nix
   ];

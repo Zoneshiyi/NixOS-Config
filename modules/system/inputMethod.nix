@@ -25,8 +25,8 @@
     enable = true;
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
-      # fcitx5-gtk
-      # fcitx5-qt
+      fcitx5-gtk
+      libsForQt5.fcitx5-qt
       fcitx5-chinese-addons
       fcitx5-rime
       rime-data
@@ -48,7 +48,10 @@
     noto-fonts-color-emoji
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    sarasa-gothic
+    maple-mono.truetype
+    maple-mono.NF-unhinted
+    maple-mono.NF-CN-unhinted
+    # sarasa-gothic
     vistafonts-chs
     corefonts
     twemoji-color-font

@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs,
+  config,
   ...
 }:
 {
@@ -38,5 +38,6 @@
 
   environment.systemPackages = with pkgs; [
     ntfs3g
+    config.boot.kernelPackages.perf
   ];
 }

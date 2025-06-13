@@ -9,6 +9,6 @@
     ./password-store.nix
     ./syncthing.nix
     ./tmux.nix
-    ./fish.nix
+    ./shell.nix
   ];
 }
