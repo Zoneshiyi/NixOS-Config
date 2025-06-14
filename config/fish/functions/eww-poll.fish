@@ -28,7 +28,6 @@ function poll-once
 end
 
 function poll-5s
-  echo -n "{"
 
   set -l hour (date +%H)
   set -l minute (date +%M)
@@ -36,26 +35,15 @@ function poll-5s
   set -l month (date +%m)
   set -l day (date +%d)
 
-  echo -n "\"hour\": \"$hour\","
-  echo -n "\"minute\": \"$minute\","
-  echo -n "\"weekday\": \"$weekday\","
-  echo -n "\"month\": \"$month\","
-  echo -n "\"day\": \"$day\""
-
-  echo -n "}"
+  echo -n "{\"hour\":\"$hour\",\"minute\":\"$minute\",\"weekday\":\"$weekday\",\"month\":\"$month\",\"day\":\"$day\"}"
 end
 
 function apps-name2icon
   xdg-list | cut -d ":" -f 1 | while read name
     set -l icon (cat $(xdg-which $name) | rg -F -m 1 "Icon=" | cut -d "=" -f 2)
-    echo -n "{"
-    echo -n "\"$name\""
-    echo -n ": "
     if test -z $icon
-      echo -n "\"default-application\""
-    else
-      echo -n "\"$icon\""
+      set icon "default-application"
     end
-    echo -n "}"
+    echo "{\"$name\":\"$icon\"}"
   end | jq -s -c 'add'
 end

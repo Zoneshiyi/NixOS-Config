@@ -20,6 +20,7 @@
     inputs.agenix.packages.${pkgs.system}.default
 
     # utils
+    dash
     efibootmgr
     usb-modeswitch
     tcpdump

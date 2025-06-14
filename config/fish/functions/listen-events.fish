@@ -11,21 +11,18 @@ end
 
 function volume
   pw-mon | rg --line-buffered -F "Channel Volumes" | while read line
-    echo -n "["
 
     set -l volume (wpctl get-volume @DEFAULT_AUDIO_SINK@)
     set -l muted (echo $volume | cut -d ' ' -f 3)
     set -l volume (math "$(echo $volume | cut -d ' ' -f 2) * 100")
 
-    echo -n $volume,
-
     if test -z $muted
-      echo -n "\"\""
+      set muted "\"\""
     else
-      echo -n "\"\""
+      set muted "\"\""
     end
 
-    echo "]"
+    echo "{\"volume\":$volume,\"muted\":$muted}"
   end
 end
 

@@ -25,12 +25,49 @@ in
       }
     ];
   };
-  programs.nix-index.enableFishIntegration = true;
-  programs.bash = {
+  programs.zsh = {
     enable = true;
-    historyFile = "${config.home.homeDirectory}/.local/state/bash/history";
-    shellOptions = [
-    ];
+    dotDir = ".config/zsh";
+    history = {
+      append = true;
+      saveNoDups = true;
+      share = true;
+      path = "${config.home.homeDirectory}/.local/state/zsh/zsh_history";
+    };
+    initContent = ''
+      source <(fzf --zsh)
+      eval "$(zoxide init zsh --cmd cd)"
+    '';
+    # antidote = {
+    #   enable = true;
+    #   plugins = [
+    #     "zsh-users/zsh-autosuggestions"
+    #     "zsh-users/zsh-completions"
+    #     "zsh-users/zsh-syntax-highlighting"
+    #   ];
+    # };
+    prezto = {
+      enable = true;
+      prompt.theme = "adam2";
+      pmodules = [
+        "autosuggestions"
+        "git"
+        "syntax-highlighting"
+        "environment"
+        "terminal"
+        "editor"
+        "history"
+        "directory"
+        "spectrum"
+        "utility"
+        "completion"
+        "prompt"
+      ];
+    };
+  };
+  programs.nix-index = {
+    enableZshIntegration = true;
+    enableFishIntegration = true;
   };
   xdg.configFile =
     (builtins.listToAttrs (
@@ -44,9 +81,6 @@ in
     // {
       "fish/config.fish" = {
         source = lib.mkForce (mkSymlink "${configPath}/fish/config.fish");
-      };
-      "fish/fish_variables" = {
-        source = mkSymlink "${templatesPath}/fish/fish_variables";
       };
     };
 }
