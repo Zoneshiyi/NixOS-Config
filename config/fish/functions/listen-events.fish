@@ -22,7 +22,7 @@ function volume
       set muted "\"\""
     end
 
-    echo "{\"volume\":$volume,\"muted\":$muted}"
+    echo "[$volume,$muted]"
   end
 end
 

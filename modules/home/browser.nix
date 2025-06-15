@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   configPath,
   mkSymlink,
   ...
@@ -17,7 +16,6 @@
     };
   };
   home.packages = with pkgs; [
-    # google-chrome
     chromium
   ];
   home.file = {

@@ -2,10 +2,10 @@
   imports = [
     ./audio.nix
     ./auth.nix
-    ./base.nix
     ./bluetooth.nix
     ./boot.nix
     ./browser.nix
+    ./core.nix
     ./desktop.nix
     ./inputMethod.nix
     ./network.nix

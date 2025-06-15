@@ -1,9 +1,8 @@
 {
-  lib,
-  config,
   pkgs,
   configPath,
   mkSymlink,
+  inputs,
   ...
 }:
 let
@@ -21,6 +20,8 @@ in
     )
   );
   home.packages = with pkgs; [
+    # neovim
+    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     lua5_1
     lua51Packages.luarocks
   ];

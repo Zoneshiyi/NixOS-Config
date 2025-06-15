@@ -1,19 +1,14 @@
 {
-  config,
-  configPath,
-  mkSymlink,
   ...
 }:
 {
   imports = [
-    ../../modules/home/base.nix
+    ../../modules/home/core.nix
     ../../modules/home/dev.nix
     ../../modules/home/shell.nix
     ../../modules/home/nvim.nix
     ../../modules/home/tmux.nix
+    ../../modules/home/utils.nix
   ];
-  xdg.configFile = {
-    "git".source = mkSymlink "${configPath}/git";
-    "starship.toml".source = mkSymlink "${configPath}/starship/starship.toml";
-  };
+  home.homeDirectory = "/root";
 }

@@ -63,7 +63,6 @@ in
     hyprsunset
     pyprland
     swaybg
-    dunst
     brightnessctl
     wlogout
     eww

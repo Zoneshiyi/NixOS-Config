@@ -1,35 +1,27 @@
 {
-  inputs,
   pkgs,
-  lib,
-  config,
+  mkSymlink,
+  configPath,
   ...
 }:
 {
   home = {
     stateVersion = "24.11";
-    homeDirectory =
-      if (config.home.username == "root") then "/root" else "/home/${config.home.username}";
     sessionVariables = {
       LANG = "en_US.UTF-8";
       LC_ALL = "en_US.UTF-8";
     };
   };
+  xdg.configFile = {
+    "git".source = mkSymlink "${configPath}/git";
+    "starship.toml".source = mkSymlink "${configPath}/starship/starship.toml";
+  };
   home.packages = with pkgs; [
-    age
-    inputs.agenix.packages.${pkgs.system}.default
-
-    # utils
     dash
-    efibootmgr
-    usb-modeswitch
-    tcpdump
     usbutils
     inetutils
-    parted
     psmisc
     unzip
-    nurl
     file
     ripgrep
     fd
@@ -37,27 +29,18 @@
     fzf
     jq
     bc
-    socat
     tree
-
-    fastfetch
     bat
     zoxide
     tldr
     navi
-    tmux
-    # neovim
-    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     yazi
     btop
     git
     curl
+    wget
     jqp
-    git-repo
     starship
-    aria2
-    lux
-
   ];
 
   # targets.genericLinux.enable = true;

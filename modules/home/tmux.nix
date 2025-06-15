@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   configPath,
   mkSymlink,
   ...
@@ -17,4 +16,7 @@
       };
     };
   };
+  home.packages = with pkgs; [
+    tmux
+  ];
 }

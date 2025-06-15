@@ -8,7 +8,6 @@
 }:
 let
   funcFiles = builtins.attrNames (builtins.readDir "${configPath}/fish/functions");
-  templatesPath = "${config.home.homeDirectory}/.config/templates";
 in
 {
   programs.fish = {
@@ -32,7 +31,7 @@ in
       append = true;
       saveNoDups = true;
       share = true;
-      path = "${config.home.homeDirectory}/.local/state/zsh/zsh_history";
+      path = "${config.xdg.stateHome}/zsh/zsh_history";
     };
     initContent = ''
       source <(fzf --zsh)
