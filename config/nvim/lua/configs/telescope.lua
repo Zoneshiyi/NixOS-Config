@@ -1,6 +1,3 @@
-local builtin = function()
-  return require("telescope.builtin")
-end
 local opts = {
 	extensions = {
 		fzf = {
@@ -25,7 +22,7 @@ return {
 		{
 			"<leader>ff",
 			function()
-				builtin.find_files()
+				require('telescope.builtin').find_files()
 			end,
 			mode = { "n" },
 			desc = "Telescope find files",
@@ -33,7 +30,7 @@ return {
 		{
 			"<leader>fg",
 			function()
-				builtin.live_grep()
+				require('telescope.builtin').live_grep()
 			end,
 			mode = { "n" },
 			desc = "Telescope live grep",
@@ -41,7 +38,7 @@ return {
 		{
 			"<leader>fc",
 			function()
-				builtin.current_buffer_fuzzy_find()
+				require('telescope.builtin').current_buffer_fuzzy_find()
 			end,
 			mode = { "n" },
 			desc = "Telescope fuzzy buffer",
@@ -49,7 +46,7 @@ return {
 		{
 			"<leader>fb",
 			function()
-				builtin.buffers()
+				require('telescope.builtin').buffers()
 			end,
 			mode = { "n" },
 			desc = "Telescope buffers",
@@ -57,7 +54,7 @@ return {
 		{
 			"<leader>fB",
 			function()
-				builtin.builtin()
+				require('telescope.builtin').builtin()
 			end,
 			mode = { "n" },
 			desc = "Telescope builtin",
@@ -65,7 +62,7 @@ return {
 		{
 			"<leader>fh",
 			function()
-				builtin.help_tags()
+				require('telescope.builtin').help_tags()
 			end,
 			mode = { "n" },
 			desc = "Telescope help tags",
@@ -73,7 +70,7 @@ return {
 		{
 			"<leader>fr",
 			function()
-				builtin.resume()
+				require('telescope.builtin').resume()
 			end,
 			mode = { "n" },
 			desc = "Telescope resume",
@@ -81,7 +78,7 @@ return {
 		{
 			"<leader>fm",
 			function()
-				builtin.marks()
+				require('telescope.builtin').marks()
 			end,
 			mode = { "n" },
 			desc = "Telescope marks",

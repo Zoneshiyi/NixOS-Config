@@ -1,6 +1,6 @@
 {
+  pkgs,
   lib,
-  modules-self,
   ...
 }:
 
@@ -9,7 +9,6 @@
     ./hardware-configuration.nix
     ./nvidia.nix
     ../../modules/system
-    modules-self.rtl8851bu
   ];
 
   networking.hostName = "i512600kf-2070s";
@@ -29,12 +28,15 @@
   boot.initrd.kernelModules = [
   ];
   boot.kernelModules = [
-    # "8851bu"
+    # "8852bu"
   ];
 
   boot.extraModulePackages = [
-    # (config.boot.kernelPackages.callPackage ../../derivations/rtl8851bu.nix { })
+    # pkgs.linuxKernel.packages.linux_zen.rtl8852bu
   ];
+  services.udev.extraRules = ''
+    ATTR{idVendor}=="0bda", ATTR{idProduct}=="1a2b", RUN+="${pkgs.usb-modeswitch}/bin/usb_modeswitch -v 0bda -p 1a2b -V 0bda -P b851 -K"
+  '';
 
   boot.loader.grub.gfxmodeEfi = lib.mkForce "2560x1440x32,1280x720x32";
   boot.loader.grub.gfxmodeBios = lib.mkForce "2560x1440x32,1280x720x32";

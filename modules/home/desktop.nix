@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  inputs,
   config,
   configPath,
   ...
@@ -40,7 +39,7 @@ in
   services = {
     swww = {
       enable = true;
-      package = inputs.swww.packages.${pkgs.system}.swww;
+      package = pkgs.swww;
     };
   };
   home.activation = {

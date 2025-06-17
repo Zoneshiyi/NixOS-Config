@@ -2,14 +2,12 @@
   description = "NixOS configuration of zone";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-24_11.url = "github:nixos/nixpkgs/nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    swww.url = "github:LGFae/swww";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +26,6 @@
     inputs@{
       self,
       nixpkgs,
-      nixpkgs-24_11,
       home-manager,
       nix-index-database,
       nur-self,
@@ -43,10 +40,6 @@
       };
       specialArgs = rec {
         inherit inputs;
-        pkgs-24_11 = import nixpkgs-24_11 {
-          inherit system;
-          config.allowUnfree = true;
-        };
         configPath = "/home/zone/NixOS/config";
         pkgs-self = nur-self.packages.${system};
         modules-self = nur-self.nixosModules.${system};

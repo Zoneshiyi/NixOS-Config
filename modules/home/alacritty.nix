@@ -12,8 +12,8 @@
       source = pkgs.fetchFromGitHub {
         owner = "alacritty";
         repo = "alacritty-theme";
-        rev = "master";
-        hash = "sha256-mxmli6ZSm+90Jrwm9fju0sAstNZgBEx4hSaWigs6rWc=";
+        rev = "59a96ef4c734f97a1aadaa619b31cc1ca90a0fbc";
+        hash = "sha256-1LRR4ciM/f1Fu9sLcq53b6eXK1qggvvkSY8iqF0Yw50=";
       };
     };
   };

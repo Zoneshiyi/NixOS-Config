@@ -5,7 +5,6 @@
 {
   programs = {
     seahorse.enable = true;
-    ssh.startAgent = true;
   };
   security.polkit = {
     enable = true;

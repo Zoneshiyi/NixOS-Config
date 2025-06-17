@@ -31,6 +31,7 @@
     wireless.dbusControlled = true;
     firewall.enable = false;
     nftables.enable = true;
+    nftables.flushRuleset = true;
   };
   environment.systemPackages = [
     (pkgs.firewalld-gui.overrideAttrs {

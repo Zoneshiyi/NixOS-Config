@@ -7,12 +7,23 @@ function docker-run
       run-stirling-pdf $argv[2..-1]
     case "thunder"
       run-thunder $argv[2..-1]
+    case "splayer"
+      run-splayer $argv[2..-1]
     case "*"
       echo "Available Command:"
       echo "1.emby"
       echo "2.stirling"
       echo "3.thunder"
+      echo "4.splayer"
   end
+end
+
+function run-splayer
+  docker run -d \
+    --name SPlayer \
+    -p 25884:25884 \
+    $argv[2..-1] \
+    ghcr.io/imsyy/splayer:latest
 end
 
 function run-emby
@@ -67,7 +78,7 @@ function run-thunder
   docker run -d \
     --name=thunder \
     --hostname=thunder \
-    --net=host \
+    -p 2345:2345 \
     -v $argv[1]:/xunlei/data \
     -v $argv[2]:/xunlei/downloads \
     --privileged \

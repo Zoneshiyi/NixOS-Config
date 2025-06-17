@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-24_11,
   pkgs-self,
   mkSymlink,
   configPath,
@@ -40,8 +39,6 @@
 
     kitty
     qbittorrent
-    # netease-cloud-music-gtk
-    pkgs-24_11.yesplaymusic
     vscode
     obsidian
     wpsoffice

@@ -1,3 +1,5 @@
+fish_add_path $HOME/.local/share/npm/bin $HOME/.cargo/bin
+
 if not status --is-interactive
   return
 end
