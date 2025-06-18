@@ -31,14 +31,14 @@
       nur-self,
       ...
     }:
-    let
-      system = "x86_64-linux";
+    rec {
+      system = builtins.currentSystem;
       # 系统层面modules的特殊参数
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
-      specialArgs = rec {
+      specialArgs = {
         inherit inputs;
         configPath = "/home/zone/NixOS/config";
         pkgs-self = nur-self.packages.${system};
@@ -66,8 +66,6 @@
         home-manager-config
         # ./secrets
       ];
-    in
-    {
       nixosConfigurations.i512600kf-2070s = nixpkgs.lib.nixosSystem {
         inherit specialArgs system;
         modules = [
@@ -86,6 +84,12 @@
           ./hosts/amd4800hs-2060maxq
         ] ++ base-modules;
       };
+      homeConfigurations.standalone = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = specialArgs;
+        modules = [
+          ./home.nix
+        ];
+      };
     };
-
 }
