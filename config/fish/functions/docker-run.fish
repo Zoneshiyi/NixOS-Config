@@ -9,13 +9,34 @@ function docker-run
       run-thunder $argv[2..-1]
     case "splayer"
       run-splayer $argv[2..-1]
+    case "peerban"
+      run-peerban $argv[2..-1]
     case "*"
       echo "Available Command:"
       echo "1.emby"
       echo "2.stirling"
       echo "3.thunder"
       echo "4.splayer"
+      echo "5.peerban"
   end
+end
+
+function run-peerban
+  if test (count $argv) -lt 1
+    echo "Usage: peerban <data path> [extra docker options]"
+    return
+  end
+  docker run -d \
+    --name PeerBanHelper \
+    --restart unless-stopped \
+    --stop-timeout 30 \
+    -p 9898:9898 \
+    -v $argv[1]:/app/data/ \
+    -e PUID=0 \
+    -e PGID=0 \
+    -e TZ=UTC \
+    $argv[2..-1] \
+    registry.cn-hangzhou.aliyuncs.com/ghostchu/peerbanhelper:v7.4.15
 end
 
 function run-splayer
@@ -83,6 +104,6 @@ function run-thunder
     -v $argv[2]:/xunlei/downloads \
     --privileged \
     $argv[3..-1] \
-    cesign/xunlei:latest
+    ghcr.io/cnk3x/xunlei:latest
   echo "Please visit http://localhost:2345 to use the service."
 end
