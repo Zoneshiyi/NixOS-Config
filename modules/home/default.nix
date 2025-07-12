@@ -8,7 +8,6 @@
     ./nvim.nix
     ./password-store.nix
     ./shell.nix
-    ./syncthing.nix
     ./tmux.nix
     ./utils.nix
   ];

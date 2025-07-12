@@ -35,6 +35,7 @@
     wdisplays
     dconf-editor
     qtpass
+    rclone
     vial
 
     kitty
