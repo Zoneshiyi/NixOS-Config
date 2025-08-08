@@ -1,4 +1,8 @@
 {
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ../../modules/system
@@ -27,4 +31,8 @@
 
   system.stateVersion = "24.11";
 
+  services.printing.enable = true;
+  services.printing.drivers = with pkgs; [
+    hplip
+  ];
 }
