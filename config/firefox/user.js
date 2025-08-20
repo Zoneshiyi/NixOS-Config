@@ -18,6 +18,9 @@ user_pref("browser.toolbars.bookmarks.visibility", "newTab");
 // ctrl+Tab 切换标签页
 user_pref("browser.ctrlTab.sortByRecentlyUsed", true);
 
+user_pref("intl.accept_languages", "zh-CN, en-US");
+user_pref("browser.download.panel.shown", true);
+
 //for nvidia-vaapi-driver since Firefox 137
 user_pref("media.hardware-video-decoding.force-enabled", true);
 user_pref("media.rdd-ffmpeg.enabled", true);
