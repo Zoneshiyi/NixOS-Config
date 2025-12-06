@@ -21,10 +21,10 @@
   networking.networkmanager = {
     enable = true;
     ethernet.macAddress = "permanent";
-    insertNameservers = [
-      "119.29.29.29"
-      "119.28.28.28"
-    ];
+    # insertNameservers = [
+    #   "119.29.29.29"
+    #   "119.28.28.28"
+    # ];
     wifi.backend = "iwd";
   };
   networking = {

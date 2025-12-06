@@ -8,6 +8,6 @@
       Add:
         - "-I${pkgs.libcxx.dev}/include/c++/v1/"
         - "-I${pkgs.glibc.dev}/include/"
-        - "-I${pkgs.libclang.lib}/lib/clang/19/include/"
+        - "-I${pkgs.libclang.lib}/lib/clang/${pkgs.lib.versions.major pkgs.libclang.version}/include/"
   '';
 }

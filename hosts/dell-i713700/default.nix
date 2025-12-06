@@ -35,4 +35,14 @@
   services.printing.drivers = with pkgs; [
     hplip
   ];
+
+  services._3proxy = {
+    enable = true;
+    extraConfig = ''
+      maxconn 1000
+      deny * * 127.0.0.1
+      allow *
+      socks -u -n -p12345
+    '';
+  };
 }
