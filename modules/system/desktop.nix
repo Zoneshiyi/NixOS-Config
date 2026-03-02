@@ -13,21 +13,21 @@ in
     wayland = true;
     banner = '''';
   };
-  programs.uwsm = {
-    enable = true;
-    waylandCompositors = {
-      hyprland = {
-        prettyName = "Hyprland";
-        comment = "Hyprland compositor managed by UWSM";
-        binPath = "/run/current-system/sw/bin/Hyprland";
-      };
-    };
-  };
+  # programs.uwsm = {
+  #   enable = true;
+  #   waylandCompositors = {
+  #     hyprland = {
+  #       prettyName = "Hyprland";
+  #       comment = "Hyprland compositor managed by UWSM";
+  #       binPath = "/run/current-system/sw/bin/Hyprland";
+  #     };
+  #   };
+  # };
   programs = {
     hyprland = {
       enable = true;
       xwayland.enable = true;
-      withUWSM = true;
+      withUWSM = false;
       package = hyprpkgs.hyprland;
       portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
     };

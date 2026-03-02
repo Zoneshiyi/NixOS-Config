@@ -33,7 +33,6 @@
 
   programs = {
     fish.enable = true;
-    clash-verge.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

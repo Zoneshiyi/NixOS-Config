@@ -39,7 +39,7 @@
     vial
 
     kitty
-    qbittorrent
+    qbittorrent-nox
     vscode
     obsidian
     wpsoffice

@@ -15,6 +15,18 @@
       PubkeyAuthentication = true;
     };
   };
+  # services.qbittorrent = {
+  #   webuiPort = 9615;
+  #   enable = true;
+  #   serverConfig = {
+  #     Preferences = {
+  #       WebUI = {
+  #         Username = "Zone";
+  #         Password_PBKDF2 = "tqtRQxPVQYPhLbsnwK911A==:nvdwMR/Xxxgsvl5OckRKSaYX8B+X1dwiZymDTNNlVMusgv6a4lq/Du03ZOtZixotVpdq6HMZZ/LyHG5iHYjGNg==";
+  #       };
+  #     };
+  #   };
+  # };
   users.users.zone.extraGroups = [
     "networkmanager"
   ];
