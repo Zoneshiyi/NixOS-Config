@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-self,
   configPath,
   mkSymlink,
   ...
@@ -18,6 +17,6 @@
     };
   };
   home.packages = [
-    pkgs-self.alacritty-with-sixel
+    pkgs.alacritty
   ];
 }

@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-self,
   mkSymlink,
   configPath,
   ...
@@ -19,12 +18,14 @@
     "kitty".source = mkSymlink "${configPath}/kitty";
     "eww".source = mkSymlink "${configPath}/eww";
     "yazi".source = mkSymlink "${configPath}/yazi";
+    "pypr".source = mkSymlink "${configPath}/pypr";
+    "niri".source = mkSymlink "${configPath}/niri";
   };
   home.homeDirectory = "/home/zone";
 
   home.packages = with pkgs; [
-    rofi-wayland
-    xfce.xfce4-settings
+    rofi
+    xfce4-settings
     gthumb
     moonlight-qt
     remmina
@@ -32,6 +33,7 @@
     copyq
     networkmanagerapplet
     waypaper
+    awww
     wdisplays
     dconf-editor
     qtpass
@@ -44,8 +46,9 @@
     obsidian
     wpsoffice
     qq
-    pkgs-self.wechat
     mpv
     ffmpeg
   ];
+
+  programs.pi-coding-agent.enable = true;
 }

@@ -21,7 +21,7 @@ in
   );
   home.packages = with pkgs; [
     # neovim
-    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default
     lua5_1
     lua51Packages.luarocks
   ];

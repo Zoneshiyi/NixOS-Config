@@ -28,58 +28,46 @@ end
 
 function windows
   opened-windows
-  socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | rg --line-buffered -F -e "activewindowv2" -e "closewindow" -e "openwindow" | while read line
+  niri msg --json event-stream 2>/dev/null | jq -c --unbuffered '
+    select(has("WindowOpenedOrChanged") or has("WindowClosed")
+        or has("WindowFocusChanged") or has("WindowsChanged")
+        or has("WorkspacesChanged"))
+  ' | while read line
     opened-windows
   end
 end
 
 function opened-windows
-  set -l id2name (hyprctl monitors -j | jq -c 'sort_by(.id)|map(.name)')
+  set -l wsmap (niri msg --json workspaces 2>/dev/null | jq -c '
+    map({key: (.id|tostring), value: {output: (.output // "unknown"), idx: .idx}})
+    | from_entries')
 
-  set -l active_window (hyprctl activewindow -j | jq '.address')
-
-  set -l windows (hyprctl clients -j | jq --argjson id2name $id2name --argjson active_window $active_window -c '
-  sort_by(.pid)
-  | sort_by(.workspace.id)
-  | map({monitor,initialClass,address})
-  | group_by(.monitor)
-  | map ({key:$id2name[.[0].monitor],
-  value:map([.initialClass,.address,
-    if .address==$active_window then "active"
-    else "opened"
-    end
-  ])}) | from_entries')
-
-  echo $windows
+  niri msg --json windows 2>/dev/null | jq -c --argjson wsmap $wsmap '
+    map(. + {out: $wsmap[(.workspace_id|tostring)].output,
+             wsi: $wsmap[(.workspace_id|tostring)].idx})
+    | map(select(.out != null))
+    | sort_by(.wsi, .id)
+    | group_by(.out)
+    | map({key: .[0].out,
+           value: map([(.app_id // "unknown"), .id,
+                       (if .is_focused then "active" else "opened" end)])})
+    | from_entries'
 end
 
 function workspaces
-  created-workspaces
-  socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | rg --line-buffered -F -e "workspacev2" -e "focusedmonv2" | while read line
-    created-workspaces
-  end
-end
-
-function created-workspaces
-
-  set -l active_wsp (hyprctl activeworkspace -j | jq '.id')
   set -l icons '"󰲡","󰲣","󰲥","󰲧","󰲩","󰲫","󰲭","󰲯","󰲱","󰿭"'
   set -l active_icons '"󰲠","󰲢","󰲤","󰲦","󰲨","󰲪","󰲬","󰲮","󰲰","󰿬"'
-
-  set -l workspaces (hyprctl workspaces -j | jq -c "
-  map({monitor,id}|select(.id>0))
-  | sort_by(.id)
-  | group_by(.monitor)
-  | map({ key: .[0].monitor, value: map(.id) }) 
-  | from_entries
-  | with_entries(
-    .value |= map(
-      if .==$active_wsp then [., [$active_icons][.-1], \"active\"]
-      else [., [$icons][.-1], \"created\"]
-      end
-    )
-  )")
-
-  echo $workspaces
-
+  niri msg --json event-stream 2>/dev/null | jq -c --unbuffered '
+    select(has("WorkspacesChanged") or has("WorkspaceActivated"))
+  ' | while read line
+    niri msg --json workspaces 2>/dev/null | jq -c --unbuffered --argjson icons "[$icons]" --argjson active_icons "[$active_icons]" '
+      group_by(.output)
+      | map({key: (.[0].output // "unknown"),
+             value: (sort_by(.idx)
+                     | map(. as $w
+                            | (if $w.is_active then $active_icons else $icons end)[$w.idx - 1]
+                            | [$w.idx, ., (if $w.is_active then "active" else "created" end)]))})
+      | from_entries
+    '
+  end
 end

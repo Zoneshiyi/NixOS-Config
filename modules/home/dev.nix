@@ -29,7 +29,7 @@
     black
 
     nixd
-    nixfmt-rfc-style
+    nixfmt
 
     lua-language-server
     stylua

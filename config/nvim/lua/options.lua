@@ -15,8 +15,8 @@ vim.opt.undofile = true
 vim.opt.jumpoptions = "stack"
 
 -- Tab
-vim.opt.tabstop = 2 -- number of visual spaces per TAB
-vim.opt.softtabstop = 2 -- number of spacesin tab when editing
+vim.opt.tabstop = 4 -- number of visual spaces per TAB
+vim.opt.softtabstop = 4 -- number of spacesin tab when editing
 vim.opt.shiftwidth = 0
 vim.opt.expandtab = true -- tabs are spaces, mainly because of python
 

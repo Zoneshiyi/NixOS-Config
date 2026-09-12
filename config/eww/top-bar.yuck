@@ -21,7 +21,8 @@
     (workspaces
       :monitor monitor
     )
-    (player-metadata)
+    ; (player-metadata)
+    (box)
     (top-tray
       :monitor monitor
     )
@@ -39,11 +40,9 @@
     :halign "start"
     (for wsp in {"${workspaces?.[monitor]}"?:[]}
       (button
-        :class "${wsp[2]}"
-        :onclick "hyprctl dispatch workspace ${wsp[0]}"
-        {wsp[1]?:wsp[0]}
-      )
-    )
+        :class {wsp[2]}
+        :onclick "niri msg action focus-workspace ${wsp[0]}"
+        {wsp[1]?:wsp[0]}))
   )
 )
 

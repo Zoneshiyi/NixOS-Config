@@ -1,6 +1,5 @@
 {
   pkgs,
-  configPath,
   ...
 }:
 {
@@ -39,35 +38,24 @@
     # ];
     wifi.backend = "iwd";
   };
+
+  services.firewalld = {
+    enable = true;
+    package = pkgs.firewalld-gui;
+    settings = {
+      DefaultZone = "public";
+    };
+    zones = {
+      public.services = [ "ssh" ];
+    };
+  };
+
   networking = {
     wireless.dbusControlled = true;
     firewall.enable = false;
     nftables.enable = true;
-    nftables.flushRuleset = true;
   };
-  environment.systemPackages = [
-    (pkgs.firewalld-gui.overrideAttrs {
-      withGui = true;
-    })
-  ];
-  systemd.services.firewalld = {
-    description = "Custom Firewall Daemon";
-    wantedBy = [ "multi-user.target" ];
-    requires = [ "dbus.service" ];
-    after = [
-      "dbus.service"
-      "network.target"
-    ];
-    environment = {
-      DBUS_SYSTEM_BUS_ADDRESS = "unix:path=/run/dbus/system_bus_socket";
-    };
-    serviceConfig = {
-      Type = "dbus";
-      BusName = "org.fedoraproject.FirewallD1";
-      ExecStart = "${pkgs.firewalld-gui}/bin/firewalld --nofork --system-config /etc/firewalld";
-      Restart = "no";
-    };
-  };
+
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
       if (action.id.indexOf("org.fedoraproject.FirewallD1.") == 0 && subject.isInGroup("networkmanager")) {
@@ -88,23 +76,5 @@
       };
     };
   };
-  services.tailscale.enable = true;
-  system.activationScripts = {
-    create-firewalld = {
-      text = ''
-        if [ ! -d /etc/firewalld ]; then
-          mkdir -p /etc/firewalld
-        fi
-        if [ ! -d /etc/firewalld/services ]; then
-          ln -s ${configPath}/firewalld/services /etc/firewalld/services
-        fi
-        if [ ! -f /etc/firewalld/firewalld.conf ]; then
-          ln -s ${configPath}/firewalld/firewalld.conf /etc/firewalld/firewalld.conf
-        fi
-        if [ ! -d /etc/firewalld/zones ]; then
-          cp -r ${configPath}/firewalld/zones /etc/firewalld/zones
-        fi
-      '';
-    };
-  };
+  # services.tailscale.enable = true;
 }

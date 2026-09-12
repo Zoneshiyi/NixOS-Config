@@ -33,16 +33,54 @@
 
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [
-    hplip
+    (hplip.override {
+      # disable gui tray
+      withQt5 = false;
+    })
   ];
 
-  services._3proxy = {
+  services.sing-box = {
     enable = true;
-    extraConfig = ''
-      maxconn 1000
-      deny * * 127.0.0.1
-      allow *
-      socks -u -n -p12345
-    '';
+
+    settings = {
+      log = {
+        level = "warn";
+        timestamp = true;
+      };
+
+      inbounds = [
+        {
+          type = "socks";
+          tag = "socks-in";
+          listen = "10.12.190.184"; # 只绑这张网卡
+          listen_port = 12345;
+        }
+      ];
+
+      outbounds = [
+        {
+          type = "direct";
+          tag = "direct";
+        }
+        {
+          type = "block";
+          tag = "block";
+        }
+      ];
+
+      route = {
+        rules = [
+        { inbound = "socks-in"; source_ip_cidr = "10.12.180.6/32"; outbound = "direct"; }
+        { inbound = "socks-in"; outbound = "block"; }
+      ];
+      };
+    };
   };
+
+  services.firewalld.zones.public.ports = [
+    {
+      port = 12345;
+      protocol = "tcp";
+    }
+  ];
 }

@@ -6,7 +6,7 @@
 }:
 {
   home = {
-    stateVersion = "24.11";
+    stateVersion = "26.05";
     sessionVariables = {
       LANG = "en_US.UTF-8";
       LC_ALL = "en_US.UTF-8";

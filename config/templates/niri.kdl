@@ -1,0 +1,31 @@
+// 每主机模板：显示器（output）配置
+// 由 niri 主配置 config.kdl 通过 include 引入（见 config.kdl 第 1 行：
+//   include "~/.config/templates/niri.kdl"
+// 换机器时只改本文件，主配置无需变动。
+//
+// 当前为示例：用 /- 注释禁用，niri 自动探测显示器。
+// 如需固定某台显示器，去掉 /- 并填写对应值；
+// 用 `niri msg outputs` 可列出所有输出及其可用 mode。
+
+/-output "DP-1" {
+    // off
+    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
+    mode "1920x1080@120.030"
+    scale 1.5
+    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "normal"
+
+    // Position of the output in the global coordinate space.
+    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
+    // The cursor can only move between directly adjacent outputs.
+    // Output scale and rotation has to be taken into account for positioning:
+    // outputs are sized in logical, or scaled, pixels.
+    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
+    // so to put another output directly adjacent to it on the right, set its x to 1920.
+    // If the position is unset or results in an overlap, the output is instead placed
+    // automatically.
+    position x=1280 y=0
+}
+
+// 多显示器 / 主机相关时，可在此追加更多 output 块，或把 eww 顶栏/侧栏的
+// --arg xxx:monitor=<输出名> 也挪到这里（配合 `niri msg outputs` 查到的名字）。

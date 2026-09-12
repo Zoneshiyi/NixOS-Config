@@ -17,7 +17,7 @@
   (box
     :orientation "v"
     :valign "fill"
-    :halign "center"
+    :halign "fill"
     :space-evenly false
     (taskbar :monitor monitor)
     (side-tray
@@ -41,7 +41,7 @@
       (for window in {"${windows[monitor]}"?:[]}
         (button
           :class {window[2]}
-          :onclick "hyprctl dispatch focuswindow address:${window[1]}"
+          :onclick "niri msg action focus-window --id ${window[1]}"
           (image
             :icon-size "dnd"
             :icon `${poll-apps-name-to-icon["${window[0]}"]?:"default-application"}`

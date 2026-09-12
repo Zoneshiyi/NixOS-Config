@@ -16,10 +16,10 @@ in
     ./dunst.nix
     ./themes.nix
   ];
-  wayland.windowManager.hyprland.systemd.enable = false;
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = false;
     desktop = null;
     publicShare = null;
     templates = null;
@@ -29,35 +29,40 @@ in
     pictures = "${homeDir}/Pictures";
     videos = "${homeDir}/Videos";
     extraConfig = {
-      XDG_CODES_DIR = "${homeDir}/Codes";
-      XDG_TMP_DIR = "${homeDir}/Tmp";
+      CODES = "${homeDir}/Codes";
+      TMP = "${homeDir}/Tmp";
     };
   };
   xresources.extraConfig = ''
     #include "${homeDir}/.config/templates/Xresources"
   '';
   services = {
-    swww = {
+    awww = {
       enable = true;
-      package = pkgs.swww;
+      package = pkgs.awww;
     };
+    blueman-applet.enable = true;
   };
   home.activation = {
     create-templates = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      if [ ! -d "${templatesPath}" ]; then
-        mkdir -p "${templatesPath}"
-      fi
+      mkdir -p "${templatesPath}"
       mkdir -p "${templatesPath}/wallpapers"
+      shopt -s nullglob dotglob
       for item in "${configPath}/templates/"*; do
-        if [ -e ${templatesPath}/$(basename $item) ]; then
-          continue
+        target="${templatesPath}/$(basename "$item")"
+        [ -e "$target" ] && continue
+        if [ -d "$item" ]; then
+          cp -r "$item" "$target"
+        elif [ -f "$item" ]; then
+          cp "$item" "$target"
         fi
-        [ -d "$item" ] && cp -r "$item" "${templatesPath}/"
-        [ -f "$item" ] && cp "$item" "${templatesPath}/"
       done
+      shopt -u nullglob dotglob
     '';
   };
   home.packages = with pkgs; [
+    xwayland-satellite
+
     hypridle
     hyprsunset
     pyprland
@@ -66,7 +71,7 @@ in
     wlogout
     eww
     xdg-launch
-    xorg.xrdb
+    xrdb
 
     grim
     slurp

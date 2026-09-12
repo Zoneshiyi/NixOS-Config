@@ -4,43 +4,34 @@
   ...
 }:
 let
-  hyprpkgs = inputs.hyprland.packages.${pkgs.system};
+  hyprpkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   # services.xserver.enable = true;
-  services.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-    banner = '''';
+  services.displayManager = {
+    defaultSession = "niri";
+    gdm = {
+      enable = true;
+      banner = '''';
+    };
   };
-  # programs.uwsm = {
-  #   enable = true;
-  #   waylandCompositors = {
-  #     hyprland = {
-  #       prettyName = "Hyprland";
-  #       comment = "Hyprland compositor managed by UWSM";
-  #       binPath = "/run/current-system/sw/bin/Hyprland";
-  #     };
-  #   };
-  # };
   programs = {
+    xwayland.enable = true;
     hyprland = {
       enable = true;
+      withUWSM = true;
       xwayland.enable = true;
-      withUWSM = false;
       package = hyprpkgs.hyprland;
       portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
     };
-    xwayland.enable = true;
     hyprlock = {
       enable = true;
     };
-  };
-  programs = {
+    niri.enable = true;
     dconf.enable = true;
     thunar.enable = true;
-    thunar.plugins = with pkgs.xfce; [
-      exo
+    thunar.plugins = with pkgs; [
+      xfce4-exo
       thunar-archive-plugin
       tumbler
     ];
@@ -80,7 +71,7 @@ in
     NIXOS_OZONE_WL = "1";
   };
   environment.systemPackages = with pkgs; [
-    libsForQt5.qt5.qtbase
+    qt5.qtbase
     libsForQt5.qt5ct
     libsForQt5.qtstyleplugin-kvantum
     kdePackages.qtbase
