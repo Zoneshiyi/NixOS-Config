@@ -63,19 +63,12 @@ in
   home.packages = with pkgs; [
     xwayland-satellite
 
-    hypridle
-    hyprsunset
-    pyprland
     swaybg
     brightnessctl
     wlogout
     eww
     xdg-launch
     xrdb
-
-    grim
-    slurp
-    swappy
 
     trashy
   ];

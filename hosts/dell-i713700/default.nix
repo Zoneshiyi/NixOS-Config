@@ -52,7 +52,7 @@
         {
           type = "socks";
           tag = "socks-in";
-          listen = "10.12.190.184"; # 只绑这张网卡
+          listen = "10.12.190.184"; # Only bind to this network interface
           listen_port = 12345;
         }
       ];

@@ -4,12 +4,6 @@
   ...
 }:
 {
-  home.file.".npmrc".text = ''
-    prefix = ${config.xdg.dataHome}/npm
-  '';
-  home.sessionPath = [
-    "${config.xdg.dataHome}/npm/bin"
-  ];
   home.packages = with pkgs; [
     gcc
     gnumake
@@ -18,7 +12,6 @@
         pynvim
       ]
     ))
-    act
 
     glibc
     libclang
@@ -34,9 +27,9 @@
     lua-language-server
     stylua
 
-    hyprls
-
     tree-sitter
     nodejs_24
+
+    fnm
   ];
 }

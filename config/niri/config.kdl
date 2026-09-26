@@ -1,6 +1,7 @@
 spawn-sh-at-startup "eww daemon"
 include optional=true "~/.config/templates/niri.kdl"
 include "binds.kdl"
+include "window-rule.kdl"
 
 input {
     keyboard {
@@ -33,7 +34,7 @@ input {
 
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 13
+    gaps 7
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -120,14 +121,4 @@ animations {
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
-}
-
-window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-window-rule {
-    geometry-corner-radius 13
-    clip-to-geometry true
 }

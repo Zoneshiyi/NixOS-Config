@@ -27,6 +27,5 @@
   home.packages = with pkgs; [
     age
     lux
-    aria2
   ];
 }

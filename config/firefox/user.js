@@ -1,21 +1,21 @@
-// 启动时打开自定义主页
+// Open custom homepage on startup
 user_pref("browser.startup.homepage", "about:home");
-// 禁用默认浏览器检查
+// Disable default browser check
 user_pref("browser.shell.checkDefaultBrowser", false);
-// 禁用推荐内容和广告
+// Disable recommended content and ads
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
-// 关闭推荐扩展提示
+// Disable recommended extension prompts
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
-// 启用所有开发者工具
+// Enable all developer tools
 user_pref("devtools.chrome.enabled", true);
 user_pref("devtools.debugger.remote-enabled", true);
-// 垂直标签栏
+// Vertical tab bar
 user_pref("sidebar.verticalTabs", true);
 user_pref("sidebar.visibility", "always-show");
-// 书签栏
+// Bookmarks bar
 user_pref("browser.toolbars.bookmarks.visibility", "newTab");
-// ctrl+Tab 切换标签页
+// Ctrl+Tab to cycle tabs
 user_pref("browser.ctrlTab.sortByRecentlyUsed", true);
 
 user_pref("intl.accept_languages", "zh-CN, en-US");

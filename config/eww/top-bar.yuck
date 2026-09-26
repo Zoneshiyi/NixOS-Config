@@ -106,7 +106,6 @@
     :halign "end"
     :space-evenly false
     (dunst-paused)
-    ; (nightmode)
     ; (theme)
     (horizon-separator)
     (horizon-end
@@ -128,7 +127,7 @@
   (button
     :class "dunst-paused"
     :onclick "dunstctl set-paused toggle & eww poll poll-once &"
-    {poll-once[1]}
+    {poll-once[0]}
   )
 )
 
@@ -138,14 +137,5 @@
     :onclick "fish -c 'theme-choose light' & eww poll poll-once &"
     :onrightclick "fish -c 'theme-choose dark' & eww poll poll-once &"
     theme
-  )
-)
-
-(defwidget nightmode []
-  (button
-    :class "nightmode"
-    :onclick "nohup hyprsunset > /dev/null 2>&1 & eww poll poll-once &"
-    :onrightclick "pkill hyprsunset && eww poll poll-once &"
-    {poll-once[0]}
   )
 )

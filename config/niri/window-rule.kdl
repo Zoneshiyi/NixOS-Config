@@ -1,0 +1,24 @@
+// Firefox Picture-in-Picture: open floating
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// Thunar: open floating by default
+window-rule {
+    match app-id=r#"[Tt]hunar"#
+    open-floating true
+    opacity 0.8
+    draw-border-with-background false
+    default-column-width { proportion 0.5; }
+    default-window-height { proportion 0.5; }
+}
+
+// Rounded corners for all windows
+window-rule {
+    geometry-corner-radius 13
+    clip-to-geometry true
+    background-effect {
+        blur true
+    }
+}

@@ -1,11 +1,7 @@
 {
   pkgs,
-  inputs,
   ...
 }:
-let
-  hyprpkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
-in
 {
   # services.xserver.enable = true;
   services.displayManager = {
@@ -16,14 +12,6 @@ in
     };
   };
   programs = {
-    xwayland.enable = true;
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-      xwayland.enable = true;
-      package = hyprpkgs.hyprland;
-      portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
-    };
     hyprlock = {
       enable = true;
     };
@@ -50,12 +38,19 @@ in
     };
     portal = {
       enable = true;
-      wlr.enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gnome
+        xdg-desktop-portal-gtk
+      ];
+      config.common.default = [
+        "gnome"
+        "gtk"
+      ];
     };
     terminal-exec = {
       enable = true;
       settings = {
-        Hyprland = [
+        niri = [
           "Alacritty.desktop"
         ];
       };
@@ -79,7 +74,6 @@ in
     kdePackages.qtstyleplugin-kvantum
     wlr-randr
     wlrctl
-    xdg-desktop-portal-wlr
     wl-clipboard
 
     wireshark

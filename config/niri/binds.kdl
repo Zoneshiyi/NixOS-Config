@@ -8,6 +8,13 @@ binds {
 
     Mod+Shift+P hotkey-overlay-title="Power Off Monitors" { power-off-monitors; }
 
+    Mod+E hotkey-overlay-title="Open File Explorer: thunar" { spawn "thunar"; }
+
+    Mod+P { screenshot; }
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
     // You can also move the mouse into the top-left hot corner,
     // or do a four-finger swipe up on a touchpad.
     Mod+O repeat=false { toggle-overview; }
@@ -120,10 +127,6 @@ binds {
     // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
-
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

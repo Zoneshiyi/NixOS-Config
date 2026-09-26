@@ -30,31 +30,10 @@
           :tooltip "Chromium"
         )
         (app
-          :icon "multimedia-audio-player"
-          :description "Music"
-          :onclick "xdg-launch yesplaymusic &"
-          :tooltip "YesPlayMusic"
-        )
-        (app
           :icon "qq"
           :description "QQ"
           :onclick "xdg-launch qq &"
           :tooltip "QQ"
-        )
-        (app
-          :icon "wechat"
-          :description "WeChat"
-          :onclick "xdg-launch wechat &"
-          :tooltip "WeChat"
-        )
-      )
-      (box
-        :halign "start"
-        (app
-          :icon "obsidian"
-          :description "Obsidian"
-          :onclick "obsidian $ELECTRON_OPTIONS &"
-          :tooltip "Obsidian"
         )
         (app
           :icon "wps-office2019-wpsmain"
@@ -62,6 +41,9 @@
           :onclick "xdg-launch wps-office-wps &"
           :tooltip "WPS Office"
         )
+      )
+      (box
+        :halign "start"
         (app
           :icon "moonlight"
           :description "Moonlight"
@@ -74,16 +56,6 @@
           :onclick "xdg-launch org.remmina.Remmina &"
           :tooltip "Remmina"
         )
-        (app
-          :icon "Vial"
-          :description "Vial"
-          :onclick "xdg-launch Vial &"
-          :tooltip "Vial"
-        )
-        
-      )
-      (box
-        :halign "start"
         (app
           :icon "default-application"
           :description "Inspector"

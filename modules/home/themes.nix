@@ -118,13 +118,4 @@ in
     package = pkgs.whitesur-cursors;
     name = "WhiteSur-cursors";
   };
-  # home.pointerCursor = {
-  #   x11.enable = true;
-  #   hyprcursor.enable = true;
-  #   hyprcursor.size = 50;
-  #   package = pkgs.bibata-cursors;
-  #   name = "Bibata-Modern-Ice";
-  #   package = pkgs.catppuccin-cursors;
-  #   name = "catppuccin-frappe-blue-cursors";
-  # };
 }

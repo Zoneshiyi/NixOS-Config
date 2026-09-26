@@ -6,7 +6,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -33,7 +32,7 @@
     }:
     rec {
       system = builtins.currentSystem;
-      # 系统层面modules的特殊参数
+      # Special arguments for system-level modules
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -57,7 +56,7 @@
         backupFileExtension = "home-manager.backup";
         users.zone = import ./users/zone/home.nix;
         users.root = import ./users/root/home.nix;
-        # home-manager的特殊参数
+        # Special arguments for home-manager
         extraSpecialArgs = specialArgs;
       };
       base-modules = [

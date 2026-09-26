@@ -9,10 +9,6 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
 
-  environment.variables = {
-    LANG = "en_US.UTF-8";
-    LC_ALL = "en_US.UTF-8";
-  };
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales = [
     "en_US.UTF-8/UTF-8"
@@ -35,7 +31,7 @@
       fcitx5-nord
     ];
   };
-  # i18n.inputMethod.fcitx5.ignoreUserConfig = true; #启用不光个人设置无效，个人词库也会无法保存
+  # i18n.inputMethod.fcitx5.ignoreUserConfig = true; # Enabling this invalidates personal settings and prevents the personal dictionary from being saved
   i18n.inputMethod.fcitx5.settings = { };
 
   fonts.enableDefaultPackages = true;

@@ -11,16 +11,10 @@ end
 
 function poll-once
   echo -n "["
-  if test (pgrep hyprsunset)
-    echo -n '"󱩌"'
-  else
-    echo -n '"󱩍"'
-  end
-
   if test (dunstctl is-paused | rg -F "false")
-    echo -n ',"󰂛"'
+    echo -n '"󰂛"'
   else
-    echo -n ',"󰂚"'
+    echo -n '"󰂚"'
   end
   # set -l theme (theme-choose check)
   # eww update theme=$theme

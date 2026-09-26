@@ -18,7 +18,6 @@
     "kitty".source = mkSymlink "${configPath}/kitty";
     "eww".source = mkSymlink "${configPath}/eww";
     "yazi".source = mkSymlink "${configPath}/yazi";
-    "pypr".source = mkSymlink "${configPath}/pypr";
     "niri".source = mkSymlink "${configPath}/niri";
   };
   home.homeDirectory = "/home/zone";
@@ -37,18 +36,13 @@
     wdisplays
     dconf-editor
     qtpass
-    rclone
-    vial
 
     kitty
     qbittorrent-nox
     vscode
-    obsidian
     wpsoffice
     qq
     mpv
     ffmpeg
   ];
-
-  programs.pi-coding-agent.enable = true;
 }

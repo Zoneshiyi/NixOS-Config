@@ -1,11 +1,11 @@
-// 每主机模板：显示器（output）配置
-// 由 niri 主配置 config.kdl 通过 include 引入（见 config.kdl 第 1 行：
+// Per-host template: display (output) configuration
+// Included by the main niri config (config.kdl) via include (see the first line of config.kdl:
 //   include "~/.config/templates/niri.kdl"
-// 换机器时只改本文件，主配置无需变动。
+// Only edit this file when switching machines; the main config stays unchanged.
 //
-// 当前为示例：用 /- 注释禁用，niri 自动探测显示器。
-// 如需固定某台显示器，去掉 /- 并填写对应值；
-// 用 `niri msg outputs` 可列出所有输出及其可用 mode。
+// This is an example: comment it out with /- to disable, niri auto-detects displays.
+// To pin a specific display, remove the /- prefix and fill in the corresponding values;
+// Use `niri msg outputs` to list all outputs and their available modes.
 
 /-output "DP-1" {
     // off
@@ -27,5 +27,5 @@
     position x=1280 y=0
 }
 
-// 多显示器 / 主机相关时，可在此追加更多 output 块，或把 eww 顶栏/侧栏的
-// --arg xxx:monitor=<输出名> 也挪到这里（配合 `niri msg outputs` 查到的名字）。
+// For multi-display / multi-host setups, append more output blocks here, or move the eww top/side bar's
+// --arg xxx:monitor=<output name> here as well (use the name from `niri msg outputs`).
