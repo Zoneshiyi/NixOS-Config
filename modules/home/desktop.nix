@@ -13,7 +13,6 @@ in
   imports = [
     ./alacritty.nix
     ./browser.nix
-    ./dunst.nix
     ./themes.nix
   ];
   xdg.userDirs = {
@@ -37,16 +36,11 @@ in
     #include "${homeDir}/.config/templates/Xresources"
   '';
   services = {
-    awww = {
-      enable = true;
-      package = pkgs.awww;
-    };
     blueman-applet.enable = true;
   };
   home.activation = {
     create-templates = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "${templatesPath}"
-      mkdir -p "${templatesPath}/wallpapers"
       shopt -s nullglob dotglob
       for item in "${configPath}/templates/"*; do
         target="${templatesPath}/$(basename "$item")"
@@ -63,10 +57,8 @@ in
   home.packages = with pkgs; [
     xwayland-satellite
 
-    swaybg
     brightnessctl
-    wlogout
-    eww
+    noctalia
     xdg-launch
     xrdb
 

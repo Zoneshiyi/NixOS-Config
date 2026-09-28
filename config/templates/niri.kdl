@@ -2,14 +2,68 @@
 // Included by the main niri config (config.kdl) via include (see the first line of config.kdl:
 //   include "~/.config/templates/niri.kdl"
 // Only edit this file when switching machines; the main config stays unchanged.
+// NOTE: modules/home/desktop.nix copies config/templates/* into ~/.config/templates/ only when
+// the target does not exist yet, so on a machine that already has ~/.config/templates/niri.kdl
+// the file you actually want to edit is that one (the live copy), not this seed.
 //
-// This is an example: comment it out with /- to disable, niri auto-detects displays.
-// To pin a specific display, remove the /- prefix and fill in the corresponding values;
+// ── Why `scale` is the only thing that matters for consistent sizes ───────────
+//
+// Everything on Wayland is sized in *logical* (scaled) pixels: niri turns physical pixels
+// into logical pixels with each output's `scale`, so N logical px become N × scale physical
+// px. Noctalia (bars, panels, OSD, lock screen) and niri's own layout (gaps, borders, fonts)
+// all use logical px, so if every monitor ends up with the same *logical DPI*, the shell has
+// the same physical size on all of them, whatever the resolution or the panel size.
+//
+// When `scale` is unset, niri guesses it exactly like Mutter (src/utils/scale.rs):
+//
+//     diag_in      = sqrt(w_mm² + h_mm²) / 25.4
+//     target_dpi   = 135 if diag_in < 20"   (laptops, phones)
+//                    110 otherwise          (desktop monitors)
+//     physical_dpi = sqrt(w_px² + h_px²) / diag_in
+//     scale        = the 0.25-step value in 1.00..4.00 closest to physical_dpi / target_dpi
+//
+// (skip scales whose logical area would be under 800x480; a monitor reporting 0x0 mm gets
+// 1.0). So niri already normalizes the physical size within one display class -- there is
+// nothing to configure if all your monitors are >= 20", or all are < 20".
+//
+// The two things it cannot do for you:
+//   * A laptop panel (< 20") targets 135 logical DPI, a desktop monitor 110: the laptop UI
+//     ends up ~20% physically smaller. To unify them, set the small one explicitly to
+//     physical_dpi / 110 (any fractional value works; staying on a 0.25 step matches niri's
+//     own quantization).
+//   * 0.25 steps leave up to ~8% deviation (25" 4K: ideal 1.60 -> 1.5 -> 117 logical DPI),
+//     and a monitor with a wrong/missing EDID size falls back to 1.0. Pin `scale` by hand
+//     for those.
+//
+// Typical values with a 110 logical DPI reference:
+//   24" 1920x1080  ( 92 DPI) -> 1.0 (niri's floor; ends up ~20% physically bigger)
+//   27" 2560x1440  (109 DPI) -> 1.0
+//   34" 3440x1440  (110 DPI) -> 1.0
+//   32" 3840x2160  (138 DPI) -> 1.25
+//   27" 3840x2160  (163 DPI) -> 1.5
+//   25" 3840x2160  (176 DPI) -> 1.5 (ideal 1.60, off by 6%)
+//   13" 2560x1600  (233 DPI) -> 2.0 (niri would pick 1.75 for its 135 DPI mobile target)
+//   14" 2880x1800  (243 DPI) -> 2.25 (niri would pick 1.75)
+//
+// Viewing distance is the other half of the story: a TV across the room wants a larger scale
+// than the numbers above, and that is what the per-monitor bar overrides in
+// config/noctalia/config.toml are for.
+//
+// Inspect and compute per monitor (jq >= 1.7):
+//
+//   niri msg --json outputs | jq -r 'to_entries[]|.value|. as $o
+//     | ($o.modes[$o.current_mode]) as $m
+//     | ((($o.physical_size[0]*$o.physical_size[0]+$o.physical_size[1]*$o.physical_size[1])|sqrt)/25.4) as $diag
+//     | ((($m.width*$m.width+$m.height*$m.height)|sqrt)/$diag) as $pdpi
+//     | "\($o.name) \($m.width)x\($m.height) \($diag*10|round/10)in \($pdpi*10|round/10)dpi"
+//       + " scale=\($o.logical.scale) logical=\($pdpi/$o.logical.scale*10|round/10)dpi"
+//       + " -> 110dpi: \((($pdpi/110)*4|round)/4)"'
+//
+// Uncomment (remove the /- prefix) to pin a display; otherwise niri auto-detects it.
 // Use `niri msg outputs` to list all outputs and their available modes.
 
 /-output "DP-1" {
     // off
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
     mode "1920x1080@120.030"
     scale 1.5
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -27,5 +81,6 @@
     position x=1280 y=0
 }
 
-// For multi-display / multi-host setups, append more output blocks here, or move the eww top/side bar's
-// --arg xxx:monitor=<output name> here as well (use the name from `niri msg outputs`).
+// For multi-display / multi-host setups, append more output blocks here. The Noctalia bars
+// are created on every connected monitor automatically, so nothing else is needed here;
+// per-monitor tweaks go into config/noctalia/config.toml as [bar.<name>.monitor.<match>].

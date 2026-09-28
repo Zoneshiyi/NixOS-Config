@@ -12,11 +12,9 @@
     # ./secrets.nix
   ];
   xdg.configFile = {
-    "hypr".source = mkSymlink "${configPath}/hypr";
     "rofi".source = mkSymlink "${configPath}/rofi";
-    "wlogout".source = mkSymlink "${configPath}/wlogout";
     "kitty".source = mkSymlink "${configPath}/kitty";
-    "eww".source = mkSymlink "${configPath}/eww";
+    "noctalia".source = mkSymlink "${configPath}/noctalia";
     "yazi".source = mkSymlink "${configPath}/yazi";
     "niri".source = mkSymlink "${configPath}/niri";
   };
@@ -31,8 +29,6 @@
     swayimg
     copyq
     networkmanagerapplet
-    waypaper
-    awww
     wdisplays
     dconf-editor
     qtpass

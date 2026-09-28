@@ -22,3 +22,35 @@ window-rule {
         blur true
     }
 }
+
+// Noctalia: the settings window opens floating at a fixed size.
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { proportion 0.7; }
+    default-window-height { proportion 0.7; }
+}
+
+layer-rule {
+    match namespace="^noctalia-wallpaper"
+    place-within-backdrop true
+}
+
+// Noctalia: blur what is behind its layer surfaces instead of sampling the wallpaper.
+// Noctalia publishes its blur regions on its own; `xray false` only changes what they
+// sample. Drop this rule, or set `blur false`, to turn the blur off. (niri >= 26.04)
+layer-rule {
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+    background-effect {
+        xray false
+    }
+}
+
+// Noctalia: the window switcher gets a real blur behind it.
+// layer-rule {
+//     match namespace="noctalia-window-switcher"
+//     background-effect {
+//         blur true
+//         xray false
+//     }
+// }

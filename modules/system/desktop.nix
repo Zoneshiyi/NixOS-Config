@@ -1,20 +1,44 @@
 {
   pkgs,
+  config,
+  lib,
   ...
 }:
+let
+  greeter = config.services.displayManager.noctalia-greeter;
+in
 {
   # services.xserver.enable = true;
   services.displayManager = {
     defaultSession = "niri";
-    gdm = {
+
+    noctalia-greeter = {
       enable = true;
-      banner = '''';
+      passwordlessSyncUsers = [ "zone" ];
+      cursorTheme = {
+        package = pkgs.whitesur-cursors;
+        name = "WhiteSur-cursors";
+      };
+      settings = {
+        session.default = "Niri";
+        cursor.size = 32;
+        keyboard = {
+          layout = "us";
+          numlock = true;
+        };
+        appearance = {
+          theme_mode = "dark";
+          hide_logo = true;
+        };
+      };
     };
   };
+
+  services.greetd.settings.default_session.command =
+    "${lib.getExe' pkgs.coreutils "env"} "
+    + "XDG_DATA_DIRS=${config.services.displayManager.sessionData.desktops}/share "
+    + "${lib.getExe' greeter.package "noctalia-greeter-session"} ${lib.escapeShellArgs greeter.extraArgs}";
   programs = {
-    hyprlock = {
-      enable = true;
-    };
     niri.enable = true;
     dconf.enable = true;
     thunar.enable = true;

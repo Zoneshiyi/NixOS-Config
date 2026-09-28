@@ -1,7 +1,7 @@
-fish_add_path $HOME/.local/share/npm/bin $HOME/.cargo/bin
+fish_add_path $HOME/.local/share/fnm/aliases/default/bin $HOME/.cargo/bin
 
 if not status --is-interactive
-  return
+    return
 end
 
 set -g fish_greeting ''
@@ -17,3 +17,5 @@ bind \cp _fzf_search_processes
 bind -M insert \cp _fzf_search_processes
 
 zoxide init fish --cmd cd | source
+
+# fnm env --use-on-cd --shell fish | source

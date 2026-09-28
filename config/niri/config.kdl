@@ -1,4 +1,4 @@
-spawn-sh-at-startup "eww daemon"
+spawn-at-startup "noctalia"
 include optional=true "~/.config/templates/niri.kdl"
 include "binds.kdl"
 include "window-rule.kdl"
@@ -33,6 +33,10 @@ input {
 }
 
 layout {
+    // Noctalia draws the wallpaper into niri's backdrop (Option 2 in window-rule.kdl), so
+    // the workspace background must stay transparent or it would paint over it.
+    background-color "transparent"
+
     // Set gaps around windows in logical pixels.
     gaps 7
 
@@ -110,6 +114,11 @@ layout {
 
 hotkey-overlay {
     skip-at-startup
+}
+
+debug {
+    // Allows notification actions and window activation from Noctalia.
+    honor-xdg-activation-with-invalid-serial
 }
 
 prefer-no-csd
