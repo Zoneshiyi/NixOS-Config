@@ -53,7 +53,7 @@ in
   };
   programs.nix-index = {
     enable = true;
-    package = inputs.nix-index-database.packages.${pkgs.system}.nix-index-with-db;
+    package = inputs.nix-index-database.packages.${pkgs.stdenv.hostPlatform.system}.nix-index-with-db;
     enableZshIntegration = true;
     enableFishIntegration = true;
   };

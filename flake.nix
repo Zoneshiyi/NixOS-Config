@@ -11,14 +11,14 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur-self = {
-      url = "github:Zoneshiyi/nur-pkgs/dev";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     agenix.url = "github:ryantm/agenix";
     secrets = {
       url = "git+ssh://git@gitee.com/Zoneshiyi/secrets.git";
       flake = false;
+    };
+    wowtype = {
+      url = "github:Gloridust/WowType/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs =
@@ -27,7 +27,6 @@
       nixpkgs,
       home-manager,
       nix-index-database,
-      nur-self,
       ...
     }:
     rec {
@@ -40,8 +39,6 @@
       specialArgs = {
         inherit inputs;
         configPath = "/home/zone/NixOS/config";
-        pkgs-self = nur-self.packages.${system};
-        modules-self = nur-self.nixosModules.${system};
         mkSymlink =
           path:
           let

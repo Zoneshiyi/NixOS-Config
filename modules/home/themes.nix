@@ -82,10 +82,7 @@ in
       whitesur-gtk-theme
       whitesur-kde
       whitesur-icon-theme
-      rose-pine-cursor
       whitesur-cursors
-      bibata-cursors
-      capitaine-cursors
     ]
     ++ (builtins.attrValues validGtkThemes);
 

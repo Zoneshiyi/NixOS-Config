@@ -5,6 +5,7 @@ binds {
     Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn-sh "pkill rofi || rofi -show combi -combi-modi 'drun,run'"; }
     Mod+A hotkey-overlay-title="Open Applications: launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+S hotkey-overlay-title="Open Control Center: noctalia" { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Shift+C hotkey-overlay-title="Toggle the Clipboard: noctalia" { spawn-sh "noctalia msg panel-toggle clipboard"; }
     // Toggle the bars: no bar name means every bar, so top and side flip together.
     // Hiding frees the reserved screen space; the state is runtime-only and comes back
     // after a config reload or a shell restart. One at a time: bar-toggle top / side.

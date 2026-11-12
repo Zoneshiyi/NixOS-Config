@@ -80,6 +80,8 @@ in
       };
     };
   };
+  services.flatpak.enable = true;
+  # services.linyaps.enable = true;
   services.sunshine = {
     enable = true;
     autoStart = false;
@@ -91,11 +93,7 @@ in
   };
   environment.systemPackages = with pkgs; [
     qt5.qtbase
-    libsForQt5.qt5ct
-    libsForQt5.qtstyleplugin-kvantum
     kdePackages.qtbase
-    kdePackages.qt6ct
-    kdePackages.qtstyleplugin-kvantum
     wlr-randr
     wlrctl
     wl-clipboard

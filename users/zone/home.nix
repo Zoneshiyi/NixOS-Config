@@ -27,7 +27,6 @@
     moonlight-qt
     remmina
     swayimg
-    copyq
     networkmanagerapplet
     wdisplays
     dconf-editor
@@ -35,9 +34,6 @@
 
     kitty
     qbittorrent-nox
-    vscode
-    wpsoffice
-    qq
     mpv
     ffmpeg
   ];

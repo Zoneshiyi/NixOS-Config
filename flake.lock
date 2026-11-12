@@ -333,27 +333,6 @@
         "type": "github"
       }
     },
-    "nur-self": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1750081141,
-        "narHash": "sha256-TGCC6mIpakBlTr2fA1wPbId/BlmtKivkPyxKqWFEO6w=",
-        "owner": "Zoneshiyi",
-        "repo": "nur-pkgs",
-        "rev": "08fc55db873a4564fb06e87dfb322db4e646dad1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Zoneshiyi",
-        "ref": "dev",
-        "repo": "nur-pkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -361,8 +340,8 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_3",
-        "nur-self": "nur-self",
-        "secrets": "secrets"
+        "secrets": "secrets",
+        "wowtype": "wowtype"
       }
     },
     "secrets": {
@@ -414,6 +393,27 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "wowtype": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794452519,
+        "narHash": "sha256-WncVdJuQlPYa8SsT12TgF4/c+MrMt/5NxMMsElVyqo8=",
+        "owner": "Gloridust",
+        "repo": "WowType",
+        "rev": "1e047f7469f4e2f3da7a8a0cd49dbc8c0b46a0f1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Gloridust",
+        "ref": "main",
+        "repo": "WowType",
         "type": "github"
       }
     }

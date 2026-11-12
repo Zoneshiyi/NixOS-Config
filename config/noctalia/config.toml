@@ -61,10 +61,9 @@ radius = 8
 margin_ends = 3
 # margin_edge = 0
 padding = 16
-widget_spacing = 15
+widget_spacing = 13
 shadow = false
 auto_hide = false
-capsule = false
 capsule_thickness  = 0.9
 capsule_padding    = 5
 capsule_radius     = 5
@@ -106,7 +105,7 @@ right = "panel-toggle control-center notifications"
 group_by_workspace = false
 show_all_outputs = false
 only_active_workspace = false
-icon_scale = 1.4
+icon_scale = 1.5
 item_spacing = 8
 
 [widget.volume]
@@ -117,8 +116,6 @@ left = "exec pavucontrol"
 right = "volume-mute"
 
 [widget.tray]
-scale = 1.25
-match_adjacent_spacing = true
 drawer = false
 hide_passive = true
 

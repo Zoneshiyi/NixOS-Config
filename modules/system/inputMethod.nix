@@ -1,6 +1,6 @@
 {
   pkgs,
-  # pkgs-self,
+  inputs,
   ...
 }:
 {
@@ -21,6 +21,8 @@
     enable = true;
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
+      inputs.wowtype.packages.${pkgs.stdenv.hostPlatform.system}.default
+
       fcitx5-gtk
       libsForQt5.fcitx5-qt
       qt6Packages.fcitx5-chinese-addons
@@ -47,11 +49,10 @@
     maple-mono.truetype
     maple-mono.NF-unhinted
     maple-mono.NF-CN-unhinted
-    # sarasa-gothic
+    sarasa-gothic
     vista-fonts-chs
     corefonts
     twemoji-color-font
-    # pkgs-self.ttf-wps-fonts
   ];
   fonts.fontconfig = {
     useEmbeddedBitmaps = true;
